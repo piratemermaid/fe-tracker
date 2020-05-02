@@ -37,3 +37,13 @@ Code to do:
 [ ] Select skill goals post master class, or along path
 [ ] Maybe: Don't use user accounts?
 [ ] Keep track of previous playthrough data even if user starts a new one
+[ ] Add character/class gender and prevent wrong gender from using class e.g. Gremory cannot be male
+[ ] Maybe: track support levels
+[ ] Add unique classes and connect to character, only show unique option when choosing classes if they have one
+[ ] Add DLC and special classes
+
+# Resources
+
+-   Class list: https://www.ign.com/wikis/fire-emblem-three-houses/Classes#Beginner_Classes
+-   Character skill levels: https://serenesforest.net/three-houses/characters/skill-levels/
+-   Character images: https://fireemblem.fandom.com/wiki/List_of_characters_in_Fire_Emblem:_Three_Houses
