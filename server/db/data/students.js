@@ -1,4 +1,4 @@
-module.exports = [
+const studentData = [
     {
         name: "Byleth",
         skills: {
@@ -20,7 +20,7 @@ module.exports = [
         name: "Hubert",
         house: "Black Eagles",
         skills: {
-            proficient: ["Reason", "Autohrity", "Bow"],
+            proficient: ["Reason", "Authority", "Bow"],
             budding: ["Lance"],
             weakness: ["Axe", "Faith", "Flying"]
         }
@@ -322,5 +322,38 @@ module.exports = [
             weakness: ["Faith"]
         }
     }
-    // TODO: add DLC
+    // TODO: add DLC and genders
 ];
+
+let studentSkills = [];
+let studentHouses = {
+    "Black Eagles": [],
+    "Blue Lions": [],
+    "Golden Deer": [],
+    Faculty: []
+};
+for (let student of studentData) {
+    const { name, house, skills } = student;
+    for (let type in skills) {
+        for (let skillName of skills[type]) {
+            studentSkills.push({
+                name,
+                proficient: type === "proficient",
+                budding: type === "buddying",
+                weakness: type === "weakness",
+                skillName
+            });
+        }
+    }
+    if (house) {
+        studentHouses[house].push(name);
+    }
+}
+
+module.exports = {
+    students: studentData.map(({ name, gender, class_id }) => {
+        return { name, gender: gender || null, class_id: class_id || null };
+    }),
+    studentSkills,
+    studentHouses
+};

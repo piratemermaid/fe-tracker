@@ -1,4 +1,4 @@
-module.exports = [
+const classData = [
     {
         name: "Myrmidon",
         type: "Beginner",
@@ -209,7 +209,7 @@ module.exports = [
         name: "Grappler",
         type: "Advanced",
         gender: "male",
-        skills: [{ name: "Brawl", level: "A" }],
+        skills: [{ name: "Brawling", level: "A" }],
         abilities: "Fistfaire, Unarmed Combat",
         mastery: { ability: "Tomebreaker", combat_art: "Fierce Iron Fist" }
     },
@@ -339,3 +339,28 @@ module.exports = [
 
     // TODO: unique & special classes
 ];
+
+let classSkills = [];
+for (let sclass of classData) {
+    const { name, skills } = sclass;
+    for (let skill of skills) {
+        classSkills.push({
+            name,
+            skillName: skill.name,
+            level: skill.level
+        });
+    }
+}
+
+module.exports = {
+    classes: classData.map(({ name, type, gender, abilities, mastery }) => {
+        return {
+            name,
+            type,
+            gender: gender || null,
+            abilities,
+            mastery
+        };
+    }),
+    classSkills
+};

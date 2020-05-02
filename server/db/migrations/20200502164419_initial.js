@@ -3,6 +3,7 @@ exports.up = async function (knex) {
         table.increments("id");
         table.string("name");
         table.string("type");
+        table.string("gender");
         table.string("abilities");
         table.string("mastery_ability");
         table.string("mastery_combat_art");
@@ -16,7 +17,7 @@ exports.up = async function (knex) {
     await knex.schema.createTable("students", (table) => {
         table.increments("id");
         table.string("name");
-        table.integer("class_id").references("id").inTable("classes");
+        table.string("gender");
     });
 
     await knex.schema.createTable("students_skills", (table) => {
@@ -101,7 +102,7 @@ exports.down = async function (knex) {
         "users_students_skills"
     ];
 
-    for (let i = tableOrder.length; i < 0; i--) {
+    for (let i = tableOrder.length - 1; i >= 0; i--) {
         await knex.schema.dropTableIfExists(tableOrder[i]);
     }
 };
