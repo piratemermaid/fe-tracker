@@ -25,7 +25,8 @@ exports.up = async function (knex) {
         table.integer("student_id").references("id").inTable("students");
         table.integer("skill_id").references("id").inTable("skills");
         table.boolean("proficient");
-        table.boolean("budding_talent");
+        table.boolean("budding");
+        table.boolean("weakness");
     });
 
     await knex.schema.createTable("classes_skills", (table) => {
@@ -43,13 +44,19 @@ exports.up = async function (knex) {
         table.string("sessionId");
         table.string("reset_password_token");
         table.timestamp("reset_token_expiry");
+    });
+
+    await knex.schema.createTable("users_playthroughs", (table) => {
+        table.increments("id");
+        table.integer("user_id").references("id").inTable("users");
+        table.integer("playthrough");
         table.string("byleth_gender");
         table.integer("house_id").references("id").inTable("houses");
     });
 
     await knex.schema.createTable("users_students", (table) => {
         table.increments("id");
-        table.integer("user_id").references("id").inTable("users");
+        table.integer("playthrough_id").references("id").inTable("users");
         table.integer("student_id").references("id").inTable("students");
     });
 

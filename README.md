@@ -36,3 +36,4 @@ Code to do:
 [ ] Design for mobile
 [ ] Select skill goals post master class, or along path
 [ ] Maybe: Don't use user accounts?
+[ ] Keep track of previous playthrough data even if user starts a new one
