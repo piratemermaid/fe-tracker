@@ -1,0 +1,1 @@
+module.exports = ["Black Eagles", "Blue Lions", "Golden Deer"];

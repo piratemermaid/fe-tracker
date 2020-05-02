@@ -1,9 +1,4 @@
 exports.up = async function (knex) {
-    await knex.schema.createTable("students", (table) => {
-        table.increments("id");
-        table.string("name");
-    });
-
     await knex.schema.createTable("houses", (table) => {
         table.increments("id");
         table.string("name");
@@ -13,11 +8,21 @@ exports.up = async function (knex) {
     await knex.schema.createTable("classes", (table) => {
         table.increments("id");
         table.string("name");
+        table.string("type");
+        table.string("abilities");
+        table.string("mastery_ability");
+        table.string("mastery_combat_art");
     });
 
     await knex.schema.createTable("skills", (table) => {
         table.increments("id");
         table.string("name");
+    });
+
+    await knex.schema.createTable("students", (table) => {
+        table.increments("id");
+        table.string("name");
+        table.integer("class_id").references("id").inTable("classes");
     });
 
     await knex.schema.createTable("students_skills", (table) => {
