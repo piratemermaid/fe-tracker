@@ -1,13 +1,24 @@
 const { keyBy } = require("lodash");
 const { classes, classSkills } = require("../data/classes");
 const skills = require("../data/skills");
-const { students, studentSkills, studentHouses } = require("../data/students");
+const { students, studentSkills } = require("../data/students");
 const houses = require("../data/houses");
 
 exports.seed = async function (knex) {
     for (let i = tableOrder.length - 1; i >= 0; i--) {
         await resetTable(knex, tableOrder[i]);
     }
+
+    const housesByName = keyBy(
+        await knex("houses")
+            .insert(
+                houses.map((name) => {
+                    return { name };
+                })
+            )
+            .returning("*"),
+        "name"
+    );
 
     const classesByName = keyBy(
         await knex("classes")
@@ -41,10 +52,11 @@ exports.seed = async function (knex) {
     const studentsByName = keyBy(
         await knex("students")
             .insert(
-                students.map(({ name, gender }) => {
+                students.map(({ name, gender, house }) => {
                     return {
                         name,
-                        gender
+                        gender,
+                        house_id: housesByName[house].id
                     };
                 })
             )
@@ -75,12 +87,6 @@ exports.seed = async function (knex) {
             };
         })
     );
-
-    await knex("houses").insert(
-        houses.map((name) => {
-            return { name };
-        })
-    );
 };
 
 // delete table and reset to start at id 1
@@ -90,12 +96,12 @@ const resetTable = async (knex, tableName) => {
 };
 
 const tableOrder = [
+    "houses",
     "classes",
     "skills",
     "students",
     "students_skills",
     "classes_skills",
-    "houses",
     "users",
     "users_playthroughs",
     "users_students",

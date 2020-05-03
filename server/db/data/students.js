@@ -1,6 +1,7 @@
 const studentData = [
     {
         name: "Byleth",
+        house: "None",
         skills: {
             proficient: ["Sword", "Brawling", "Authority"],
             budding: ["Faith"],
@@ -326,12 +327,7 @@ const studentData = [
 ];
 
 let studentSkills = [];
-let studentHouses = {
-    "Black Eagles": [],
-    "Blue Lions": [],
-    "Golden Deer": [],
-    Faculty: []
-};
+
 for (let student of studentData) {
     const { name, house, skills } = student;
     for (let type in skills) {
@@ -345,15 +341,16 @@ for (let student of studentData) {
             });
         }
     }
-    if (house) {
-        studentHouses[house].push(name);
-    }
 }
 
 module.exports = {
-    students: studentData.map(({ name, gender, class_id }) => {
-        return { name, gender: gender || null, class_id: class_id || null };
+    students: studentData.map(({ name, house, gender, unique_class }) => {
+        return {
+            name,
+            house,
+            gender: gender || null,
+            unique_class: unique_class || null
+        };
     }),
-    studentSkills,
-    studentHouses
+    studentSkills
 };

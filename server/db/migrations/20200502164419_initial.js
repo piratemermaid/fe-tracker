@@ -1,4 +1,9 @@
 exports.up = async function (knex) {
+    await knex.schema.createTable("houses", (table) => {
+        table.increments("id");
+        table.string("name");
+    });
+
     await knex.schema.createTable("classes", (table) => {
         table.increments("id");
         table.string("name");
@@ -18,6 +23,7 @@ exports.up = async function (knex) {
         table.increments("id");
         table.string("name");
         table.string("gender");
+        table.integer("house_id").references("id").inTable("houses");
     });
 
     await knex.schema.createTable("students_skills", (table) => {
@@ -34,12 +40,6 @@ exports.up = async function (knex) {
         table.integer("class_id").references("id").inTable("classes");
         table.integer("skill_id").references("id").inTable("skills");
         table.string("level");
-    });
-
-    await knex.schema.createTable("houses", (table) => {
-        table.increments("id");
-        table.string("name");
-        table.integer("student_id").references("id").inTable("students");
     });
 
     await knex.schema.createTable("users", (table) => {
@@ -89,12 +89,12 @@ exports.up = async function (knex) {
 
 exports.down = async function (knex) {
     const tableOrder = [
+        "houses",
         "classes",
         "skills",
         "students",
         "students_skills",
         "classes_skills",
-        "houses",
         "users",
         "users_playthroughs",
         "users_students",
