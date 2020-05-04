@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { knex } = require("../models/config");
 const bcrypt = require("bcrypt");
-const { getAccount, hash, session, setSession } = require("../helpers/account");
+const { getAccount, hash, Session, setSession } = require("../helpers/account");
 
 const router = new Router();
 
