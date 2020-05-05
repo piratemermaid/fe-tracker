@@ -1,3 +1,5 @@
+//TODO: remove Rhea and Jeralt, they are not playable
+
 const studentData = [
     {
         name: "Byleth",
