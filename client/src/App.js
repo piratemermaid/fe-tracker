@@ -51,14 +51,17 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        this.getPlaythrough();
-
         await axios({
             method: "get",
             url: "/api/account/authenticated"
         })
             .then((res) => {
-                this.setState({ authenticated: res.data.authenticated });
+                const { authenticated } = res.data;
+                this.setState({ authenticated });
+
+                if (authenticated) {
+                    this.getPlaythrough();
+                }
             })
             .catch((err) => {
                 console.log(err);
