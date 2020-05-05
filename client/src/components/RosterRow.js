@@ -26,22 +26,23 @@ const RosterRow = (props) => {
                 <Grid item xs={3}>
                     <div className="roster-img"></div>
                 </Grid>
-                <Grid item xs={7}>
-                    {name}
-                    <br />
-                    {classes.length > 0 ? (
-                        <span>Next class: {renderClass(nextClass)}</span>
-                    ) : (
-                        "No classes set"
-                    )}
-                    <br />
-                    {nextClass ? (
-                        <span>
-                            Skills needed:{" "}
-                            {displayClassSkills(nextClass.classSkills)}
-                        </span>
-                    ) : null}
-                    <br />
+                <Grid item xs={7} className="roster-row-student">
+                    <p className="roster-name">{name}</p>
+                    <p>
+                        {classes.length > 0 ? (
+                            <span>Next class: {renderClass(nextClass)}</span>
+                        ) : (
+                            "No classes set"
+                        )}
+                    </p>
+                    <p>
+                        {nextClass ? (
+                            <span>
+                                Skills needed:{" "}
+                                {displayClassSkills(nextClass.classSkills)}
+                            </span>
+                        ) : null}
+                    </p>
                 </Grid>
                 <Grid item xs={2}>
                     <Link to={`/student/${name}`}>

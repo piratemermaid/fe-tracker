@@ -56,3 +56,20 @@ li {
     border-radius: 15%;
     background: gray;
 }
+
+.roster-row-student p {
+    margin: 0;
+}
+
+p.roster-name {
+    margin-bottom: 4px;
+}
+
+.roster-name {
+    font-weight: bold;
+}
+
+/* student */
+.goal-row {
+    padding: 4px 20px;
+}

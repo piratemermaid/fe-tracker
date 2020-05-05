@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React from "react";
 import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
 import {
     getNextClass,
     studentMeetsSkillReq,
@@ -9,11 +8,10 @@ import {
 } from "../helpers/helpers";
 import { displayClassSkills } from "../helpers/uihelpers";
 
-import ClassSelector from "./ClassSelector";
-
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 
-// TODO: display checkmarks if student has reached skill level
 const Student = (props) => {
     if (!props.playthrough) {
         return "loading...";
@@ -32,14 +30,14 @@ const Student = (props) => {
         let classesToDisplay;
 
         switch (type) {
-            case "current":
+            case "Current":
                 if (nextClass) {
                     classesToDisplay = [nextClass];
                 } else {
                     return null;
                 }
                 break;
-            case "completed":
+            case "Completed":
                 classesToDisplay = _.filter(classes, { certified: true });
                 break;
             default:
@@ -60,55 +58,63 @@ const Student = (props) => {
                 {classesToDisplay.length > 0 ? (
                     classesToDisplay.map(({ name, classSkills, certified }) => {
                         return (
-                            <div key={name}>
-                                <div>
-                                    <h3>Class Goal</h3>
-                                    <p
-                                        onClick={() =>
-                                            props.selectClass({
-                                                studentName:
-                                                    props.match.params.name,
-                                                className: name
-                                            })
-                                        }
-                                    >
-                                        [{certified ? "X" : " "}] {name}
-                                    </p>
-                                </div>
-                                <div>
-                                    <h3>Skill Goals</h3>
-                                    {classSkills.map((skill) => {
-                                        const studentSkillLevel = getHighestSkillLevel(
-                                            skills,
-                                            skill.name
-                                        );
-                                        return (
-                                            <p
-                                                onClick={() =>
-                                                    props.selectSkill({
-                                                        studentName:
-                                                            props.match.params
-                                                                .name,
-                                                        skillName: skill.name,
-                                                        level: skill.level
-                                                    })
-                                                }
-                                                key={`${skill.name} ${skill.level}`}
-                                            >
-                                                [
-                                                {studentMeetsSkillReq(
-                                                    skill.name,
-                                                    studentSkillLevel,
-                                                    skill.level
-                                                )
-                                                    ? "X"
-                                                    : " "}
-                                                ] {skill.name} {skill.level}
-                                            </p>
-                                        );
-                                    })}
-                                </div>
-                            </div>
+                            <Paper
+                                className="goal-row"
+                                elevation={1}
+                                key={name}
+                            >
+                                <Grid container spacing={2}>
+                                    <Grid item xs={6}>
+                                        <h3>Class Goal</h3>
+                                        <p
+                                            onClick={() =>
+                                                props.selectClass({
+                                                    studentName:
+                                                        props.match.params.name,
+                                                    className: name
+                                                })
+                                            }
+                                        >
+                                            [{certified ? "X" : " "}] {name}
+                                        </p>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <h3>Skill Goals</h3>
+                                        {classSkills.map((skill) => {
+                                            const studentSkillLevel = getHighestSkillLevel(
+                                                skills,
+                                                skill.name
+                                            );
+                                            return (
+                                                <p
+                                                    onClick={() =>
+                                                        props.selectSkill({
+                                                            studentName:
+                                                                props.match
+                                                                    .params
+                                                                    .name,
+                                                            skillName:
+                                                                skill.name,
+                                                            level: skill.level
+                                                        })
+                                                    }
+                                                    key={`${skill.name} ${skill.level}`}
+                                                >
+                                                    [
+                                                    {studentMeetsSkillReq(
+                                                        skill.name,
+                                                        studentSkillLevel,
+                                                        skill.level
+                                                    )
+                                                        ? "X"
+                                                        : " "}
+                                                    ] {skill.name} {skill.level}
+                                                </p>
+                                            );
+                                        })}
+                                    </Grid>
+                                </Grid>
+                            </Paper>
                         );
                     })
                 ) : (
@@ -120,27 +126,37 @@ const Student = (props) => {
 
     return (
         <div>
-            <h1>
-                {name}{" "}
-                <span>
-                    <EditIcon
-                        onClick={() =>
-                            props.history.push(`/select_classes/${name}`)
-                        }
-                    />
-                </span>
-            </h1>
-            <p>
-                Next class:{" "}
-                {nextClass ? `${nextClass.name} (${nextClass.type}}` : "none"}
-            </p>
-            <p>
-                Skills needed:{" "}
-                {nextClass ? displayClassSkills(nextClass.classSkills) : "n/a"}{" "}
-            </p>
-            {renderInfo("current")}
-            {renderInfo("upcoming")}
-            {renderInfo("completed")}
+            <Grid container spacing={2}>
+                <Grid item xs={3}>
+                    <div className="roster-img"></div>
+                </Grid>
+                <Grid item xs={9} className="roster-row-student">
+                    <p className="roster-name">
+                        {name}{" "}
+                        <EditIcon
+                            fontSize="small"
+                            onClick={() =>
+                                props.history.push(`/select_classes/${name}`)
+                            }
+                        />
+                    </p>
+                    <p>
+                        Next class:{" "}
+                        {nextClass
+                            ? `${nextClass.name} (${nextClass.type}}`
+                            : "none"}
+                    </p>
+                    <p>
+                        Skills needed:{" "}
+                        {nextClass
+                            ? displayClassSkills(nextClass.classSkills)
+                            : "n/a"}{" "}
+                    </p>
+                </Grid>
+            </Grid>
+            {renderInfo("Current")}
+            {renderInfo("Upcoming")}
+            {renderInfo("Completed")}
         </div>
     );
 };
