@@ -44,6 +44,15 @@ li {
 }
 
 /* roster */
-.student-row {
+.roster-row {
+    padding-top: 20px;
     margin-bottom: 20px;
+    border-top: 1px solid black;
+}
+
+.roster-img {
+    height: 80px;
+    width: 80px;
+    border-radius: 15%;
+    background: gray;
 }
