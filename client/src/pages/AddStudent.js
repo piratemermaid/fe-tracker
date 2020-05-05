@@ -14,7 +14,12 @@ class AddStudent extends Component {
 
     addStudent(name) {
         const { selectedStudents } = this.state;
-        selectedStudents.push(name);
+        if (!selectedStudents.includes(name)) {
+            selectedStudents.push(name);
+        } else {
+            const index = _.indexOf(selectedStudents, name);
+            selectedStudents.splice(index, 1);
+        }
         this.setState({ selectedStudents });
     }
 

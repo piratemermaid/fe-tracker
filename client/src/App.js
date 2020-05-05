@@ -24,6 +24,7 @@ class App extends Component {
         this.selectClassGoal = this.selectClassGoal.bind(this);
         this.selectClass = this.selectClass.bind(this);
         this.selectSkill = this.selectSkill.bind(this);
+        this.addStudents = this.addStudents.bind(this);
     }
 
     authenticateUser(bool) {
@@ -92,7 +93,15 @@ class App extends Component {
     }
 
     async addStudents(names) {
-        console.log(names);
+        axios({
+            method: "post",
+            url: "/api/user/add_students",
+            params: { names }
+        }).then((res) => {
+            if (res.data === "success") {
+                this.getPlaythrough();
+            }
+        });
     }
 
     async componentDidMount() {

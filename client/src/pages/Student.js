@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
+// TODO: remove student from roster
 const Student = (props) => {
     if (!props.playthrough) {
         return "loading...";

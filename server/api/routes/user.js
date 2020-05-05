@@ -289,6 +289,30 @@ router.post("/update_student_skill", async (req, res) => {
     }
 });
 
+router.post("/add_students", async (req, res) => {
+    const { sessionString } = req.cookies;
+    if (!validSession(sessionString)) {
+        res.status(401).send("Invalid session");
+        return;
+    }
+
+    const { names } = req.query;
+
+    const { username } = Session.parse(sessionString);
+    const user = await getAccount(username);
+    const playthrough_id = await helpers.lookupPlaythroughId(user);
+
+    for (let name of names) {
+        const student_id = await helpers.lookupId("students", { name });
+        await knex("users_students").insert({
+            playthrough_id,
+            student_id
+        });
+    }
+
+    res.send("success");
+});
+
 const validSession = (sessionString) => {
     if (!sessionString || !Session.verify(sessionString)) {
         return false;

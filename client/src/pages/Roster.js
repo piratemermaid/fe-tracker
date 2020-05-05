@@ -4,6 +4,7 @@ import RosterRow from "../components/RosterRow";
 
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
+// TODO: sort roster by your house -> next 2 houses -> faculty -> other
 const Roster = (props) => {
     if (!props.playthrough) {
         return "loading...";
