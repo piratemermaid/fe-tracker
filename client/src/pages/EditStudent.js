@@ -37,7 +37,6 @@ const EditStudent = (props) => {
                 classesToDisplay = _.filter(classes, { certified: true });
                 break;
             default:
-                // classesToDisplay = _.filter(classes, { certified: false });
                 classesToDisplay = classes.filter((classInfo) => {
                     if (
                         !classInfo.certified &&

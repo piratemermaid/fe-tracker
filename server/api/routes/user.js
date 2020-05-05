@@ -357,6 +357,9 @@ router.post("/update_student_skill", async (req, res) => {
                 res.send("success");
             });
     } else {
+        // TODO: delete higher level skills
+        // e.g. if user deletes level B and has C checked,
+        // also delete C
         await knex("users_students_skills")
             .insert({
                 user_student_id,
