@@ -121,13 +121,17 @@ router.get("/playthrough", async (req, res) => {
         let classes = [];
         for (let sClass of user_student_classes) {
             const { class_id, certified } = sClass;
-            const className = await knex("classes")
+            const classInfo = await knex("classes")
                 .where({ id: class_id })
                 .first()
                 .then((result) => {
-                    return result.name;
+                    return result;
                 });
-            classes.push({ name: className, certified });
+            classes.push({
+                name: classInfo.name,
+                type: classInfo.type,
+                certified: certified || false
+            });
         }
 
         const user_student_skills = await knex("users_students_skills").where({
@@ -147,7 +151,7 @@ router.get("/playthrough", async (req, res) => {
 
         students.push({
             name,
-            classes,
+            classes: helpers.sortClassesByType(classes),
             skills
         });
     }
@@ -157,16 +161,7 @@ router.get("/playthrough", async (req, res) => {
         byleth_gender,
         house: house.name,
         students: students.map(({ name, classes, skills }) => {
-            // console.log(classes);
-            return {
-                name,
-                classes: classes.map(({ name }) => {
-                    return { name };
-                }),
-                skills: skills.map(({ name }) => {
-                    return { name };
-                })
-            };
+            return { name, classes, skills };
         })
     });
 

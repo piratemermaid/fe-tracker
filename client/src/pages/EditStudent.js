@@ -10,7 +10,6 @@ const EditStudent = (props) => {
     }
 
     const { name } = props.match.params;
-    console.log(props);
 
     const data = _.find(props.playthrough.students, { name });
     const { classes, skills } = data;

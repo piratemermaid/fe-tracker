@@ -6,7 +6,20 @@ const Roster = (props) => {
         return "loading...";
     }
 
-    console.log(props.playthrough);
+    // only show lowest level uncertified class
+    const renderClass = (classes) => {
+        for (let sClass of classes) {
+            const { name, type, certified } = sClass;
+            if (!certified) {
+                return (
+                    <span>
+                        {name} ({type})
+                    </span>
+                );
+            }
+        }
+    };
+
     const { house, byleth_gender, students } = props.playthrough;
     return (
         <div>
@@ -18,7 +31,7 @@ const Roster = (props) => {
                             {name}
                             <br />
                             {classes.length > 0 ? (
-                                <span>Classes: {classes.split(", ")}</span>
+                                <span>Classes: {renderClass(classes)}</span>
                             ) : (
                                 "No classes set"
                             )}

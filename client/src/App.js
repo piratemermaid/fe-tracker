@@ -58,7 +58,7 @@ class App extends Component {
             params: { studentName, className }
         }).then((res) => {
             if (res.data === "success") {
-                //
+                this.getPlaythrough();
             }
         });
     }
