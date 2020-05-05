@@ -43,7 +43,7 @@ class ClassSelector extends Component {
                             type={type}
                             student={name}
                             classes={_.filter(this.state.classes, {
-                                type: "Beginner"
+                                type
                             })}
                             selectClassGoal={this.props.selectClassGoal}
                             key={type}
