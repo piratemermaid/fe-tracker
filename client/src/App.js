@@ -9,7 +9,7 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import NewPlaythrough from "./pages/NewPlaythrough";
 import Roster from "./pages/Roster";
-import EditStudent from "./pages/EditStudent";
+import Student from "./pages/Student";
 
 class App extends Component {
     constructor(props) {
@@ -112,7 +112,7 @@ class App extends Component {
 
         const AuthNewPlaythrough = RequireAuth(NewPlaythrough);
         const AuthRoster = RequireAuth(Roster);
-        const AuthEditStudent = RequireAuth(EditStudent);
+        const AuthStudent = RequireAuth(Student);
 
         return (
             <div className="App">
@@ -169,9 +169,9 @@ class App extends Component {
                             )}
                         />
                         <Route
-                            path="/edit_student/:name"
+                            path="/student/:name"
                             render={() => (
-                                <AuthEditStudent
+                                <AuthStudent
                                     authenticated={authenticated}
                                     playthrough={playthrough}
                                     selectClassGoal={this.selectClassGoal}

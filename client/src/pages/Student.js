@@ -12,7 +12,7 @@ import { displayClassSkills } from "../helpers/uihelpers";
 import ClassSelector from "../components/ClassSelector";
 
 // TODO: display checkmarks if student has reached skill level
-const EditStudent = (props) => {
+const Student = (props) => {
     if (!props.playthrough) {
         return "loading...";
     }
@@ -130,4 +130,4 @@ const EditStudent = (props) => {
     );
 };
 
-export default withRouter(EditStudent);
+export default withRouter(Student);

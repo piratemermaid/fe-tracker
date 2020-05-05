@@ -39,7 +39,7 @@ const Roster = (props) => {
                                 "No skills set"
                             )}
                             <br />
-                            <Link to={`/edit_student/${name}`}>Update</Link>
+                            <Link to={`/student/${name}`}>Update</Link>
                         </li>
                     );
                 })}
