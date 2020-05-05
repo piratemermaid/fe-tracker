@@ -11,6 +11,7 @@ import NewPlaythrough from "./pages/NewPlaythrough";
 import Roster from "./pages/Roster";
 import Student from "./pages/Student";
 import ClassSelector from "./pages/ClassSelector";
+import AddStudent from "./pages/AddStudent";
 
 class App extends Component {
     constructor(props) {
@@ -90,6 +91,10 @@ class App extends Component {
         });
     }
 
+    async addStudents(names) {
+        console.log(names);
+    }
+
     async componentDidMount() {
         await axios({
             method: "get",
@@ -115,6 +120,7 @@ class App extends Component {
         const AuthRoster = RequireAuth(Roster);
         const AuthStudent = RequireAuth(Student);
         const AuthClassSelector = RequireAuth(ClassSelector);
+        const AuthAddStudent = RequireAuth(AddStudent);
 
         return (
             <div className="App">
@@ -184,6 +190,16 @@ class App extends Component {
                                     authenticated={authenticated}
                                     playthrough={playthrough}
                                     selectClassGoal={this.selectClassGoal}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/add_student"
+                            render={() => (
+                                <AuthAddStudent
+                                    authenticated={authenticated}
+                                    playthrough={playthrough}
+                                    addStudents={this.addStudents}
                                 />
                             )}
                         />

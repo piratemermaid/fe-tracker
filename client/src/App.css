@@ -87,3 +87,8 @@ p.roster-name {
 .goal-row {
     padding: 4px 20px;
 }
+
+/* add student */
+.add-student-selected {
+    font-weight: bold;
+}

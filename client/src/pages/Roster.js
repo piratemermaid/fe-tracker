@@ -2,6 +2,8 @@ import React from "react";
 
 import RosterRow from "../components/RosterRow";
 
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+
 const Roster = (props) => {
     if (!props.playthrough) {
         return "loading...";
@@ -10,11 +12,19 @@ const Roster = (props) => {
     const { house, byleth_gender, students } = props.playthrough;
     return (
         <div>
-            <h1>{house} Roster</h1>
+            <h1>
+                {house} Roster
+                <span style={{ float: "right" }}>
+                    <AddCircleOutlineIcon
+                        onClick={() => props.history.push("/add_student")}
+                    />
+                </span>
+            </h1>
             <ul>
                 {students.map((student) => {
                     return (
                         <RosterRow
+                            key={student.name}
                             student={student}
                             byleth_gender={byleth_gender}
                             house={house}

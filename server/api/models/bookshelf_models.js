@@ -83,4 +83,4 @@ const Skill = bookshelf.model("Skill", {
     }
 });
 
-module.exports = { User, Playthrough, Class };
+module.exports = { User, Playthrough, Class, Student };
