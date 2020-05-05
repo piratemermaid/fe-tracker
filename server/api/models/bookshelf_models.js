@@ -29,7 +29,29 @@ const Student = bookshelf.model("Student", {
     tableName: "students",
     house() {
         return this.belongsTo("House");
+    },
+    classes() {
+        return this.belongsToMany(
+            "Class",
+            "users_students_classes",
+            "user_student_id"
+        );
+    },
+    skills() {
+        return this.belongsToMany(
+            "Skill",
+            "users_students_skills",
+            "user_student_id"
+        );
     }
+});
+
+const Class = bookshelf.model("Class", {
+    tableName: "classes"
+});
+
+const Skill = bookshelf.model("Skill", {
+    tableName: "skills"
 });
 
 module.exports = { Playthrough, House, Student };

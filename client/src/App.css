@@ -50,3 +50,8 @@
 .choice-btn-selected {
     opacity: 1;
 }
+
+/* roster */
+.student-row {
+    margin-bottom: 20px;
+}

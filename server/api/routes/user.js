@@ -77,7 +77,9 @@ router.get("/playthrough", async (req, res) => {
     const user = await getAccount(username);
 
     models.Playthrough.forge({ user_id: user.id })
-        .fetch({ withRelated: ["house", "students"] })
+        .fetch({
+            withRelated: ["house", "students.classes", "students.skills"]
+        })
         .then((userData) => {
             const data = userData.toJSON();
             const { playthrough, byleth_gender, house, students } = data;
@@ -86,8 +88,16 @@ router.get("/playthrough", async (req, res) => {
                 playthrough,
                 byleth_gender,
                 house: house.name,
-                students: students.map(({ name }) => {
-                    return { name };
+                students: students.map(({ name, classes, skills }) => {
+                    return {
+                        name,
+                        classes: classes.map(({ name }) => {
+                            return { name };
+                        }),
+                        skills: skills.map(({ name }) => {
+                            return { name };
+                        })
+                    };
                 })
             });
         });
