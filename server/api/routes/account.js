@@ -84,9 +84,9 @@ router.get("/authenticated", async (req, res) => {
         const authenticated = account.sessionId === id;
 
         if (authenticated) {
-            res.send({ authenticated: "success" });
+            res.send({ authenticated: true });
         } else {
-            res.status(400).send("Invalid session");
+            res.send({ authenticated: false });
         }
     }
 });
