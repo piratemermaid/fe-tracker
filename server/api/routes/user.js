@@ -177,8 +177,9 @@ router.get("/playthrough", async (req, res) => {
 
     res.send({
         playthrough,
+        house,
         byleth_gender,
-        house: house.name,
+        house,
         students: students.map(({ name, classes, skills }) => {
             return { name, classes, skills };
         })
@@ -345,8 +346,6 @@ router.post("/update_student_skill", async (req, res) => {
                 return false;
             }
         });
-
-    console.log(skillName, level, exists);
 
     if (exists) {
         await knex("users_students_skills")
