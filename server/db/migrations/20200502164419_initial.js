@@ -62,7 +62,10 @@ exports.up = async function (knex) {
 
     await knex.schema.createTable("users_students", (table) => {
         table.increments("id");
-        table.integer("playthrough_id").references("id").inTable("users");
+        table
+            .integer("playthrough_id")
+            .references("id")
+            .inTable("users_playthroughs");
         table.integer("student_id").references("id").inTable("students");
     });
 

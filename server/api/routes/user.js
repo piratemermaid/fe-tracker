@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { getAccount, Session } = require("../helpers/account");
 const { knex } = require("../models/config");
+const models = require("../models/bookshelf_models");
 
 const router = new Router();
 
@@ -33,23 +34,39 @@ router.post("/new_playthrough", async (req, res, next) => {
             return result.id;
         });
 
-    await knex("users_playthroughs")
+    const playthrough_result = await knex("users_playthroughs")
         .insert({
             user_id: user.id,
             playthrough: playthroughs.length + 1,
             byleth_gender: byleth,
             house_id
         })
-        .then(() => {
-            res.send("success");
-        })
-        .catch((err) => {
-            next(err);
+        .returning("id");
+
+    const students = await knex("students")
+        .where({ house_id })
+        .then((result) => {
+            return result;
         });
+
+    for (let student of students) {
+        const student_id = await knex("students")
+            .where({ name: student.name })
+            .first()
+            .then((result) => {
+                return result.id;
+            });
+
+        await knex("users_students").insert({
+            playthrough_id: playthrough_result[0],
+            student_id
+        });
+    }
+
+    res.send("success");
 });
 
-// TODO: add user's characters in this api call
-router.get("/playthrough", async (req, res, next) => {
+router.get("/playthrough", async (req, res) => {
     const { sessionString } = req.cookies;
     if (!validSession(sessionString)) {
         res.status(401).send("Invalid session");
@@ -57,20 +74,23 @@ router.get("/playthrough", async (req, res, next) => {
     }
 
     const { username } = Session.parse(sessionString);
-
     const user = await getAccount(username);
 
-    const playthrough = await knex("users_playthroughs")
-        .where({ user_id: user.id })
-        .then((result) => {
-            return result[result.length - 1];
+    models.Playthrough.forge({ user_id: user.id })
+        .fetch({ withRelated: ["house", "students"] })
+        .then((userData) => {
+            const data = userData.toJSON();
+            const { playthrough, byleth_gender, house, students } = data;
+
+            res.send({
+                playthrough,
+                byleth_gender,
+                house: house.name,
+                students: students.map(({ name }) => {
+                    return { name };
+                })
+            });
         });
-
-    const { byleth_gender, house_id } = playthrough;
-
-    const house = await knex("houses").where({ id: house_id }).first();
-
-    res.send({ playthrough: { byleth_gender, house: house.name } });
 });
 
 const validSession = (sessionString) => {

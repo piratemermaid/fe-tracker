@@ -45,8 +45,7 @@ class App extends Component {
             method: "get",
             url: "api/user/playthrough"
         }).then((res) => {
-            const { playthrough } = res.data;
-            this.setState({ playthrough });
+            this.setState({ playthrough: res.data });
         });
     }
 
