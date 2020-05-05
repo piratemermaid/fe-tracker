@@ -14,7 +14,16 @@ const ClassSelectorType = (props) => {
                         mastery_combat_art
                     }) => {
                         return (
-                            <li key={name} style={{ marginBottom: "16px" }}>
+                            <li
+                                key={name}
+                                style={{ marginBottom: "16px" }}
+                                onClick={() =>
+                                    props.selectClass({
+                                        studentName: props.student,
+                                        className: name
+                                    })
+                                }
+                            >
                                 {name}
                                 <br />
                                 Skills required:{" "}

@@ -19,7 +19,7 @@ const EditStudent = (props) => {
         <div>
             <h1>Edit {name}</h1>
             {classes.length < 1 ? (
-                <ClassSelector name={name} />
+                <ClassSelector name={name} selectClass={props.selectClass} />
             ) : (
                 <div>
                     <h2>Classes</h2>

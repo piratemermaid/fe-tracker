@@ -19,6 +19,7 @@ class App extends Component {
 
         this.authenticateUser = this.authenticateUser.bind(this);
         this.getPlaythrough = this.getPlaythrough.bind(this);
+        this.selectClass = this.selectClass.bind(this);
     }
 
     authenticateUser(bool) {
@@ -47,6 +48,18 @@ class App extends Component {
             url: "http://localhost:8000/api/user/playthrough"
         }).then((res) => {
             this.setState({ playthrough: res.data });
+        });
+    }
+
+    async selectClass({ studentName, className }) {
+        await axios({
+            method: "post",
+            url: "/api/user/update_student_class",
+            params: { studentName, className }
+        }).then((res) => {
+            if (res.data === "success") {
+                //
+            }
         });
     }
 
@@ -135,6 +148,7 @@ class App extends Component {
                                 <AuthEditStudent
                                     authenticated={authenticated}
                                     playthrough={playthrough}
+                                    selectClass={this.selectClass}
                                 />
                             )}
                         />

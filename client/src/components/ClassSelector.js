@@ -16,36 +16,44 @@ class ClassSelector extends Component {
             method: "get",
             url: "http://localhost:8000/api/app/classes"
         }).then((res) => {
-            console.log(res);
             this.setState({ classes: res.data });
         });
     }
 
     render() {
-        console.log(_.filter(this.state.classes, { type: "Beginner" }));
         return (
             <div>
                 <ClassSelectorType
                     type="Beginner"
+                    student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Beginner" })}
+                    selectClass={this.props.selectClass}
                 />
                 <ClassSelectorType
                     type="Intermediate"
+                    student={this.props.name}
                     classes={_.filter(this.state.classes, {
                         type: "Intermediate"
                     })}
+                    selectClass={this.props.selectClass}
                 />
                 <ClassSelectorType
                     type="Advanced"
+                    student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Advanced" })}
+                    selectClass={this.props.selectClass}
                 />
                 <ClassSelectorType
                     type="Master"
+                    student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Master" })}
+                    selectClass={this.props.selectClass}
                 />
                 <ClassSelectorType
                     type="Unique"
+                    student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Unique" })}
+                    selectClass={this.props.selectClass}
                 />
             </div>
         );
