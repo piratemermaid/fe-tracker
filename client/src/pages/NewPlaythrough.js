@@ -1,20 +1,39 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class NewPlaythrough extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { house: null, byleth: null };
+        this.state = { house: "Black Eagles", byleth: "F" };
     }
 
     selectHouse(house) {
-        console.log("click", house);
         this.setState({ house });
     }
 
     selectByleth(byleth) {
         this.setState({ byleth });
     }
+
+    startNewPlaythrough = () => {
+        const { house, byleth } = this.state;
+
+        axios({
+            method: "post",
+            url: "api/user/new_playthrough",
+            params: { house, byleth }
+        })
+            .then((res) => {
+                if (res.data === "success") {
+                    this.props.getPlaythrough();
+                    this.props.history.push("/");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     houseButtonUI(house) {
         return (
@@ -52,11 +71,7 @@ class NewPlaythrough extends Component {
 
     submitButtonUI() {
         if (this.state.house && this.state.byleth) {
-            return (
-                <button onClick={() => console.log("start new playthrough!!")}>
-                    Start!
-                </button>
-            );
+            return <button onClick={this.startNewPlaythrough}>Start!</button>;
         } else {
             return <button disabled>Start!</button>;
         }
@@ -74,8 +89,8 @@ class NewPlaythrough extends Component {
                 </ul>
                 <h2>Select Byleth</h2>
                 <ul>
-                    {this.bylethButtonUI("male")}
-                    {this.bylethButtonUI("female")}
+                    {this.bylethButtonUI("M")}
+                    {this.bylethButtonUI("F")}
                 </ul>
                 <ul></ul>
                 {this.submitButtonUI()}

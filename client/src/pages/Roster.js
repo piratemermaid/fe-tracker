@@ -1,9 +1,10 @@
 import React from "react";
 
-const Roster = () => {
+const Roster = (props) => {
+    console.log(props);
     return (
         <div>
-            <h1>Roster</h1>
+            <h1>{props.playthrough.house} Roster</h1>
         </div>
     );
 };

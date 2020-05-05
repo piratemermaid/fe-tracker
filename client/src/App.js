@@ -17,6 +17,7 @@ class App extends Component {
         this.state = { authenticated: false, playthrough: null };
 
         this.authenticateUser = this.authenticateUser.bind(this);
+        this.getPlaythrough = this.getPlaythrough.bind(this);
     }
 
     authenticateUser(bool) {
@@ -39,7 +40,19 @@ class App extends Component {
             });
     };
 
+    async getPlaythrough() {
+        await axios({
+            method: "get",
+            url: "api/user/playthrough"
+        }).then((res) => {
+            const { playthrough } = res.data;
+            this.setState({ playthrough });
+        });
+    }
+
     async componentDidMount() {
+        this.getPlaythrough();
+
         await axios({
             method: "get",
             url: "/api/account/authenticated"
@@ -82,6 +95,7 @@ class App extends Component {
                                 <AuthRoster
                                     authenticated={authenticated}
                                     authenticateUser={this.authenticateUser}
+                                    playthrough={playthrough}
                                 />
                             )}
                         />
@@ -107,6 +121,7 @@ class App extends Component {
                             render={() => (
                                 <AuthNewPlaythrough
                                     authenticated={authenticated}
+                                    getPlaythrough={this.getPlaythrough}
                                 />
                             )}
                         />
