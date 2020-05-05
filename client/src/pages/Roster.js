@@ -1,5 +1,4 @@
 import React from "react";
-import { getNextClass } from "../helpers/helpers";
 
 import RosterRow from "../components/RosterRow";
 

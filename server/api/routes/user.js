@@ -115,9 +115,10 @@ router.get("/playthrough", async (req, res) => {
                         return {
                             name: student.name,
                             classes: userStudentClasses.map((sClass) => {
-                                const { name, certified } = sClass;
+                                const { certified } = sClass;
                                 return {
-                                    name,
+                                    name: sClass.class.name,
+                                    type: sClass.class.type,
                                     certified,
                                     classSkills: sClass.class.skills.map(
                                         ({ name, level }) => {
