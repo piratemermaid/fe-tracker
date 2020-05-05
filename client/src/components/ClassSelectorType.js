@@ -1,4 +1,5 @@
 import React from "react";
+import { displayClassSkills } from "../helpers/uihelpers";
 
 const ClassSelectorType = (props) => {
     return (
@@ -26,10 +27,7 @@ const ClassSelectorType = (props) => {
                             >
                                 {name}
                                 <br />
-                                Skills required:{" "}
-                                {skills.map(({ name, level }) => {
-                                    return `${name} ${level}  `;
-                                })}
+                                Skills required: {displayClassSkills(skills)}
                                 <br />
                                 Class abilities: {abilities || "none"}
                                 <br />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getNextClass } from "../helpers";
+import { getNextClass } from "../helpers/helpers";
 
 const Roster = (props) => {
     if (!props.playthrough) {

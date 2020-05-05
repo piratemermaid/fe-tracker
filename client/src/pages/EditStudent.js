@@ -1,7 +1,8 @@
 import _ from "lodash";
 import React from "react";
 import { withRouter } from "react-router";
-import { getNextClass } from "../helpers";
+import { getNextClass } from "../helpers/helpers";
+import { displayClassSkills } from "../helpers/uihelpers";
 
 import ClassSelector from "../components/ClassSelector";
 
@@ -26,7 +27,10 @@ const EditStudent = (props) => {
                 Next class:{" "}
                 {nextClass ? `${nextClass.name} (${nextClass.type}}` : "none"}
             </p>
-            <p>Skills needed: </p>
+            <p>
+                Skills needed:{" "}
+                {nextClass ? displayClassSkills(nextClass.classSkills) : "n/a"}{" "}
+            </p>
             {classes.length < 1 ? (
                 <ClassSelector name={name} selectClass={props.selectClass} />
             ) : (

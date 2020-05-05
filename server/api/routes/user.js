@@ -127,10 +127,27 @@ router.get("/playthrough", async (req, res) => {
                 .then((result) => {
                     return result;
                 });
+
+            const classSkillsInfo = await knex("classes_skills").where({
+                class_id
+            });
+            let classSkills = [];
+            for (let skill of classSkillsInfo) {
+                const { skill_id, level } = skill;
+                const skillName = await knex("skills")
+                    .where({ id: skill_id })
+                    .first()
+                    .then((result) => {
+                        return result.name;
+                    });
+                classSkills.push({ name: skillName, level });
+            }
+
             classes.push({
                 name: classInfo.name,
                 type: classInfo.type,
-                certified: certified || false
+                certified: certified || false,
+                classSkills
             });
         }
 
