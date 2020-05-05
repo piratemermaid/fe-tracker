@@ -31,7 +31,11 @@ const Student = (props) => {
 
         switch (type) {
             case "current":
-                classesToDisplay = [nextClass];
+                if (nextClass) {
+                    classesToDisplay = [nextClass];
+                } else {
+                    return null;
+                }
                 break;
             case "completed":
                 classesToDisplay = _.filter(classes, { certified: true });
