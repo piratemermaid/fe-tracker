@@ -46,6 +46,12 @@ router.post("/new_playthrough", async (req, res, next) => {
         })
         .returning("id");
 
+    // always add Byleth
+    await knex("users_students").insert({
+        playthrough_id: playthrough_result[0],
+        student_id: 1
+    });
+
     const students = await knex("students")
         .where({ house_id })
         .then((result) => {
