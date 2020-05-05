@@ -2,8 +2,11 @@ import _ from "lodash";
 import React, { Component } from "react";
 import axios from "axios";
 
-import ClassSelectorType from "./ClassSelectorType";
+import ClassSelectorType from "../components/ClassSelectorType";
 
+// TODO: fix reloading on selection,
+// maybe store changes in state and
+// have save button to update db
 class ClassSelector extends Component {
     constructor(props) {
         super(props);
@@ -21,17 +24,19 @@ class ClassSelector extends Component {
     }
 
     render() {
+        const { name } = this.props.match.params;
         return (
             <div>
+                <h1>Select Classes for {name}</h1>
                 <ClassSelectorType
                     type="Beginner"
-                    student={this.props.name}
+                    student={name}
                     classes={_.filter(this.state.classes, { type: "Beginner" })}
                     selectClassGoal={this.props.selectClassGoal}
                 />
                 <ClassSelectorType
                     type="Intermediate"
-                    student={this.props.name}
+                    student={name}
                     classes={_.filter(this.state.classes, {
                         type: "Intermediate"
                     })}
@@ -39,19 +44,19 @@ class ClassSelector extends Component {
                 />
                 <ClassSelectorType
                     type="Advanced"
-                    student={this.props.name}
+                    student={name}
                     classes={_.filter(this.state.classes, { type: "Advanced" })}
                     selectClassGoal={this.props.selectClassGoal}
                 />
                 <ClassSelectorType
                     type="Master"
-                    student={this.props.name}
+                    student={name}
                     classes={_.filter(this.state.classes, { type: "Master" })}
                     selectClassGoal={this.props.selectClassGoal}
                 />
                 <ClassSelectorType
                     type="Unique"
-                    student={this.props.name}
+                    student={name}
                     classes={_.filter(this.state.classes, { type: "Unique" })}
                     selectClassGoal={this.props.selectClassGoal}
                 />

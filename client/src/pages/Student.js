@@ -9,7 +9,9 @@ import {
 } from "../helpers/helpers";
 import { displayClassSkills } from "../helpers/uihelpers";
 
-import ClassSelector from "../components/ClassSelector";
+import ClassSelector from "./ClassSelector";
+
+import EditIcon from "@material-ui/icons/Edit";
 
 // TODO: display checkmarks if student has reached skill level
 const Student = (props) => {
@@ -118,7 +120,16 @@ const Student = (props) => {
 
     return (
         <div>
-            <h1>{name}</h1>
+            <h1>
+                {name}{" "}
+                <span>
+                    <EditIcon
+                        onClick={() =>
+                            props.history.push(`/select_classes/${name}`)
+                        }
+                    />
+                </span>
+            </h1>
             <p>
                 Next class:{" "}
                 {nextClass ? `${nextClass.name} (${nextClass.type}}` : "none"}
