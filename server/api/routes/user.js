@@ -83,29 +83,28 @@ router.get("/playthrough", async (req, res) => {
     }
 
     const { username } = Session.parse(sessionString);
-    const user = await getAccount(username);
-
-    const playthrough_id = await helpers.lookupPlaythroughId(user);
-
-    const playthrough = await knex("users_playthroughs")
-        .where({
-            user_id: user.id,
-            playthrough: playthrough_id
-        })
-        .first();
-
-    models.Playthrough.forge({ user_id: user.id })
+    models.User.forge({ username })
         .fetch({
             withRelated: [
-                "house",
-                "userStudents.student",
-                "userStudents.userStudentClasses.class",
-                "userStudents.userStudentSkills.skill"
+                "playthroughs.house",
+                "playthroughs.userStudents.student",
+                // "playthroughs.userStudents.userStudentClasses.class.skills",
+                {
+                    "playthroughs.userStudents.userStudentClasses.class.skills"(
+                        qb
+                    ) {
+                        qb.column("name", "level");
+                    }
+                },
+                "playthroughs.userStudents.userStudentSkills.skill"
             ]
         })
         .then((userData) => {
             const data = userData.toJSON();
-            const { playthrough, byleth_gender, house, userStudents } = data;
+
+            const playthrough = data.playthroughs[data.playthroughs.length - 1];
+
+            const { byleth_gender, house, userStudents } = playthrough;
 
             res.send({
                 playthrough,
@@ -115,8 +114,17 @@ router.get("/playthrough", async (req, res) => {
                     ({ student, userStudentClasses, userStudentSkills }) => {
                         return {
                             name: student.name,
-                            classes: userStudentClasses.map(({ name }) => {
-                                return { name };
+                            classes: userStudentClasses.map((sClass) => {
+                                const { name, certified } = sClass;
+                                return {
+                                    name,
+                                    certified,
+                                    classSkills: sClass.class.skills.map(
+                                        ({ name, level }) => {
+                                            return { name, level };
+                                        }
+                                    )
+                                };
                             }),
                             skills: userStudentSkills.map(({ name }) => {
                                 return { name };
@@ -262,7 +270,6 @@ router.post("/update_student_skill", async (req, res) => {
             .where({ user_student_id, skill_id, level })
             .delete()
             .then(() => {
-                console.log("delete");
                 res.send("success");
             });
     } else {
@@ -276,7 +283,6 @@ router.post("/update_student_skill", async (req, res) => {
                 level
             })
             .then(() => {
-                console.log("add");
                 res.send("success");
             });
     }

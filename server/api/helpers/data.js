@@ -15,7 +15,6 @@ function lookupId(table, obj) {
         .where(obj)
         .first()
         .then((result) => {
-            console.log(result);
             return result.id;
         });
 }

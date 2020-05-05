@@ -3,7 +3,7 @@ const { bookshelf } = require("./config");
 const User = bookshelf.model("User", {
     tableName: "users",
     playthroughs() {
-        return this.belongsToMany("Playthrough", "users_playthroughs");
+        return this.hasMany("Playthrough");
     }
 });
 
@@ -83,4 +83,4 @@ const Skill = bookshelf.model("Skill", {
     }
 });
 
-module.exports = { Playthrough, Class };
+module.exports = { User, Playthrough, Class };
