@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Roster = (props) => {
     if (!props.playthrough) {
@@ -27,6 +28,8 @@ const Roster = (props) => {
                             ) : (
                                 "No skills set"
                             )}
+                            <br />
+                            <Link to={`/edit_student/${name}`}>Update</Link>
                         </li>
                     );
                 })}

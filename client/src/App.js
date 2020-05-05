@@ -9,6 +9,7 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import NewPlaythrough from "./pages/NewPlaythrough";
 import Roster from "./pages/Roster";
+import EditStudent from "./pages/EditStudent";
 
 class App extends Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class App extends Component {
     async getPlaythrough() {
         await axios({
             method: "get",
-            url: "api/user/playthrough"
+            url: "http://localhost:8000/api/user/playthrough"
         }).then((res) => {
             this.setState({ playthrough: res.data });
         });
@@ -72,6 +73,7 @@ class App extends Component {
 
         const AuthNewPlaythrough = RequireAuth(NewPlaythrough);
         const AuthRoster = RequireAuth(Roster);
+        const AuthEditStudent = RequireAuth(EditStudent);
 
         return (
             <div className="App">
@@ -124,6 +126,15 @@ class App extends Component {
                                 <AuthNewPlaythrough
                                     authenticated={authenticated}
                                     getPlaythrough={this.getPlaythrough}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/edit_student/:name"
+                            render={() => (
+                                <AuthEditStudent
+                                    authenticated={authenticated}
+                                    playthrough={playthrough}
                                 />
                             )}
                         />

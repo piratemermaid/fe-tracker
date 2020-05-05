@@ -47,11 +47,17 @@ const Student = bookshelf.model("Student", {
 });
 
 const Class = bookshelf.model("Class", {
-    tableName: "classes"
+    tableName: "classes",
+    skills() {
+        return this.belongsToMany("Skill");
+    }
 });
 
 const Skill = bookshelf.model("Skill", {
-    tableName: "skills"
+    tableName: "skills",
+    classes() {
+        return this.belongsToMany("Class");
+    }
 });
 
-module.exports = { Playthrough, House, Student };
+module.exports = { Playthrough, Class };
