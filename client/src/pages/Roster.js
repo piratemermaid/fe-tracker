@@ -13,7 +13,12 @@ const Roster = (props) => {
             <h1>{house} Roster</h1>
             <ul>
                 {students.map((student) => {
-                    return <RosterRow student={student} />;
+                    return (
+                        <RosterRow
+                            student={student}
+                            byleth_gender={byleth_gender}
+                        />
+                    );
                 })}
             </ul>
         </div>

@@ -20,11 +20,21 @@ const RosterRow = (props) => {
         );
     };
 
+    let imgSrc = `/img/${name}.png`;
+    if (name === "Byleth") {
+        imgSrc = `/img/Byleth_${props.byleth_gender}.png`;
+    }
+
     return (
         <div key={name} className="roster-row">
             <Grid container spacing={3}>
                 <Grid item xs={3}>
-                    <div className="roster-img"></div>
+                    <img
+                        src={imgSrc}
+                        className="roster-img"
+                        alt={name}
+                        title={name}
+                    />
                 </Grid>
                 <Grid item xs={7} className="roster-row-student">
                     <p className="roster-name">{name}</p>

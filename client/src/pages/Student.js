@@ -125,12 +125,22 @@ const Student = (props) => {
         );
     };
 
+    let imgSrc = `/img/${name}.png`;
+    if (name === "Byleth") {
+        imgSrc = `/img/Byleth_${props.playthrough.byleth_gender}.png`;
+    }
+
     return (
         <div>
             <KeyboardBackspaceIcon onClick={() => props.history.push("/")} />
             <Grid container spacing={2}>
                 <Grid item xs={3}>
-                    <div className="roster-img"></div>
+                    <img
+                        src={imgSrc}
+                        className="roster-img"
+                        alt={name}
+                        title={name}
+                    />
                 </Grid>
                 <Grid item xs={9} className="roster-row-student">
                     <p className="roster-name">

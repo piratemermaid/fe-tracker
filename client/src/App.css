@@ -58,7 +58,7 @@ li {
     height: 80px;
     width: 80px;
     border-radius: 15%;
-    background: gray;
+    background: rgb(216, 216, 216);
 }
 
 .roster-row-student p {
