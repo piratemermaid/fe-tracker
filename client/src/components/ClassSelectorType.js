@@ -19,7 +19,7 @@ const ClassSelectorType = (props) => {
                                 key={name}
                                 style={{ marginBottom: "16px" }}
                                 onClick={() =>
-                                    props.selectClass({
+                                    props.selectClassGoal({
                                         studentName: props.student,
                                         className: name
                                     })

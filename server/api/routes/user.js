@@ -6,6 +6,8 @@ const helpers = require("../helpers/data");
 
 const router = new Router();
 
+// TODO: enter students with certified false, not null
+
 router.get("/", (req, res) => {
     res.send({ api: "user" });
 });
@@ -158,7 +160,7 @@ router.get("/playthrough", async (req, res) => {
         for (let skill of user_student_skills) {
             const { skill_id, level } = skill;
             const skillName = await knex("skills")
-                .where({ id: class_id })
+                .where({ id: skill_id })
                 .first()
                 .then((result) => {
                     return result.name;
@@ -215,7 +217,7 @@ router.get("/playthrough", async (req, res) => {
     //     });
 });
 
-router.post("/update_student_class", async (req, res) => {
+router.post("/update_student_class_goal", async (req, res) => {
     const { sessionString } = req.cookies;
     if (!validSession(sessionString)) {
         res.status(401).send("Invalid session");
@@ -268,6 +270,101 @@ router.post("/update_student_class", async (req, res) => {
                 class_id
             })
             .then((result) => {
+                res.send("success");
+            });
+    }
+});
+
+router.post("/update_student_class", async (req, res) => {
+    const { sessionString } = req.cookies;
+    if (!validSession(sessionString)) {
+        res.status(401).send("Invalid session");
+        return;
+    }
+
+    const { studentName, className } = req.query;
+    const { username } = Session.parse(sessionString);
+
+    const user = await getAccount(username);
+
+    const playthrough_id = await helpers.lookupPlaythroughId(user);
+    const student_id = await helpers.lookupId("students", {
+        name: studentName
+    });
+    const user_student_id = await helpers.lookupId("users_students", {
+        playthrough_id,
+        student_id
+    });
+    const class_id = await helpers.lookupId("classes", { name: className });
+    const user_student_class_certified = await knex("users_students_classes")
+        .where({ user_student_id, class_id })
+        .first()
+        .then((result) => {
+            return result.certified || false;
+        });
+
+    await knex("users_students_classes")
+        .where({ user_student_id, class_id })
+        .update({ certified: !user_student_class_certified })
+        .then(() => {
+            res.send("success");
+        });
+});
+
+// TODO: remove skill levels (uncheck)
+// should keep track of all skill levels that have been checked
+// e.g. if C gets unchecked, go back to D if it was checked
+router.post("/update_student_skill", async (req, res) => {
+    const { sessionString } = req.cookies;
+    if (!validSession(sessionString)) {
+        res.status(401).send("Invalid session");
+        return;
+    }
+
+    const { studentName, skillName, level } = req.query;
+    const { username } = Session.parse(sessionString);
+
+    const user = await getAccount(username);
+
+    const playthrough_id = await helpers.lookupPlaythroughId(user);
+    const student_id = await helpers.lookupId("students", {
+        name: studentName
+    });
+    const user_student_id = await helpers.lookupId("users_students", {
+        playthrough_id,
+        student_id
+    });
+    const skill_id = await helpers.lookupId("skills", { name: skillName });
+    const user_student_skill_level = await knex("users_students_skills")
+        .where({ user_student_id, skill_id })
+        .first()
+        .then((result) => {
+            if (result && result.level) {
+                return result.level;
+            } else {
+                return null;
+            }
+        });
+
+    if (user_student_skill_level) {
+        await knex("users_students_skills")
+            .where({ user_student_id, skill_id })
+            .update({
+                user_student_id,
+                skill_id,
+                level
+            })
+            .then(() => {
+                res.send("success");
+            });
+    } else {
+        await knex("users_students_skills")
+            .insert({
+                user_student_id,
+                skill_id,
+                level
+            })
+            .then(() => {
                 res.send("success");
             });
     }

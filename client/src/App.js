@@ -19,7 +19,9 @@ class App extends Component {
 
         this.authenticateUser = this.authenticateUser.bind(this);
         this.getPlaythrough = this.getPlaythrough.bind(this);
+        this.selectClassGoal = this.selectClassGoal.bind(this);
         this.selectClass = this.selectClass.bind(this);
+        this.selectSkill = this.selectSkill.bind(this);
     }
 
     authenticateUser(bool) {
@@ -51,11 +53,36 @@ class App extends Component {
         });
     }
 
+    async selectClassGoal({ studentName, className }) {
+        await axios({
+            method: "post",
+            url: "/api/user/update_student_class_goal",
+            params: { studentName, className }
+        }).then((res) => {
+            if (res.data === "success") {
+                this.getPlaythrough();
+            }
+        });
+    }
+
     async selectClass({ studentName, className }) {
         await axios({
             method: "post",
             url: "/api/user/update_student_class",
             params: { studentName, className }
+        }).then((res) => {
+            if (res.data === "success") {
+                this.getPlaythrough();
+            }
+        });
+    }
+
+    async selectSkill({ studentName, skillName, level }) {
+        console.log("update skill -- ", studentName, skillName, level);
+        await axios({
+            method: "post",
+            url: "/api/user/update_student_skill",
+            params: { studentName, skillName, level }
         }).then((res) => {
             if (res.data === "success") {
                 this.getPlaythrough();
@@ -148,7 +175,9 @@ class App extends Component {
                                 <AuthEditStudent
                                     authenticated={authenticated}
                                     playthrough={playthrough}
+                                    selectClassGoal={this.selectClassGoal}
                                     selectClass={this.selectClass}
+                                    selectSkill={this.selectSkill}
                                 />
                             )}
                         />

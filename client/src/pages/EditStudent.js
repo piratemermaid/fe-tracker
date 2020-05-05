@@ -7,6 +7,7 @@ import { displayClassSkills } from "../helpers/uihelpers";
 
 import ClassSelector from "../components/ClassSelector";
 
+// TODO: display checkmarks if student has reached skill level
 const EditStudent = (props) => {
     if (!props.playthrough) {
         return "loading...";
@@ -48,14 +49,52 @@ const EditStudent = (props) => {
             <div>
                 <h2>{type}</h2>
                 {classesToDisplay.length > 0 ? (
-                    classesToDisplay.map(({ name, type, classSkills }) => {
-                        return (
-                            <div key={name}>
-                                {name} ({type}) requires{" "}
-                                {displayClassSkills(classSkills)}
-                            </div>
-                        );
-                    })
+                    classesToDisplay.map(
+                        ({ name, type, classSkills, certified }) => {
+                            return (
+                                <div key={name}>
+                                    <div>
+                                        <h3>Class Goal</h3>
+                                        <p
+                                            onClick={() =>
+                                                props.selectClass({
+                                                    studentName:
+                                                        props.match.params.name,
+                                                    className: name
+                                                })
+                                            }
+                                        >
+                                            [{certified ? "X" : " "}] {name}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3>Skill Goals</h3>
+                                        {classSkills.map((skill) => {
+                                            return (
+                                                <p
+                                                    onClick={() =>
+                                                        props.selectSkill({
+                                                            studentName:
+                                                                props.match
+                                                                    .params
+                                                                    .name,
+                                                            skillName:
+                                                                skill.name,
+                                                            level: skill.level
+                                                        })
+                                                    }
+                                                    key={`${skill.name} ${skill.level}`}
+                                                >
+                                                    [ ] {skill.name}{" "}
+                                                    {skill.level}
+                                                </p>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        }
+                    )
                 ) : (
                     <div>none</div>
                 )}

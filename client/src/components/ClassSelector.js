@@ -27,7 +27,7 @@ class ClassSelector extends Component {
                     type="Beginner"
                     student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Beginner" })}
-                    selectClass={this.props.selectClass}
+                    selectClassGoal={this.props.selectClassGoal}
                 />
                 <ClassSelectorType
                     type="Intermediate"
@@ -35,25 +35,25 @@ class ClassSelector extends Component {
                     classes={_.filter(this.state.classes, {
                         type: "Intermediate"
                     })}
-                    selectClass={this.props.selectClass}
+                    selectClassGoal={this.props.selectClassGoal}
                 />
                 <ClassSelectorType
                     type="Advanced"
                     student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Advanced" })}
-                    selectClass={this.props.selectClass}
+                    selectClassGoal={this.props.selectClassGoal}
                 />
                 <ClassSelectorType
                     type="Master"
                     student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Master" })}
-                    selectClass={this.props.selectClass}
+                    selectClassGoal={this.props.selectClassGoal}
                 />
                 <ClassSelectorType
                     type="Unique"
                     student={this.props.name}
                     classes={_.filter(this.state.classes, { type: "Unique" })}
-                    selectClass={this.props.selectClass}
+                    selectClassGoal={this.props.selectClassGoal}
                 />
             </div>
         );
