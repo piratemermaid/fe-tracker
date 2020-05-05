@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import { getNextClass } from "../helpers/helpers";
 import { displayClassSkills } from "../helpers/uihelpers";
 
@@ -20,6 +21,48 @@ const EditStudent = (props) => {
     // if character has reached end of class path
     const nextClass = getNextClass(classes);
 
+    const renderInfo = (type) => {
+        let classesToDisplay;
+
+        switch (type) {
+            case "current":
+                classesToDisplay = [nextClass];
+                break;
+            case "completed":
+                classesToDisplay = _.filter(classes, { certified: true });
+                break;
+            default:
+                // classesToDisplay = _.filter(classes, { certified: false });
+                classesToDisplay = classes.filter((classInfo) => {
+                    if (
+                        !classInfo.certified &&
+                        classInfo.name !== nextClass.name
+                    ) {
+                        return classInfo;
+                    }
+                });
+                break;
+        }
+
+        return (
+            <div>
+                <h2>{type}</h2>
+                {classesToDisplay.length > 0 ? (
+                    classesToDisplay.map(({ name, type, classSkills }) => {
+                        return (
+                            <div key={name}>
+                                {name} ({type}) requires{" "}
+                                {displayClassSkills(classSkills)}
+                            </div>
+                        );
+                    })
+                ) : (
+                    <div>none</div>
+                )}
+            </div>
+        );
+    };
+
     return (
         <div>
             <h1>{name}</h1>
@@ -31,25 +74,9 @@ const EditStudent = (props) => {
                 Skills needed:{" "}
                 {nextClass ? displayClassSkills(nextClass.classSkills) : "n/a"}{" "}
             </p>
-            {classes.length < 1 ? (
-                <ClassSelector name={name} selectClass={props.selectClass} />
-            ) : (
-                <div>
-                    <h2>Class Path</h2>
-                    <ul>
-                        {classes.map(({ name, type, certified }) => {
-                            return (
-                                <li key={name}>
-                                    {name} ({type}):{" "}
-                                    {certified ? "Certified" : "Not certified"}
-                                </li>
-                            );
-                        })}
-                    </ul>
-                    <h2>Skills</h2>
-                    skills...
-                </div>
-            )}
+            {renderInfo("current")}
+            {renderInfo("upcoming")}
+            {renderInfo("completed")}
         </div>
     );
 };
