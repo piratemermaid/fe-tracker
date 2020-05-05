@@ -12,12 +12,35 @@ const Playthrough = bookshelf.model("Playthrough", {
     house() {
         return this.belongsTo("House");
     },
-    students() {
-        return this.belongsToMany(
-            "Student",
-            "users_students",
-            "playthrough_id"
-        );
+    userStudents() {
+        return this.hasMany("UserStudent", "playthrough_id");
+    }
+});
+
+const UserStudent = bookshelf.model("UserStudent", {
+    tableName: "users_students",
+    student() {
+        return this.belongsTo("Student");
+    },
+    userStudentClasses() {
+        return this.hasMany("UserStudentClass", "user_student_id");
+    },
+    userStudentSkills() {
+        return this.hasMany("UserStudentSkill", "user_student_id");
+    }
+});
+
+const UserStudentClass = bookshelf.model("UserStudentClass", {
+    tableName: "users_students_classes",
+    class() {
+        return this.belongsTo("Class");
+    }
+});
+
+const UserStudentSkill = bookshelf.model("UserStudentSkill", {
+    tableName: "users_students_skills",
+    skill() {
+        return this.belongsTo("Skill");
     }
 });
 

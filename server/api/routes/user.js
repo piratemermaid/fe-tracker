@@ -94,134 +94,38 @@ router.get("/playthrough", async (req, res) => {
         })
         .first();
 
-    const { byleth_gender } = playthrough;
-
-    const house = await knex("houses")
-        .where({ id: playthrough.house_id })
-        .first()
-        .then((result) => {
-            return result.name;
-        });
-
-    const studentsResults = await knex("users_students").where({
-        playthrough_id
-    });
-
-    let students = [];
-    for (let student of studentsResults) {
-        const { student_id } = student;
-        const name = await knex("students")
-            .where({ id: student_id })
-            .first()
-            .then((result) => {
-                return result.name;
-            });
-
-        const user_student_id = await helpers.lookupId("users_students", {
-            playthrough_id,
-            student_id
-        });
-
-        const user_student_classes = await knex(
-            "users_students_classes"
-        ).where({ user_student_id });
-
-        let classes = [];
-        for (let sClass of user_student_classes) {
-            const { class_id, certified } = sClass;
-            const classInfo = await knex("classes")
-                .where({ id: class_id })
-                .first()
-                .then((result) => {
-                    return result;
-                });
-
-            const classSkillsInfo = await knex("classes_skills").where({
-                class_id
-            });
-            let classSkills = [];
-            for (let skill of classSkillsInfo) {
-                const { skill_id, level } = skill;
-                const skillName = await knex("skills")
-                    .where({ id: skill_id })
-                    .first()
-                    .then((result) => {
-                        return result.name;
-                    });
-                classSkills.push({ name: skillName, level });
-            }
-
-            classes.push({
-                name: classInfo.name,
-                type: classInfo.type,
-                certified: certified || false,
-                classSkills
-            });
-        }
-
-        const user_student_skills = await knex("users_students_skills").where({
-            user_student_id
-        });
-        let skills = [];
-        for (let skill of user_student_skills) {
-            const { skill_id, level } = skill;
-            const skillName = await knex("skills")
-                .where({ id: skill_id })
-                .first()
-                .then((result) => {
-                    return result.name;
-                });
-            skills.push({ name: skillName, level });
-        }
-
-        students.push({
-            name,
-            classes: helpers.sortClassesByType(classes),
-            skills
-        });
-    }
-
-    res.send({
-        playthrough,
-        house,
-        byleth_gender,
-        house,
-        students: students.map(({ name, classes, skills }) => {
-            return { name, classes, skills };
+    models.Playthrough.forge({ user_id: user.id })
+        .fetch({
+            withRelated: [
+                "house",
+                "userStudents.student",
+                "userStudents.userStudentClasses.class",
+                "userStudents.userStudentSkills.skill"
+            ]
         })
-    });
+        .then((userData) => {
+            const data = userData.toJSON();
+            const { playthrough, byleth_gender, house, userStudents } = data;
 
-    // models.Playthrough.forge({ user_id: user.id })
-    //     .fetch({
-    //         withRelated: [
-    //             "house",
-    //             "students.classes",
-    //             "students.skills"
-    //         ]
-    //     })
-    //     .then((userData) => {
-    //         const data = userData.toJSON();
-    //         // console.log(data);
-    //         const { playthrough, byleth_gender, house, students } = data;
-
-    //         res.send({
-    //             playthrough,
-    //             byleth_gender,
-    //             house: house.name,
-    //             students: students.map(({ name, classes, skills }) => {
-    //                 // console.log(classes);
-    //                 return {
-    //                     name,
-    //                     classes: classes.map(({ name }) => {
-    //                         return { name };
-    //                     }),
-    //                     skills: skills.map(({ name }) => {
-    //                         return { name };
-    //                     })
-    //                 };
-    //             })
-    //         });
-    //     });
+            res.send({
+                playthrough,
+                byleth_gender,
+                house: house.name,
+                students: userStudents.map(
+                    ({ student, userStudentClasses, userStudentSkills }) => {
+                        return {
+                            name: student.name,
+                            classes: userStudentClasses.map(({ name }) => {
+                                return { name };
+                            }),
+                            skills: userStudentSkills.map(({ name }) => {
+                                return { name };
+                            })
+                        };
+                    }
+                )
+            });
+        });
 });
 
 router.post("/update_student_class_goal", async (req, res) => {
