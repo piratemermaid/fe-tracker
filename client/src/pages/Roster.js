@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getNextClass } from "../helpers/helpers";
+import { displayClassSkills } from "../helpers/uihelpers";
 
 const Roster = (props) => {
     if (!props.playthrough) {
@@ -8,8 +9,8 @@ const Roster = (props) => {
     }
 
     // only show lowest level uncertified class
-    const renderClass = (classes) => {
-        const { name, type } = getNextClass(classes);
+    const renderClass = (nextClass) => {
+        const { name, type } = nextClass;
         return (
             <span>
                 {name} ({type})
@@ -23,21 +24,25 @@ const Roster = (props) => {
             <h1>{house} Roster</h1>
             <ul>
                 {students.map(({ name, classes, skills }) => {
+                    const nextClass = getNextClass(classes);
                     return (
                         <li key={name} className="student-row">
                             {name}
                             <br />
                             {classes.length > 0 ? (
-                                <span>Classes: {renderClass(classes)}</span>
+                                <span>
+                                    Next class: {renderClass(nextClass)}
+                                </span>
                             ) : (
                                 "No classes set"
                             )}
                             <br />
-                            {skills.length > 0 ? (
-                                <span>Skills: {skills.split(", ")}</span>
-                            ) : (
-                                "No skills set"
-                            )}
+                            {nextClass ? (
+                                <span>
+                                    Skills needed:{" "}
+                                    {displayClassSkills(nextClass.classSkills)}
+                                </span>
+                            ) : null}
                             <br />
                             <Link to={`/student/${name}`}>Update</Link>
                         </li>

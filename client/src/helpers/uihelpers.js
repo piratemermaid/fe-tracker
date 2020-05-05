@@ -1,5 +1,7 @@
 import React from "react";
 
+// TODO: don't display skills already acquired
+// (make that an option?)
 export function displayClassSkills(skills) {
     let ui = [];
     for (let i in skills) {
