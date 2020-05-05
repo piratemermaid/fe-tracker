@@ -78,7 +78,6 @@ class App extends Component {
     }
 
     async selectSkill({ studentName, skillName, level }) {
-        console.log("update skill -- ", studentName, skillName, level);
         await axios({
             method: "post",
             url: "/api/user/update_student_skill",

@@ -335,26 +335,25 @@ router.post("/update_student_skill", async (req, res) => {
         student_id
     });
     const skill_id = await helpers.lookupId("skills", { name: skillName });
-    const user_student_skill_level = await knex("users_students_skills")
-        .where({ user_student_id, skill_id })
+    const exists = await knex("users_students_skills")
+        .where({ user_student_id, skill_id, level })
         .first()
         .then((result) => {
-            if (result && result.level) {
-                return result.level;
+            if (result) {
+                return true;
             } else {
-                return null;
+                return false;
             }
         });
 
-    if (user_student_skill_level) {
+    console.log(skillName, level, exists);
+
+    if (exists) {
         await knex("users_students_skills")
-            .where({ user_student_id, skill_id })
-            .update({
-                user_student_id,
-                skill_id,
-                level
-            })
+            .where({ user_student_id, skill_id, level })
+            .delete()
             .then(() => {
+                console.log("delete");
                 res.send("success");
             });
     } else {
@@ -365,6 +364,7 @@ router.post("/update_student_skill", async (req, res) => {
                 level
             })
             .then(() => {
+                console.log("add");
                 res.send("success");
             });
     }

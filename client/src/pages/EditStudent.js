@@ -2,7 +2,11 @@ import _ from "lodash";
 import React from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { getNextClass } from "../helpers/helpers";
+import {
+    getNextClass,
+    studentMeetsSkillReq,
+    getHighestSkillLevel
+} from "../helpers/helpers";
 import { displayClassSkills } from "../helpers/uihelpers";
 
 import ClassSelector from "../components/ClassSelector";
@@ -49,52 +53,59 @@ const EditStudent = (props) => {
             <div>
                 <h2>{type}</h2>
                 {classesToDisplay.length > 0 ? (
-                    classesToDisplay.map(
-                        ({ name, type, classSkills, certified }) => {
-                            return (
-                                <div key={name}>
-                                    <div>
-                                        <h3>Class Goal</h3>
-                                        <p
-                                            onClick={() =>
-                                                props.selectClass({
-                                                    studentName:
-                                                        props.match.params.name,
-                                                    className: name
-                                                })
-                                            }
-                                        >
-                                            [{certified ? "X" : " "}] {name}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h3>Skill Goals</h3>
-                                        {classSkills.map((skill) => {
-                                            return (
-                                                <p
-                                                    onClick={() =>
-                                                        props.selectSkill({
-                                                            studentName:
-                                                                props.match
-                                                                    .params
-                                                                    .name,
-                                                            skillName:
-                                                                skill.name,
-                                                            level: skill.level
-                                                        })
-                                                    }
-                                                    key={`${skill.name} ${skill.level}`}
-                                                >
-                                                    [ ] {skill.name}{" "}
-                                                    {skill.level}
-                                                </p>
-                                            );
-                                        })}
-                                    </div>
+                    classesToDisplay.map(({ name, classSkills, certified }) => {
+                        return (
+                            <div key={name}>
+                                <div>
+                                    <h3>Class Goal</h3>
+                                    <p
+                                        onClick={() =>
+                                            props.selectClass({
+                                                studentName:
+                                                    props.match.params.name,
+                                                className: name
+                                            })
+                                        }
+                                    >
+                                        [{certified ? "X" : " "}] {name}
+                                    </p>
                                 </div>
-                            );
-                        }
-                    )
+                                <div>
+                                    <h3>Skill Goals</h3>
+                                    {classSkills.map((skill) => {
+                                        const studentSkillLevel = getHighestSkillLevel(
+                                            skills,
+                                            skill.name
+                                        );
+                                        return (
+                                            <p
+                                                onClick={() =>
+                                                    props.selectSkill({
+                                                        studentName:
+                                                            props.match.params
+                                                                .name,
+                                                        skillName: skill.name,
+                                                        level: skill.level
+                                                    })
+                                                }
+                                                key={`${skill.name} ${skill.level}`}
+                                            >
+                                                [
+                                                {studentMeetsSkillReq(
+                                                    skill.name,
+                                                    studentSkillLevel,
+                                                    skill.level
+                                                )
+                                                    ? "X"
+                                                    : " "}
+                                                ] {skill.name} {skill.level}
+                                            </p>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        );
+                    })
                 ) : (
                     <div>none</div>
                 )}
