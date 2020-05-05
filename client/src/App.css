@@ -61,6 +61,16 @@ li {
     background: rgb(216, 216, 216);
 }
 
+.roster-img.BlackEagles {
+    background: rgb(206, 54, 87);
+}
+.roster-img.BlueLions {
+    background: rgb(77, 95, 169);
+}
+.roster-img.GoldenDeer {
+    background: rgb(223, 192, 74);
+}
+
 .roster-row-student p {
     margin: 0;
 }

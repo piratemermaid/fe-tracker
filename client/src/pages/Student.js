@@ -125,9 +125,10 @@ const Student = (props) => {
         );
     };
 
+    const { byleth_gender, house } = props.playthrough;
     let imgSrc = `/img/${name}.png`;
     if (name === "Byleth") {
-        imgSrc = `/img/Byleth_${props.playthrough.byleth_gender}.png`;
+        imgSrc = `/img/Byleth_${byleth_gender}.png`;
     }
 
     return (
@@ -137,7 +138,7 @@ const Student = (props) => {
                 <Grid item xs={3}>
                     <img
                         src={imgSrc}
-                        className="roster-img"
+                        className={`roster-img ${house.replace(/\s+/g, "")}`}
                         alt={name}
                         title={name}
                     />

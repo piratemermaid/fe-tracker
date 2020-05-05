@@ -31,7 +31,10 @@ const RosterRow = (props) => {
                 <Grid item xs={3}>
                     <img
                         src={imgSrc}
-                        className="roster-img"
+                        className={`roster-img ${props.house.replace(
+                            /\s+/g,
+                            ""
+                        )}`}
                         alt={name}
                         title={name}
                     />

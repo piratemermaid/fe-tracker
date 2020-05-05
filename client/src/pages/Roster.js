@@ -17,6 +17,7 @@ const Roster = (props) => {
                         <RosterRow
                             student={student}
                             byleth_gender={byleth_gender}
+                            house={house}
                         />
                     );
                 })}
