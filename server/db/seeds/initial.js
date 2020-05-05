@@ -3,6 +3,7 @@ const { classes, classSkills } = require("../data/classes");
 const skills = require("../data/skills");
 const { students, studentSkills } = require("../data/students");
 const houses = require("../data/houses");
+const { hash } = require("../../api/helpers/account");
 
 exports.seed = async function (knex) {
     for (let i = tableOrder.length - 1; i >= 0; i--) {
@@ -87,6 +88,12 @@ exports.seed = async function (knex) {
             };
         })
     );
+
+    await knex("users").insert({
+        username: "testuser",
+        password: hash("userpass12"),
+        email: "a@a.com"
+    });
 };
 
 // delete table and reset to start at id 1
