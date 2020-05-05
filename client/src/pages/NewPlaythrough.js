@@ -5,7 +5,7 @@ class NewPlaythrough extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { house: "Black Eagles", byleth: "F" };
+        this.state = { house: null, byleth: null };
     }
 
     selectHouse(house) {
