@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getNextClass } from "../helpers";
 
 const Roster = (props) => {
     if (!props.playthrough) {
@@ -8,16 +9,12 @@ const Roster = (props) => {
 
     // only show lowest level uncertified class
     const renderClass = (classes) => {
-        for (let sClass of classes) {
-            const { name, type, certified } = sClass;
-            if (!certified) {
-                return (
-                    <span>
-                        {name} ({type})
-                    </span>
-                );
-            }
-        }
+        const { name, type } = getNextClass(classes);
+        return (
+            <span>
+                {name} ({type})
+            </span>
+        );
     };
 
     const { house, byleth_gender, students } = props.playthrough;
