@@ -36,7 +36,7 @@ const studentData = [
         }
     },
     {
-        name: "Ferninad",
+        name: "Ferdinand",
         house: "Black Eagles",
         skills: {
             proficient: ["Sword", "Lance", "Axe", "Riding"],
