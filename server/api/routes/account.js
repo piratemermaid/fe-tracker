@@ -6,7 +6,7 @@ const { getAccount, hash, Session, setSession } = require("../helpers/account");
 const router = new Router();
 
 router.post("/signup", async (req, res, next) => {
-    const { username, email, password, passwordMatch } = req.body;
+    const { username, email, password, passwordMatch } = req.query;
 
     if (password !== passwordMatch) {
         res.status(401).send("Passwords do not match");
@@ -36,7 +36,7 @@ router.post("/signup", async (req, res, next) => {
 });
 
 router.post("/login", async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password } = req.query;
 
     const account = await getAccount(username);
 
@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
         res.status(401).send("Incorrect username/password");
     } else {
         if (await bcrypt.compare(password, account.password)) {
-            await setSession({
+            setSession({
                 username,
                 res,
                 sessionId: account.sessionId
@@ -57,10 +57,10 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.get("/logout", (req, res, next) => {
+router.get("/logout", async (req, res, next) => {
     const { username } = Session.parse(req.cookies.sessionString);
 
-    knex("users")
+    await knex("users")
         .where({ username })
         .update({ sessionId: null })
         .then(() => {

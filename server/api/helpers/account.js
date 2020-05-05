@@ -4,7 +4,16 @@ const { knex } = require("../models/config");
 const { saltRounds } = require("../../secrets");
 
 async function getAccount(username) {
-    return knex("users").select("*").where({ username }).first();
+    return knex("users")
+        .select("*")
+        .where({ username })
+        .then((rows) => {
+            if (rows) {
+                return rows[0];
+            } else {
+                return undefined;
+            }
+        });
 }
 
 const hash = (data) => {

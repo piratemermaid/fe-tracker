@@ -1,26 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Home from "./pages/Home";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { authenticated: false };
+
+        this.authenticateUser = this.authenticateUser.bind(this);
+    }
+
+    authenticateUser(bool) {
+        this.setState({ authenticated: bool });
+    }
+
+    render() {
+        const { authenticated } = this.state;
+
+        return (
+            <div className="App">
+                <BrowserRouter>
+                    <header>
+                        <Link to="/">App</Link>
+                    </header>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <Home
+                                    authenticated={authenticated}
+                                    authenticateUser={this.authenticateUser}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/login"
+                            render={() => (
+                                <Login
+                                    authenticateUser={this.authenticateUser}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/signup"
+                            render={() => (
+                                <Signup
+                                    authenticateUser={this.authenticateUser}
+                                />
+                            )}
+                        />
+                    </Switch>
+                </BrowserRouter>
+            </div>
+        );
+    }
 }
 
 export default App;
