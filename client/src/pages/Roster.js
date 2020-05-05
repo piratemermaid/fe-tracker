@@ -1,11 +1,11 @@
 import React from "react";
 
-const Page = () => {
+const Roster = () => {
     return (
         <div>
-            <h1>Page</h1>
+            <h1>Roster</h1>
         </div>
     );
 };
 
-export default Page;
+export default Roster;

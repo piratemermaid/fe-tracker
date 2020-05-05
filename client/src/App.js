@@ -7,13 +7,14 @@ import RequireAuth from "./components/RequireAuth";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
-import Page from "./pages/Page";
+import NewPlaythrough from "./pages/NewPlaythrough";
+import Roster from "./pages/Roster";
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { authenticated: false };
+        this.state = { authenticated: false, playthrough: null };
 
         this.authenticateUser = this.authenticateUser.bind(this);
     }
@@ -22,8 +23,24 @@ class App extends Component {
         this.setState({ authenticated: bool });
     }
 
-    componentDidMount() {
+    logOut = () => {
         axios({
+            method: "get",
+            url: "/api/account/logout"
+        })
+            .then((res) => {
+                if (res.data.logout === "success") {
+                    this.authenticateUser(false);
+                    this.props.history.push("/");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    async componentDidMount() {
+        await axios({
             method: "get",
             url: "/api/account/authenticated"
         })
@@ -36,25 +53,33 @@ class App extends Component {
     }
 
     render() {
-        const { authenticated } = this.state;
+        const { authenticated, playthrough } = this.state;
 
-        const AuthPage = RequireAuth(Page);
+        const AuthNewPlaythrough = RequireAuth(NewPlaythrough);
+        const AuthRoster = RequireAuth(Roster);
 
         return (
             <div className="App">
                 <BrowserRouter>
                     <header>
-                        <Link to="/">App</Link>
-                        <nav>
-                            <Link to="/page">Page</Link>
-                        </nav>
+                        {authenticated ? (
+                            <nav>
+                                <Link to="/">Roster</Link>
+                                <Link to="/new_playthrough">
+                                    New Playthrough
+                                </Link>
+                                <Link to="/login" onClick={this.logOut}>
+                                    Log Out
+                                </Link>
+                            </nav>
+                        ) : null}
                     </header>
                     <Switch>
                         <Route
                             exact
                             path="/"
                             render={() => (
-                                <Home
+                                <AuthRoster
                                     authenticated={authenticated}
                                     authenticateUser={this.authenticateUser}
                                 />
@@ -64,6 +89,7 @@ class App extends Component {
                             path="/login"
                             render={() => (
                                 <Login
+                                    playthrough={playthrough}
                                     authenticateUser={this.authenticateUser}
                                 />
                             )}
@@ -77,11 +103,10 @@ class App extends Component {
                             )}
                         />
                         <Route
-                            path="/page"
+                            path="/new_playthrough"
                             render={() => (
-                                <AuthPage
+                                <AuthNewPlaythrough
                                     authenticated={authenticated}
-                                    authenticateUser={this.authenticateUser}
                                 />
                             )}
                         />

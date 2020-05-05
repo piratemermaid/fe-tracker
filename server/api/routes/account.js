@@ -77,7 +77,7 @@ router.get("/authenticated", async (req, res) => {
     const { sessionString } = req.cookies;
 
     if (!sessionString || !Session.verify(sessionString)) {
-        res.status(400).send("Invalid session");
+        res.send({ authenticated: false });
     } else {
         const { username, id } = Session.parse(sessionString);
         const account = await getAccount(username);

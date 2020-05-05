@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 export default function (ComposedComponent) {
@@ -11,12 +12,19 @@ export default function (ComposedComponent) {
             this.checkAndRedirect();
         }
 
-        checkAndRedirect() {
-            const { authenticated } = this.props;
-
-            if (!authenticated) {
-                this.props.history.push("/");
-            }
+        async checkAndRedirect() {
+            await axios({
+                method: "get",
+                url: "/api/account/authenticated"
+            })
+                .then((res) => {
+                    if (!res.data.authenticated) {
+                        this.props.history.push("/login");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
 
         render() {

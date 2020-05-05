@@ -25,7 +25,11 @@ class Login extends Component {
             .then((res) => {
                 if (res.data.login === "success") {
                     this.props.authenticateUser(true);
-                    this.props.history.push("/");
+                    if (this.props.playthrough) {
+                        this.props.history.push("/");
+                    } else {
+                        this.props.history.push("/new_playthrough");
+                    }
                 }
             })
             .catch((err) => {
