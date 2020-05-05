@@ -11,6 +11,7 @@ import { displayClassSkills } from "../helpers/uihelpers";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 const Student = (props) => {
     if (!props.playthrough) {
@@ -126,6 +127,7 @@ const Student = (props) => {
 
     return (
         <div>
+            <KeyboardBackspaceIcon onClick={() => props.history.push("/")} />
             <Grid container spacing={2}>
                 <Grid item xs={3}>
                     <div className="roster-img"></div>

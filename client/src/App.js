@@ -121,11 +121,7 @@ class App extends Component {
                 <BrowserRouter>
                     <header>
                         {authenticated ? (
-                            <nav>
-                                <Link to="/">Roster</Link>
-                                <Link to="/new_playthrough">
-                                    New Playthrough
-                                </Link>
+                            <nav className="right">
                                 <Link to="/login" onClick={this.logOut}>
                                     Log Out
                                 </Link>
