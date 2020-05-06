@@ -8,6 +8,7 @@ import {
 } from "../helpers/helpers";
 import { displayClassSkills } from "../helpers/uihelpers";
 
+import StudentImg from "../components/StudentImg";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
@@ -126,22 +127,16 @@ const Student = (props) => {
         );
     };
 
-    const { byleth_gender, house } = props.playthrough;
-    let imgSrc = `/img/${name}.png`;
-    if (name === "Byleth") {
-        imgSrc = `/img/Byleth_${byleth_gender}.png`;
-    }
-
+    // TODO: get student gender and house for image
     return (
         <div>
             <KeyboardBackspaceIcon onClick={() => props.history.push("/")} />
             <Grid container spacing={2}>
                 <Grid item xs={3}>
-                    <img
-                        src={imgSrc}
-                        className={`roster-img ${house.replace(/\s+/g, "")}`}
-                        alt={name}
-                        title={name}
+                    <StudentImg
+                        name={name}
+                        byleth_gender={"F"}
+                        house={"Black Eagles"}
                     />
                 </Grid>
                 <Grid item xs={9} className="roster-row-student">

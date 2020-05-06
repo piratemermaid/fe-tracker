@@ -70,6 +70,9 @@ li {
 .roster-img.GoldenDeer {
     background: rgb(223, 192, 74);
 }
+.roster-img.Faculty {
+    background: rgb(176, 225, 176);
+}
 
 .roster-row-student p {
     margin: 0;

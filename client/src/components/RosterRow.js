@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getNextClass } from "../helpers/helpers";
 import { displayClassSkills } from "../helpers/uihelpers";
 
+import StudentImg from "../components/StudentImg";
 import Grid from "@material-ui/core/Grid";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 
@@ -20,23 +21,15 @@ const RosterRow = (props) => {
         );
     };
 
-    let imgSrc = `/img/${name}.png`;
-    if (name === "Byleth") {
-        imgSrc = `/img/Byleth_${props.byleth_gender}.png`;
-    }
-
+    // TODO: get student gender and house for image
     return (
         <div key={name} className="roster-row">
             <Grid container spacing={3}>
                 <Grid item xs={3}>
-                    <img
-                        src={imgSrc}
-                        className={`roster-img ${props.house.replace(
-                            /\s+/g,
-                            ""
-                        )}`}
-                        alt={name}
-                        title={name}
+                    <StudentImg
+                        name={name}
+                        byleth_gender={"F"}
+                        house={"Black Eagles"}
                     />
                 </Grid>
                 <Grid item xs={7} className="roster-row-student">

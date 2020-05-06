@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
+import StudentImg from "../components/StudentImg";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 class AddStudent extends Component {
@@ -36,17 +37,13 @@ class AddStudent extends Component {
                 studentList.push(<h2 key={house}>{house}</h2>);
             }
             studentList.push(
-                <li
-                    key={name}
-                    onClick={() => this.addStudent(name)}
-                    className={`add-student${
-                        selectedStudents.includes(name)
-                            ? " add-student-selected"
-                            : null
-                    }`}
-                >
-                    {name}
-                </li>
+                <div className="roster-row">
+                    <StudentImg
+                        name={name}
+                        byleth_gender={gender || "F"}
+                        house={house}
+                    />
+                </div>
             );
         }
 
