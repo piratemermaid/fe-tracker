@@ -37,7 +37,11 @@ class AddStudent extends Component {
 
             if (!lastHouse || lastHouse !== house) {
                 lastHouse = house;
-                studentList.push(<h2 key={house}>{house}</h2>);
+                studentList.push(
+                    <h2 className="padding" key={house}>
+                        {house}
+                    </h2>
+                );
             }
 
             studentList.push(
@@ -108,7 +112,7 @@ class AddStudent extends Component {
                         this.props.history.push("/");
                     }}
                 />
-                <h1>Add Students</h1>
+                <h1 className="padding">Add Students</h1>
                 <ul>{this.renderAvailableStudents()}</ul>
                 <button
                     onClick={() => this.props.addStudents(selectedStudents)}

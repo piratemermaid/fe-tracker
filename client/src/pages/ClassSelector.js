@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import ClassSelectorType from "../components/ClassSelectorType";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 // TODO: fix reloading on selection,
 // maybe store changes in state and
@@ -35,7 +36,12 @@ class ClassSelector extends Component {
         ];
 
         return (
-            <div>
+            <div className="padding">
+                <KeyboardBackspaceIcon
+                    onClick={() => {
+                        this.props.history.push(`/student/${name}`);
+                    }}
+                />
                 <h1>Select Classes for {name}</h1>
                 {types.map((type) => {
                     return (

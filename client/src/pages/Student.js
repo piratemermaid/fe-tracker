@@ -129,7 +129,7 @@ const Student = (props) => {
 
     // TODO: get student gender and house for image
     return (
-        <div>
+        <div className="padding">
             <KeyboardBackspaceIcon onClick={() => props.history.push("/")} />
             <Grid container spacing={2}>
                 <Grid item xs={3}>

@@ -13,14 +13,16 @@ const Roster = (props) => {
     const { house, byleth_gender, students } = props.playthrough;
     return (
         <div>
-            <h1>
-                {house} Roster
-                <span style={{ float: "right" }}>
-                    <AddCircleOutlineIcon
-                        onClick={() => props.history.push("/add_student")}
-                    />
-                </span>
-            </h1>
+            <div className="padding">
+                <h1>
+                    {house} Roster
+                    <span style={{ float: "right" }}>
+                        <AddCircleOutlineIcon
+                            onClick={() => props.history.push("/add_student")}
+                        />
+                    </span>
+                </h1>
+            </div>
             <ul>
                 {students.map((student) => {
                     return (
