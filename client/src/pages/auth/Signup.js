@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
 
+import Button from "@material-ui/core/Button";
+
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -85,7 +87,7 @@ class Signup extends Component {
             errorMessage
         } = this.state;
         return (
-            <div>
+            <div className="center">
                 <h1>Sign Up</h1>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <div className="input-field">
@@ -127,9 +129,14 @@ class Signup extends Component {
                         />
                     </div>
                     <div className="form-error">{errorMessage}</div>
-                    <button type="button" onClick={(e) => this.onSubmit(e)}>
+                    <Button
+                        className="auth-button"
+                        variant="contained"
+                        color="primary"
+                        onClick={(e) => this.onSubmit(e)}
+                    >
                         Sign Up
-                    </button>
+                    </Button>
                 </form>
                 <div>
                     Already have an account? <Link to="/login">Log In</Link>

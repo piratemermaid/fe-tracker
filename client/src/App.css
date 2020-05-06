@@ -34,6 +34,14 @@ li {
     list-style-type: none;
 }
 
+/* auth pages */
+button.auth-button {
+    margin: 20px 0;
+    width: 180px;
+    height: 40px;
+    border-radius: 20px;
+}
+
 /* new playthrough */
 .choice-btn {
     opacity: 0.5;
