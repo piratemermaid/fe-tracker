@@ -45,11 +45,29 @@ router.get("/classes", (req, res) => {
 
 // TODO: add skills info
 router.get("/students", (req, res) => {
-    models.Student.fetchAll({ withRelated: "house" }).then((result) => {
+    models.Student.fetchAll({
+        withRelated: [
+            "house",
+            {
+                skills(qb) {
+                    qb.column("name", "proficient", "budding", "weakness");
+                }
+            }
+        ]
+    }).then((result) => {
         const students = result.toJSON();
         res.send(
-            students.map(({ name, gender, house }) => {
-                return { name, gender, house: house.name };
+            students.map(({ name, gender, house, skills }) => {
+                return {
+                    name,
+                    gender,
+                    house: house.name,
+                    skills: skills.map(
+                        ({ name, proficient, budding, weakness }) => {
+                            return { name, proficient, budding, weakness };
+                        }
+                    )
+                };
             })
         );
     });

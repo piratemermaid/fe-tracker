@@ -53,19 +53,8 @@ const Student = bookshelf.model("Student", {
     house() {
         return this.belongsTo("House");
     },
-    classes() {
-        return this.belongsToMany(
-            "Class",
-            "users_students_classes",
-            "user_student_id"
-        );
-    },
     skills() {
-        return this.belongsToMany(
-            "Skill",
-            "users_students_skills",
-            "user_student_id"
-        );
+        return this.belongsToMany("Skill", "students_skills");
     }
 });
 

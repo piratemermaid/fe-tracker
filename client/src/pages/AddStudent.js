@@ -4,6 +4,8 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 import StudentImg from "../components/StudentImg";
+import SkillsOverview from "../components/SkillsOverview";
+import Grid from "@material-ui/core/Grid";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 class AddStudent extends Component {
@@ -31,19 +33,41 @@ class AddStudent extends Component {
         let lastHouse = null;
 
         for (let student of availableStudents) {
-            const { name, gender, house } = student;
+            const { name, gender, house, skills } = student;
+
             if (!lastHouse || lastHouse !== house) {
                 lastHouse = house;
                 studentList.push(<h2 key={house}>{house}</h2>);
             }
+
             studentList.push(
-                <div className="roster-row">
-                    <StudentImg
-                        name={name}
-                        byleth_gender={gender || "F"}
-                        house={house}
-                    />
-                </div>
+                <Grid
+                    container
+                    className={`roster-row add-student-row${
+                        selectedStudents.includes(name)
+                            ? ` add-student-selected ${house.replace(
+                                  /\s+/g,
+                                  ""
+                              )}`
+                            : null
+                    }`}
+                    key={name}
+                    onClick={() => this.addStudent(name)}
+                >
+                    <Grid item xs={4}>
+                        <StudentImg
+                            name={name}
+                            byleth_gender={gender || "F"}
+                            house={house}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <p className="roster-name" style={{ marginTop: 0 }}>
+                            {name}
+                        </p>
+                        <SkillsOverview skills={skills} />
+                    </Grid>
+                </Grid>
             );
         }
 
@@ -72,6 +96,7 @@ class AddStudent extends Component {
     }
 
     render() {
+        const { selectedStudents } = this.state;
         if (!this.props.playthrough || !this.props.playthrough.students) {
             return "loading...";
         }
@@ -86,9 +111,8 @@ class AddStudent extends Component {
                 <h1>Add Students</h1>
                 <ul>{this.renderAvailableStudents()}</ul>
                 <button
-                    onClick={() =>
-                        this.props.addStudents(this.state.selectedStudents)
-                    }
+                    onClick={() => this.props.addStudents(selectedStudents)}
+                    disabled={selectedStudents.length < 1}
                 >
                     Add!
                 </button>
