@@ -4,9 +4,9 @@ const StudentImg = (props) => {
     const { name, byleth_gender, house } = props;
     // TODO: just get gender, can get rid of byleth_gender
 
-    let imgSrc = `/img/${name}.png`;
+    let imgSrc = `/img/students/${name}.png`;
     if (name === "Byleth") {
-        imgSrc = `/img/Byleth_${byleth_gender}.png`;
+        imgSrc = `/img/students/Byleth_${byleth_gender}.png`;
     }
 
     return (
