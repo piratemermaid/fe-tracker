@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
 import RosterRow from "../components/RosterRow";
 
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import Button from "@material-ui/core/Button";
 
 // TODO: sort roster by your house -> next 2 houses -> faculty -> other
 const Roster = (props) => {
@@ -35,8 +38,19 @@ const Roster = (props) => {
                     );
                 })}
             </ul>
+            <div className="center footer">
+                <Button
+                    className="button"
+                    style={{ width: "90%" }}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => props.history.push("/new_playthrough")}
+                >
+                    Start New Playthrough
+                </Button>
+            </div>
         </div>
     );
 };
 
-export default Roster;
+export default withRouter(Roster);

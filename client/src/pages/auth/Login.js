@@ -73,7 +73,7 @@ class Login extends Component {
                         </Grid>
                         <div className="form-error">{errorMessage}</div>
                         <Button
-                            className="auth-button"
+                            className="button"
                             variant="contained"
                             color="primary"
                             onClick={(e) => this.onSubmit(e)}

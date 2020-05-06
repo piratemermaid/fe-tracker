@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { withRouter } from "react-router";
+
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 class NewPlaythrough extends Component {
     constructor(props) {
@@ -36,67 +41,95 @@ class NewPlaythrough extends Component {
     };
 
     houseButtonUI(house) {
+        const imgSrc = `/img/banners/${house.replace(/\s+/g, "_")}_Banner.png`;
+        let imgClass = "banner-choice new-playthrough-choice";
+        if (this.state.house === house) {
+            imgClass += " new-playthrough-choice-selected";
+        }
+
         return (
-            <li>
-                <button
-                    onClick={() => this.selectHouse(house)}
-                    className={
-                        this.state.house === house
-                            ? "btn choice-btn-selected"
-                            : "btn choice-btn"
-                    }
-                >
-                    {house}
-                </button>
-            </li>
+            <Grid item xs={4} onClick={() => this.selectHouse(house)}>
+                <img
+                    src={imgSrc}
+                    className={imgClass}
+                    alt={house}
+                    title={house}
+                />
+            </Grid>
         );
     }
 
     bylethButtonUI(byleth) {
+        const imgSrc = `/img/students/Byleth_${byleth}.png`;
+        let imgClass = "byleth-choice new-playthrough-choice";
+        if (this.state.byleth === byleth) {
+            imgClass += " new-playthrough-choice-selected";
+        }
+
         return (
-            <li>
-                <button
-                    onClick={() => this.selectByleth(byleth)}
-                    className={
-                        this.state.byleth === byleth
-                            ? "btn choice-btn-selected"
-                            : "btn choice-btn"
-                    }
-                >
-                    {byleth}
-                </button>
-            </li>
+            <Grid item xs={4} onClick={() => this.selectByleth(byleth)}>
+                <img
+                    src={imgSrc}
+                    className={imgClass}
+                    alt={`Byleth-${byleth}`}
+                    title={`Byleth-${byleth}`}
+                />
+            </Grid>
         );
     }
 
     submitButtonUI() {
         if (this.state.house && this.state.byleth) {
-            return <button onClick={this.startNewPlaythrough}>Start!</button>;
+            return (
+                <Button
+                    className={`button ${this.state.house.replace(/\s+/g, "")}`}
+                    variant="contained"
+                    color="primary"
+                    onClick={this.startNewPlaythrough}
+                >
+                    Start!
+                </Button>
+            );
         } else {
-            return <button disabled>Start!</button>;
+            return (
+                <Button
+                    className="button"
+                    variant="contained"
+                    color="primary"
+                    disabled
+                >
+                    Start
+                </Button>
+            );
         }
     }
 
     render() {
         return (
             <div>
-                <h1>New Playthrough</h1>
-                <h2>Select House</h2>
-                <ul>
-                    {this.houseButtonUI("Black Eagles")}
-                    {this.houseButtonUI("Blue Lions")}
-                    {this.houseButtonUI("Golden Deer")}
-                </ul>
-                <h2>Select Byleth</h2>
-                <ul>
-                    {this.bylethButtonUI("M")}
-                    {this.bylethButtonUI("F")}
-                </ul>
-                <ul></ul>
-                {this.submitButtonUI()}
+                <KeyboardBackspaceIcon
+                    onClick={() => {
+                        this.props.history.push("/");
+                    }}
+                />
+                <div className="padding center">
+                    <h1>New Playthrough</h1>
+                    <h2>Select House</h2>
+                    <Grid container spacing={2}>
+                        {this.houseButtonUI("Black Eagles")}
+                        {this.houseButtonUI("Blue Lions")}
+                        {this.houseButtonUI("Golden Deer")}
+                    </Grid>
+                    <h2>Select Byleth</h2>
+                    <Grid container justify="center" spacing={2}>
+                        {this.bylethButtonUI("M")}
+                        {this.bylethButtonUI("F")}
+                    </Grid>
+                    {this.submitButtonUI()}
+                </div>
             </div>
         );
     }
 }
 
-export default NewPlaythrough;
+export default withRouter(NewPlaythrough);

@@ -38,25 +38,63 @@ li {
     padding: 0 20px;
 }
 
-/* auth pages */
-button.auth-button {
+button.button {
     margin: 20px 0;
     width: 180px;
     height: 40px;
     border-radius: 20px;
 }
 
+/* house colors */
+.BlackEagles {
+    background: rgb(206, 54, 87);
+}
+.BlueLions {
+    background: rgb(77, 95, 169);
+}
+.GoldenDeer {
+    background: rgb(223, 192, 74);
+}
+.Faculty {
+    background: rgb(176, 225, 176);
+}
+
+/* auth pages */
 div.auth-input {
     margin: 10px 0;
 }
 
 /* new playthrough */
-.choice-btn {
+.new-playthrough-choice {
     opacity: 0.5;
 }
 
-.choice-btn-selected {
+.new-playthrough-choice-selected {
     opacity: 1;
+}
+
+img.banner-choice {
+    width: 100%;
+    border-radius: 25px 25px 0 0;
+}
+
+img.byleth-choice {
+    width: 100%;
+    background: rgb(209, 209, 209);
+    border-radius: 25px;
+}
+
+button.BlackEagles {
+    background: rgb(206, 54, 87);
+}
+button.BlueLions {
+    background: rgb(77, 95, 169);
+}
+button.GoldenDeer {
+    background: rgb(223, 192, 74);
+}
+button.Faculty {
+    background: rgb(176, 225, 176);
 }
 
 /* roster */
