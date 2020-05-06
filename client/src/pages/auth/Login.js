@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
 
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class Login extends Component {
@@ -47,39 +49,43 @@ class Login extends Component {
         return (
             <div className="center">
                 <h1>Log In</h1>
-                <form onSubmit={(e) => this.onSubmit(e)}>
-                    <div className="input-field">
-                        <input
-                            id="username"
-                            type="text"
-                            placeholder="username"
-                            value={username}
-                            onChange={(e) => this.onInputChange(e, "username")}
-                        />
-                    </div>
-                    <div className="input-field">
-                        <input
-                            id="password"
-                            type="password"
-                            placeholder="password"
-                            value={password}
-                            onChange={(e) => this.onInputChange(e, "password")}
-                        />
-                    </div>
-                    <div className="form-error">{errorMessage}</div>
-                    <Button
-                        className="auth-button"
-                        variant="contained"
-                        color="primary"
-                        onClick={(e) => this.onSubmit(e)}
-                    >
-                        Log In
-                    </Button>
-                    <div>
-                        Don't have an account yet?{" "}
-                        <Link to="/signup">Sign Up</Link>
-                    </div>
-                </form>
+                <Grid container justify="center">
+                    <form onSubmit={(e) => this.onSubmit(e)}>
+                        <Grid item className="auth-input">
+                            <TextField
+                                type="text"
+                                label="username"
+                                value={username}
+                                onChange={(e) =>
+                                    this.onInputChange(e, "username")
+                                }
+                            />
+                        </Grid>
+                        <Grid item className="auth-input">
+                            <TextField
+                                type="password"
+                                label="password"
+                                value={password}
+                                onChange={(e) =>
+                                    this.onInputChange(e, "password")
+                                }
+                            />
+                        </Grid>
+                        <div className="form-error">{errorMessage}</div>
+                        <Button
+                            className="auth-button"
+                            variant="contained"
+                            color="primary"
+                            onClick={(e) => this.onSubmit(e)}
+                        >
+                            Log In
+                        </Button>
+                        <div>
+                            Don't have an account yet?{" "}
+                            <Link to="/signup">Sign Up</Link>
+                        </div>
+                    </form>
+                </Grid>
             </div>
         );
     }

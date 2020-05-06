@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
 
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class Signup extends Component {
@@ -89,55 +91,57 @@ class Signup extends Component {
         return (
             <div className="center">
                 <h1>Sign Up</h1>
-                <form onSubmit={(e) => this.onSubmit(e)}>
-                    <div className="input-field">
-                        <input
-                            id="username"
-                            type="text"
-                            placeholder="username"
-                            value={username}
-                            onChange={(e) => this.onInputChange(e, "username")}
-                        />
-                    </div>
-                    <div className="input-field">
-                        <input
-                            id="email"
-                            type="text"
-                            placeholder="email"
-                            value={email}
-                            onChange={(e) => this.onInputChange(e, "email")}
-                        />
-                    </div>
-                    <div className="input-field">
-                        <input
-                            id="password"
-                            type="password"
-                            placeholder="password"
-                            value={password}
-                            onChange={(e) => this.onInputChange(e, "password")}
-                        />
-                    </div>
-                    <div className="input-field">
-                        <input
-                            id="passwordMatch"
-                            type="password"
-                            placeholder="passwordMatch"
-                            value={passwordMatch}
-                            onChange={(e) =>
-                                this.onInputChange(e, "passwordMatch")
-                            }
-                        />
-                    </div>
-                    <div className="form-error">{errorMessage}</div>
-                    <Button
-                        className="auth-button"
-                        variant="contained"
-                        color="primary"
-                        onClick={(e) => this.onSubmit(e)}
-                    >
-                        Sign Up
-                    </Button>
-                </form>
+                <Grid container justify="center">
+                    <form onSubmit={(e) => this.onSubmit(e)}>
+                        <Grid item className="auth-input">
+                            <TextField
+                                type="text"
+                                label="username"
+                                value={username}
+                                onChange={(e) =>
+                                    this.onInputChange(e, "username")
+                                }
+                            />
+                        </Grid>
+                        <Grid item className="auth-input">
+                            <TextField
+                                type="text"
+                                label="email"
+                                value={email}
+                                onChange={(e) => this.onInputChange(e, "email")}
+                            />
+                        </Grid>
+                        <Grid item className="auth-input">
+                            <TextField
+                                type="password"
+                                label="password"
+                                value={password}
+                                onChange={(e) =>
+                                    this.onInputChange(e, "password")
+                                }
+                            />
+                        </Grid>
+                        <Grid item className="auth-input">
+                            <TextField
+                                type="password"
+                                label="passwordMatch"
+                                value={passwordMatch}
+                                onChange={(e) =>
+                                    this.onInputChange(e, "passwordMatch")
+                                }
+                            />
+                        </Grid>
+                        <div className="form-error">{errorMessage}</div>
+                        <Button
+                            className="auth-button"
+                            variant="contained"
+                            color="primary"
+                            onClick={(e) => this.onSubmit(e)}
+                        >
+                            Sign Up
+                        </Button>
+                    </form>
+                </Grid>
                 <div>
                     Already have an account? <Link to="/login">Log In</Link>
                 </div>

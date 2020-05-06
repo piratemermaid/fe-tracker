@@ -42,6 +42,10 @@ button.auth-button {
     border-radius: 20px;
 }
 
+div.auth-input {
+    margin: 10px 0;
+}
+
 /* new playthrough */
 .choice-btn {
     opacity: 0.5;
