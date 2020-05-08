@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React from "react";
+import axios from "axios";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import {
@@ -14,6 +15,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 const Student = (props) => {
     if (!props.playthrough) {
@@ -37,6 +39,19 @@ const Student = (props) => {
             }
         })
     );
+
+    const removeStudent = (name) => {
+        axios({
+            method: "post",
+            url: "/api/user/remove_student",
+            params: { name }
+        }).then((res) => {
+            if (res.data === "success") {
+                props.removeStudent(name);
+                props.history.push("/");
+            }
+        });
+    };
 
     const renderSection = (type, classesToDisplay) => {
         if (classesToDisplay.length < 1) {
@@ -167,6 +182,16 @@ const Student = (props) => {
                 ? renderSection("upcoming", upcomingClasses)
                 : null}
             {renderSection("completed", completedClasses)}
+            <div
+                className="footer center"
+                style={{ marginTop: "20px" }}
+                onClick={() => removeStudent(name)}
+            >
+                <HighlightOffIcon
+                    style={{ position: "relative", top: "7px" }}
+                />
+                <span> Remove from Roster</span>
+            </div>
         </div>
     );
 };

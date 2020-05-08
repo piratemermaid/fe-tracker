@@ -313,6 +313,30 @@ router.post("/add_students", async (req, res) => {
     res.send("success");
 });
 
+router.post("/remove_student", async (req, res) => {
+    const { sessionString } = req.cookies;
+    if (!validSession(sessionString)) {
+        res.status(401).send("Invalid session");
+        return;
+    }
+
+    const { name } = req.query;
+
+    const { username } = Session.parse(sessionString);
+    const user = await getAccount(username);
+    const playthrough_id = await helpers.lookupPlaythroughId(user);
+    const student_id = await helpers.lookupId("students", { name });
+
+    await knex("users_students")
+        .where({
+            playthrough_id,
+            student_id
+        })
+        .del();
+
+    res.send("success");
+});
+
 const validSession = (sessionString) => {
     if (!sessionString || !Session.verify(sessionString)) {
         return false;

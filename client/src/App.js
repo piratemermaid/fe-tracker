@@ -5,7 +5,6 @@ import { API_URL } from "./constants";
 import "./App.css";
 
 import RequireAuth from "./components/RequireAuth";
-import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import NewPlaythrough from "./pages/NewPlaythrough";
@@ -26,6 +25,7 @@ class App extends Component {
         this.selectClass = this.selectClass.bind(this);
         this.selectSkill = this.selectSkill.bind(this);
         this.addStudents = this.addStudents.bind(this);
+        this.removeStudent = this.removeStudent.bind(this);
     }
 
     authenticateUser(bool) {
@@ -103,6 +103,10 @@ class App extends Component {
                 this.getPlaythrough();
             }
         });
+    }
+
+    removeStudent() {
+        this.getPlaythrough();
     }
 
     async getAppData() {
@@ -217,6 +221,7 @@ class App extends Component {
                                     playthrough={playthrough}
                                     selectClass={this.selectClass}
                                     selectSkill={this.selectSkill}
+                                    removeStudent={this.removeStudent}
                                 />
                             )}
                         />
