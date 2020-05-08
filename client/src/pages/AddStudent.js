@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import StudentImg from "../components/StudentImg";
 import SkillsOverview from "../components/SkillsOverview";
@@ -107,11 +107,9 @@ class AddStudent extends Component {
 
         return (
             <div>
-                <KeyboardBackspaceIcon
-                    onClick={() => {
-                        this.props.history.push("/");
-                    }}
-                />
+                <Link to="/">
+                    <KeyboardBackspaceIcon />
+                </Link>
                 <h1 className="padding">Add Students</h1>
                 <ul>{this.renderAvailableStudents()}</ul>
                 <button
@@ -125,4 +123,4 @@ class AddStudent extends Component {
     }
 }
 
-export default withRouter(AddStudent);
+export default AddStudent;

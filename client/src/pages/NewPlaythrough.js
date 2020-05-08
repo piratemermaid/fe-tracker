@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -107,11 +108,9 @@ class NewPlaythrough extends Component {
     render() {
         return (
             <div>
-                <KeyboardBackspaceIcon
-                    onClick={() => {
-                        this.props.history.push("/");
-                    }}
-                />
+                <Link to="/">
+                    <KeyboardBackspaceIcon />
+                </Link>
                 <div className="padding center">
                     <h1>New Playthrough</h1>
                     <h2>Select House</h2>

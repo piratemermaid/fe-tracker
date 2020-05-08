@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router";
 
 import RosterRow from "../components/RosterRow";
 
@@ -20,9 +19,9 @@ const Roster = (props) => {
                 <h1>
                     {house} Roster
                     <span style={{ float: "right" }}>
-                        <AddCircleOutlineIcon
-                            onClick={() => props.history.push("/add_student")}
-                        />
+                        <Link to="/add_student">
+                            <AddCircleOutlineIcon />
+                        </Link>
                     </span>
                 </h1>
             </div>
@@ -39,18 +38,19 @@ const Roster = (props) => {
                 })}
             </ul>
             <div className="center footer">
-                <Button
-                    className="button"
-                    style={{ width: "90%" }}
-                    variant="contained"
-                    color="primary"
-                    onClick={() => props.history.push("/new_playthrough")}
-                >
-                    Start New Playthrough
-                </Button>
+                <Link to="/new_playthrough">
+                    <Button
+                        className="button"
+                        style={{ width: "90%" }}
+                        variant="contained"
+                        color="primary"
+                    >
+                        Start New Playthrough
+                    </Button>
+                </Link>
             </div>
         </div>
     );
 };
 
-export default withRouter(Roster);
+export default Roster;
