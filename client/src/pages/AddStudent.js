@@ -114,7 +114,7 @@ class AddStudent extends Component {
                 <h1 className="padding">Add Students</h1>
                 <ul>{this.renderAvailableStudents()}</ul>
                 <div className="center footer">
-                    <Link to="/new_playthrough">
+                    <Link to="/">
                         <Button
                             className="button"
                             style={{ width: "90%" }}
@@ -125,7 +125,7 @@ class AddStudent extends Component {
                             }
                             disabled={selectedStudents.length < 1}
                         >
-                            Start New Playthrough
+                            Add
                         </Button>
                     </Link>
                 </div>
