@@ -227,15 +227,6 @@ const studentData = [
         }
     },
     {
-        name: "Rhea",
-        house: "Faculty",
-        skills: {
-            proficient: ["Sword", "Faith"],
-            budding: [],
-            weakness: []
-        }
-    },
-    {
         name: "Manuela",
         house: "Faculty",
         skills: {
@@ -278,15 +269,6 @@ const studentData = [
             proficient: ["Lance", "Axe", "Bow", "Riding", "Flying"],
             budding: [],
             weakness: ["Reason", "Faith"]
-        }
-    },
-    {
-        name: "Jeralt",
-        house: "Faculty",
-        skills: {
-            proficient: ["Lance", "Authority", "Riding"],
-            budding: [],
-            weakness: ["Flying"]
         }
     },
     {
