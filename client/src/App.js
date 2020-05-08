@@ -255,6 +255,7 @@ class App extends Component {
                                     selectClass={this.selectClass}
                                     selectSkill={this.selectSkill}
                                     removeStudent={this.removeStudent}
+                                    appStudents={appData.students}
                                 />
                             )}
                         />

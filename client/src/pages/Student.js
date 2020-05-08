@@ -27,8 +27,9 @@ const Student = (props) => {
 
     const { name } = props.match.params;
 
-    const data = _.find(props.playthrough.students, { name });
-    const { classes, skills } = data;
+    const userStudent = _.find(props.playthrough.students, { name });
+    const { classes, skills } = userStudent;
+    const appStudent = _.find(props.appStudents, { name });
 
     // TODO: if no next class, indicate whether next class not set, or
     // if character has reached end of class path
@@ -197,8 +198,12 @@ const Student = (props) => {
                 <Grid item xs={3}>
                     <StudentImg
                         name={name}
-                        byleth_gender={"F"}
-                        house={"Black Eagles"}
+                        byleth_gender={props.playthrough.byleth_gender}
+                        house={
+                            name !== "Byleth"
+                                ? appStudent.house
+                                : props.playthrough.house
+                        }
                     />
                 </Grid>
                 <Grid item xs={9} className="roster-row-student">
