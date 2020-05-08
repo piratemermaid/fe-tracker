@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import {
     getNextClass,
     studentMeetsSkillReq,
@@ -14,7 +15,6 @@ import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
-// TODO: remove student from roster
 const Student = (props) => {
     if (!props.playthrough) {
         return "loading...";
@@ -28,31 +28,31 @@ const Student = (props) => {
     // TODO: if no next class, indicate whether next class not set, or
     // if character has reached end of class path
     const nextClass = getNextClass(classes);
+    const currentClasses = _.compact([nextClass]);
+    const completedClasses = _.compact(_.filter(classes, { certified: true }));
+    const upcomingClasses = _.compact(
+        classes.filter((classInfo) => {
+            if (!classInfo.certified && classInfo.name !== nextClass.name) {
+                return classInfo;
+            }
+        })
+    );
 
-    const renderInfo = (type) => {
-        let classesToDisplay;
-
-        switch (type) {
-            case "Current":
-                if (nextClass) {
-                    classesToDisplay = [nextClass];
-                } else {
-                    return null;
-                }
-                break;
-            case "Completed":
-                classesToDisplay = _.filter(classes, { certified: true });
-                break;
-            default:
-                classesToDisplay = classes.filter((classInfo) => {
-                    if (
-                        !classInfo.certified &&
-                        classInfo.name !== nextClass.name
-                    ) {
-                        return classInfo;
-                    }
-                });
-                break;
+    const renderSection = (type, classesToDisplay) => {
+        if (classesToDisplay.length < 1) {
+            return (
+                <div>
+                    <h2>{type}</h2>
+                    None
+                    {type === "current" ? (
+                        <span>
+                            {" "}
+                            -{" "}
+                            <Link to={`/select_classes/${name}`}>Set now</Link>
+                        </span>
+                    ) : null}
+                </div>
+            );
         }
 
         return (
@@ -130,7 +130,9 @@ const Student = (props) => {
     // TODO: get student gender and house for image
     return (
         <div className="padding">
-            <KeyboardBackspaceIcon onClick={() => props.history.push("/")} />
+            <Link to="/">
+                <KeyboardBackspaceIcon />
+            </Link>
             <Grid container spacing={2}>
                 <Grid item xs={3}>
                     <StudentImg
@@ -142,12 +144,9 @@ const Student = (props) => {
                 <Grid item xs={9} className="roster-row-student">
                     <p className="roster-name">
                         {name}{" "}
-                        <EditIcon
-                            fontSize="small"
-                            onClick={() =>
-                                props.history.push(`/select_classes/${name}`)
-                            }
-                        />
+                        <Link to={`/select_classes/${name}`}>
+                            <EditIcon fontSize="small" />
+                        </Link>
                     </p>
                     <p>
                         Next class:{" "}
@@ -163,9 +162,11 @@ const Student = (props) => {
                     </p>
                 </Grid>
             </Grid>
-            {renderInfo("Current")}
-            {renderInfo("Upcoming")}
-            {renderInfo("Completed")}
+            {renderSection("current", currentClasses)}
+            {upcomingClasses.length > 0
+                ? renderSection("upcoming", upcomingClasses)
+                : null}
+            {renderSection("completed", completedClasses)}
         </div>
     );
 };
