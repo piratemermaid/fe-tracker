@@ -7,6 +7,7 @@ import StudentImg from "../components/StudentImg";
 import SkillsOverview from "../components/SkillsOverview";
 import Grid from "@material-ui/core/Grid";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import Button from "@material-ui/core/Button";
 
 class AddStudent extends Component {
     constructor(props) {
@@ -112,12 +113,22 @@ class AddStudent extends Component {
                 </Link>
                 <h1 className="padding">Add Students</h1>
                 <ul>{this.renderAvailableStudents()}</ul>
-                <button
-                    onClick={() => this.props.addStudents(selectedStudents)}
-                    disabled={selectedStudents.length < 1}
-                >
-                    Add!
-                </button>
+                <div className="center footer">
+                    <Link to="/new_playthrough">
+                        <Button
+                            className="button"
+                            style={{ width: "90%" }}
+                            variant="contained"
+                            color="primary"
+                            onClick={() =>
+                                this.props.addStudents(selectedStudents)
+                            }
+                            disabled={selectedStudents.length < 1}
+                        >
+                            Start New Playthrough
+                        </Button>
+                    </Link>
+                </div>
             </div>
         );
     }
