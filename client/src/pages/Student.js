@@ -16,6 +16,8 @@ import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const Student = (props) => {
     if (!props.playthrough) {
@@ -53,6 +55,21 @@ const Student = (props) => {
         });
     };
 
+    const handleClassCheck = (e, name) => {
+        props.selectClass({
+            studentName: props.match.params.name,
+            className: name
+        });
+    };
+
+    const handleSkillCheck = (e, skill) => {
+        props.selectSkill({
+            studentName: props.match.params.name,
+            skillName: skill.name,
+            level: skill.level
+        });
+    };
+
     const renderSection = (type, classesToDisplay) => {
         if (classesToDisplay.length < 1) {
             return (
@@ -83,51 +100,49 @@ const Student = (props) => {
                             >
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>
-                                        <h3>Class Goal</h3>
-                                        <p
-                                            onClick={() =>
-                                                props.selectClass({
-                                                    studentName:
-                                                        props.match.params.name,
-                                                    className: name
-                                                })
+                                        <h3>Class</h3>
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={certified}
+                                                    onChange={(e) =>
+                                                        handleClassCheck(
+                                                            e,
+                                                            name
+                                                        )
+                                                    }
+                                                />
                                             }
-                                        >
-                                            [{certified ? "X" : " "}] {name}
-                                        </p>
+                                            label={name}
+                                        />
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <h3>Skill Goals</h3>
+                                        <h3>Skills Required</h3>
                                         {classSkills.map((skill) => {
                                             const studentSkillLevel = getHighestSkillLevel(
                                                 skills,
                                                 skill.name
                                             );
+
                                             return (
-                                                <p
-                                                    onClick={() =>
-                                                        props.selectSkill({
-                                                            studentName:
-                                                                props.match
-                                                                    .params
-                                                                    .name,
-                                                            skillName:
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox
+                                                            checked={studentMeetsSkillReq(
                                                                 skill.name,
-                                                            level: skill.level
-                                                        })
+                                                                studentSkillLevel,
+                                                                skill.level
+                                                            )}
+                                                            onChange={(e) =>
+                                                                handleSkillCheck(
+                                                                    e,
+                                                                    skill
+                                                                )
+                                                            }
+                                                        />
                                                     }
-                                                    key={`${skill.name} ${skill.level}`}
-                                                >
-                                                    [
-                                                    {studentMeetsSkillReq(
-                                                        skill.name,
-                                                        studentSkillLevel,
-                                                        skill.level
-                                                    )
-                                                        ? "X"
-                                                        : " "}
-                                                    ] {skill.name} {skill.level}
-                                                </p>
+                                                    label={`${skill.name} ${skill.level}`}
+                                                />
                                             );
                                         })}
                                     </Grid>

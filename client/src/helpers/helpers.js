@@ -11,7 +11,7 @@ export function getNextClass(classes) {
 }
 
 // TODO: test this more
-export function studentMeetsSkillReq(name, studentSkillLevel, reqLevel) {
+export function studentMeetsSkillReq(studentSkillLevel, reqLevel) {
     if (!studentSkillLevel) {
         return false;
     }

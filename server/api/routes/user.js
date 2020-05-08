@@ -88,7 +88,6 @@ router.get("/playthrough", async (req, res) => {
             withRelated: [
                 "playthroughs.house",
                 "playthroughs.userStudents.student",
-                // "playthroughs.userStudents.userStudentClasses.class.skills",
                 {
                     "playthroughs.userStudents.userStudentClasses.class.skills"(
                         qb
@@ -127,9 +126,11 @@ router.get("/playthrough", async (req, res) => {
                                     )
                                 };
                             }),
-                            skills: userStudentSkills.map(({ name }) => {
-                                return { name };
-                            })
+                            skills: userStudentSkills.map(
+                                ({ level, skill }) => {
+                                    return { name: skill.name, level };
+                                }
+                            )
                         };
                     }
                 )
