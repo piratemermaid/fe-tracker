@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
@@ -26,6 +27,7 @@ class App extends Component {
         this.selectSkill = this.selectSkill.bind(this);
         this.addStudents = this.addStudents.bind(this);
         this.removeStudent = this.removeStudent.bind(this);
+        this.getStudentOrder = this.getStudentOrder.bind(this);
     }
 
     authenticateUser(bool) {
@@ -129,6 +131,29 @@ class App extends Component {
         this.setState({ appData: { students, classes } });
     }
 
+    getStudentOrder() {
+        const { playthrough, appData } = this.state;
+
+        let order = [];
+        if (playthrough && appData) {
+            const { house } = playthrough;
+            const { students } = appData;
+            order = students.filter((student) => {
+                if (student.house === house) {
+                    return student;
+                }
+            });
+            order.unshift({ name: "Byleth" });
+            for (let student of students) {
+                if (!_.find(order, { name: student.name })) {
+                    order.push(student);
+                }
+            }
+
+            this.setState({ studentOrder: order });
+        }
+    }
+
     async componentDidMount() {
         await axios({
             method: "get",
@@ -147,10 +172,17 @@ class App extends Component {
             });
 
         await this.getAppData();
+
+        this.getStudentOrder();
     }
 
     render() {
-        const { authenticated, playthrough, appData } = this.state;
+        const {
+            authenticated,
+            playthrough,
+            appData,
+            studentOrder
+        } = this.state;
 
         if (!appData) {
             return "loading...";
@@ -184,6 +216,7 @@ class App extends Component {
                                     authenticateUser={this.authenticateUser}
                                     playthrough={playthrough}
                                     appStudents={appData.students}
+                                    studentOrder={studentOrder}
                                 />
                             )}
                         />

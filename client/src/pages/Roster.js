@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -8,7 +9,7 @@ import Button from "@material-ui/core/Button";
 
 // TODO: sort roster by your house -> next 2 houses -> faculty -> other
 const Roster = (props) => {
-    if (!props.playthrough) {
+    if (!props.playthrough || !props.studentOrder) {
         return (
             <div className="padding">
                 <h1>No playthrough found.</h1>
@@ -26,7 +27,16 @@ const Roster = (props) => {
         );
     }
 
+    const { studentOrder } = props;
     const { house, byleth_gender, students } = props.playthrough;
+
+    const studentsInOrder = students.sort((a, b) => {
+        return (
+            _.findIndex(studentOrder, { name: a.name }) -
+            _.findIndex(studentOrder, { name: b.name })
+        );
+    });
+
     return (
         <div>
             <div className="padding">
@@ -40,7 +50,7 @@ const Roster = (props) => {
                 </h1>
             </div>
             <ul>
-                {students.map((student) => {
+                {studentsInOrder.map((student) => {
                     return (
                         <RosterRow
                             key={student.name}
