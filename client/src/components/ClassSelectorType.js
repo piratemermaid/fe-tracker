@@ -8,7 +8,19 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const ClassSelectorType = (props) => {
-    const { studentClasses } = props;
+    const { studentClasses, type } = props;
+
+    let typeIsSet = false;
+    const classesSetOfType = _.compact(
+        props.studentClasses.map((sClass) => {
+            if (sClass.type === type) {
+                return sClass.name;
+            }
+        })
+    );
+    if (classesSetOfType.length > 0) {
+        typeIsSet = true;
+    }
 
     return (
         <div>
@@ -17,11 +29,15 @@ const ClassSelectorType = (props) => {
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    className={
+                        typeIsSet ? `${stripSpaces(props.house)}-bg` : null
+                    }
                 >
                     {props.type}
+                    {typeIsSet ? ` (${classesSetOfType.join(", ")})` : null}
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    <ul>
+                    <ul style={{ width: "100%" }}>
                         {props.classes.map(
                             ({
                                 name,

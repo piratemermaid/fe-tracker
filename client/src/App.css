@@ -45,6 +45,33 @@ button.button {
     border-radius: 20px;
 }
 
+/* house colors */
+.BlackEagles-bg {
+    background: rgb(206, 54, 87) !important;
+}
+.BlueLions-bg {
+    background: rgb(77, 95, 169) !important;
+}
+.GoldenDeer-bg {
+    background: rgb(223, 192, 74) !important;
+}
+.Faculty-bg {
+    background: rgb(176, 225, 176) !important;
+}
+
+.BlackEagles-color {
+    background: rgb(206, 54, 87);
+}
+.BlueLions-color {
+    background: rgb(77, 95, 169);
+}
+.GoldenDeer-color {
+    background: rgb(223, 192, 74);
+}
+.Faculty-color {
+    background: rgb(176, 225, 176);
+}
+
 /* auth pages */
 div.auth-input {
     margin: 10px 0;
@@ -165,32 +192,5 @@ div.MuiExpansionPanelDetails-root {
     background: rgb(223, 192, 74);
 }
 .add-student-selected.Faculty {
-    background: rgb(176, 225, 176);
-}
-
-/* house colors */
-.BlackEagles-bg {
-    background: rgb(206, 54, 87);
-}
-.BlueLions-bg {
-    background: rgb(77, 95, 169);
-}
-.GoldenDeer-bg {
-    background: rgb(223, 192, 74);
-}
-.Faculty-bg {
-    background: rgb(176, 225, 176);
-}
-
-.BlackEagles-color {
-    background: rgb(206, 54, 87);
-}
-.BlueLions-color {
-    background: rgb(77, 95, 169);
-}
-.GoldenDeer-color {
-    background: rgb(223, 192, 74);
-}
-.Faculty-color {
     background: rgb(176, 225, 176);
 }

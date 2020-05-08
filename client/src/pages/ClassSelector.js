@@ -4,6 +4,7 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 import ClassSelectorType from "../components/ClassSelectorType";
+import Grid from "@material-ui/core/Grid";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 // TODO: fix reloading on selection,
@@ -50,22 +51,26 @@ class ClassSelector extends Component {
                     }}
                 />
                 <h1>Select Classes for {name}</h1>
-                {types.map((type) => {
-                    const studentInfo = _.find(students, { name });
-                    return (
-                        <ClassSelectorType
-                            type={type}
-                            student={name}
-                            classes={_.filter(this.state.classes, {
-                                type
-                            })}
-                            studentClasses={studentInfo.classes}
-                            house={house}
-                            selectClassGoal={this.props.selectClassGoal}
-                            key={type}
-                        />
-                    );
-                })}
+                <Grid container spacing={1}>
+                    {types.map((type) => {
+                        const studentInfo = _.find(students, { name });
+                        return (
+                            <Grid item xs={12} md={6}>
+                                <ClassSelectorType
+                                    type={type}
+                                    student={name}
+                                    classes={_.filter(this.state.classes, {
+                                        type
+                                    })}
+                                    studentClasses={studentInfo.classes}
+                                    house={house}
+                                    selectClassGoal={this.props.selectClassGoal}
+                                    key={type}
+                                />
+                            </Grid>
+                        );
+                    })}
+                </Grid>
             </div>
         );
     }
