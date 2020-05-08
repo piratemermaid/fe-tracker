@@ -4,6 +4,8 @@ const studentData = [
     {
         name: "Byleth",
         house: "None",
+        gender: "female",
+        recruitable: false,
         skills: {
             proficient: ["Sword", "Brawl", "Authority"],
             budding: ["Faith"],
@@ -13,6 +15,8 @@ const studentData = [
     {
         name: "Edelgard",
         house: "Black Eagles",
+        gender: "female",
+        recruitable: false,
         skills: {
             proficient: ["Sword", "Axe", "Authority", "Heavy Armor"],
             budding: ["Reason"],
@@ -22,6 +26,8 @@ const studentData = [
     {
         name: "Hubert",
         house: "Black Eagles",
+        gender: "male",
+        recruitable: false,
         skills: {
             proficient: ["Reason", "Authority", "Bow"],
             budding: ["Lance"],
@@ -31,6 +37,8 @@ const studentData = [
     {
         name: "Dorothea",
         house: "Black Eagles",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Reason"],
             budding: ["Faith"],
@@ -40,6 +48,8 @@ const studentData = [
     {
         name: "Ferdinand",
         house: "Black Eagles",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Lance", "Axe", "Riding"],
             budding: ["Heavy Armor"],
@@ -49,6 +59,8 @@ const studentData = [
     {
         name: "Bernadetta",
         house: "Black Eagles",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Bow", "Riding"],
             budding: [],
@@ -58,6 +70,8 @@ const studentData = [
     {
         name: "Caspar",
         house: "Black Eagles",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Axe", "Brawl"],
             budding: [],
@@ -67,6 +81,8 @@ const studentData = [
     {
         name: "Linhardt",
         house: "Black Eagles",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Reason", "Faith"],
             budding: [],
@@ -76,6 +92,8 @@ const studentData = [
     {
         name: "Petra",
         house: "Black Eagles",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Axe", "Bow", "Flying"],
             budding: [],
@@ -85,6 +103,8 @@ const studentData = [
     {
         name: "Dimitri",
         house: "Blue Lions",
+        gender: "male",
+        recruitable: false,
         skills: {
             proficient: ["Sword", "Lance", "Authority"],
             budding: ["Riding"],
@@ -94,6 +114,8 @@ const studentData = [
     {
         name: "Dedue",
         house: "Blue Lions",
+        gender: "male",
+        recruitable: false,
         skills: {
             proficient: ["Lance", "Axe", "Brawl", "Heavy Armor"],
             budding: [],
@@ -103,6 +125,8 @@ const studentData = [
     {
         name: "Felix",
         house: "Blue Lions",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Bow", "Brawl"],
             budding: ["Reason"],
@@ -112,6 +136,8 @@ const studentData = [
     {
         name: "Mercedes",
         house: "Blue Lions",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Reason", "Faith"],
             budding: ["Bow"],
@@ -121,6 +147,8 @@ const studentData = [
     {
         name: "Ashe",
         house: "Blue Lions",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Axe", "Bow"],
             budding: ["Lance"],
@@ -130,6 +158,8 @@ const studentData = [
     {
         name: "Annette",
         house: "Blue Lions",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Axe", "Reason", "Authority"],
             budding: [],
@@ -139,6 +169,8 @@ const studentData = [
     {
         name: "Sylvain",
         house: "Blue Lions",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Axe", "Riding"],
             budding: ["Reason"],
@@ -148,6 +180,8 @@ const studentData = [
     {
         name: "Ingrid",
         house: "Blue Lions",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Lance", "Riding", "Flying"],
             budding: [],
@@ -157,6 +191,8 @@ const studentData = [
     {
         name: "Claude",
         house: "Golden Deer",
+        gender: "male",
+        recruitable: false,
         skills: {
             proficient: ["Sword", "Bow", "Authority", "Flying"],
             budding: ["Axe"],
@@ -166,6 +202,7 @@ const studentData = [
     {
         name: "Lorenz",
         house: "Golden Deer",
+        gender: "male",
         skills: {
             proficient: ["Lance", "Reason", "Riding"],
             budding: [],
@@ -175,6 +212,8 @@ const studentData = [
     {
         name: "Hilda",
         house: "Golden Deer",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Axe"],
             budding: ["Heavy Armor"],
@@ -184,6 +223,8 @@ const studentData = [
     {
         name: "Raphael",
         house: "Golden Deer",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Axe", "Brawl", "Heavy Armor"],
             budding: [],
@@ -193,6 +234,8 @@ const studentData = [
     {
         name: "Lysithea",
         house: "Golden Deer",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Reason", "Faith", "Authority"],
             budding: ["Sword"],
@@ -202,6 +245,8 @@ const studentData = [
     {
         name: "Ignatz",
         house: "Golden Deer",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Bow", "Authority"],
             budding: ["Reason"],
@@ -211,6 +256,8 @@ const studentData = [
     {
         name: "Marianne",
         house: "Golden Deer",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Faith", "Riding", "Flying"],
             budding: ["Lance"],
@@ -220,6 +267,8 @@ const studentData = [
     {
         name: "Leonie",
         house: "Golden Deer",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Bow", "Riding"],
             budding: [],
@@ -229,6 +278,8 @@ const studentData = [
     {
         name: "Manuela",
         house: "Faculty",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Faith", "Flying"],
             budding: [],
@@ -238,6 +289,8 @@ const studentData = [
     {
         name: "Hanneman",
         house: "Faculty",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Bow", "Reason", "Riding"],
             budding: [],
@@ -247,6 +300,8 @@ const studentData = [
     {
         name: "Seteth",
         house: "Faculty",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Lance", "Axe", "Authority", "Flying"],
             budding: [],
@@ -256,6 +311,8 @@ const studentData = [
     {
         name: "Flayn",
         house: "Faculty",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Faith"],
             budding: ["Reason"],
@@ -265,6 +322,8 @@ const studentData = [
     {
         name: "Cyril",
         house: "Faculty",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Axe", "Bow", "Riding", "Flying"],
             budding: [],
@@ -274,6 +333,8 @@ const studentData = [
     {
         name: "Catherine",
         house: "Faculty",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Sword", "Brawl"],
             budding: [],
@@ -283,6 +344,8 @@ const studentData = [
     {
         name: "Alois",
         house: "Faculty",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Axe", "Brawl", "Heavy Armor"],
             budding: [],
@@ -292,6 +355,8 @@ const studentData = [
     {
         name: "Gilbert",
         house: "Faculty",
+        gender: "male",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Axe", "Heavy Armor", "Riding"],
             budding: [],
@@ -301,6 +366,8 @@ const studentData = [
     {
         name: "Shamir",
         house: "Faculty",
+        gender: "female",
+        recruitable: true,
         skills: {
             proficient: ["Lance", "Bow"],
             budding: [],
@@ -333,6 +400,7 @@ module.exports = {
             name,
             house,
             gender: gender || null,
+            recruitable: true,
             unique_class: unique_class || null
         };
     }),

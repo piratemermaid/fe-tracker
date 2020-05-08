@@ -53,10 +53,11 @@ exports.seed = async function (knex) {
     const studentsByName = keyBy(
         await knex("students")
             .insert(
-                students.map(({ name, gender, house }) => {
+                students.map(({ name, gender, recruitable, house }) => {
                     return {
                         name,
                         gender,
+                        recruitable,
                         house_id: housesByName[house].id
                     };
                 })
@@ -92,7 +93,8 @@ exports.seed = async function (knex) {
     await knex("users").insert({
         username: "testuser",
         password: hash("userpass12"),
-        email: "a@a.com"
+        email: "a@a.com",
+        sessionId: "123"
     });
 };
 

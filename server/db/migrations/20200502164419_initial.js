@@ -23,6 +23,7 @@ exports.up = async function (knex) {
         table.increments("id");
         table.string("name");
         table.string("gender");
+        table.boolean("recruitable");
         table.integer("house_id").references("id").inTable("houses");
     });
 
