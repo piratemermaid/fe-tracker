@@ -3,7 +3,7 @@ module.exports = [
     "Lance",
     "Axe",
     "Bow",
-    "Brawling",
+    "Brawl",
     "Reason",
     "Faith",
     "Authority",

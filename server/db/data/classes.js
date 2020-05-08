@@ -19,7 +19,7 @@ const classData = [
         skills: [
             { name: "Axe", level: "D" },
             { name: "Bow", level: "D" },
-            { name: "Brawling", level: "D" }
+            { name: "Brawl", level: "D" }
         ],
         abilities: null,
         mastery: { ability: "Strength +2", combat_art: "Shove" }
@@ -96,7 +96,7 @@ const classData = [
         name: "Brawler",
         type: "Intermediate",
         gender: "male",
-        skills: [{ name: "Brawling", level: "C" }],
+        skills: [{ name: "Brawl", level: "C" }],
         abilities: "Unarmed Combat",
         mastery: { ability: "Unarmed Combat", combat_art: null }
     },
@@ -209,7 +209,7 @@ const classData = [
         name: "Grappler",
         type: "Advanced",
         gender: "male",
-        skills: [{ name: "Brawling", level: "A" }],
+        skills: [{ name: "Brawl", level: "A" }],
         abilities: "Fistfaire, Unarmed Combat",
         mastery: { ability: "Tomebreaker", combat_art: "Fierce Iron Fist" }
     },
@@ -319,7 +319,7 @@ const classData = [
         gender: "male",
         skills: [
             { name: "Axe", level: "A" },
-            { name: "Brawling", level: "A" }
+            { name: "Brawl", level: "A" }
         ],
         abilities: "Fistfaire, Axefaire, Crit +20",
         mastery: { ability: "Quick Riposte", combat_art: "War Master's Strike" }
@@ -335,20 +335,137 @@ const classData = [
         abilities:
             "Black Magic Uses x2, Dark Magic Uses x2, White Magic Uses x2",
         mastery: { ability: "Defiant Mag", combat_art: null }
+    },
+    {
+        name: "Dancer",
+        type: "Unique",
+        skills: null,
+        abilities: "Sword Dance Combat Art, Dance Ability",
+        mastery: { ability: "Special Dance", combat_art: null }
+    },
+    {
+        name: "Enlightened One",
+        type: "Unique",
+        skills: null,
+        student: "Byleth",
+        abilities: "Swordfaire, Terrain Resistance",
+        mastery: { ability: "Sacred Power", combat_art: null }
+    },
+    {
+        name: "Armored Lord",
+        type: "Unique",
+        skills: null,
+        student: "Edelgard",
+        abilities: "Charm, Axefaire",
+        mastery: { ability: "Pomp & Circumstance", combat_art: null }
+    },
+    {
+        name: "Emperor",
+        type: "Unique",
+        skills: null,
+        student: "Edelgard",
+        abilities: "Charm, Axefaire",
+        mastery: { ability: "Flickering Flower", combat_art: null }
+    },
+    {
+        name: "High Lord",
+        type: "Unique",
+        skills: null,
+        student: "Dimitri",
+        abilities: "Charm, Lancefaire",
+        mastery: { ability: "Pomp & Circumstance", combat_art: null }
+    },
+    {
+        name: "Great Lord",
+        type: "Unique",
+        skills: null,
+        student: "Dimitri",
+        abilities: "Charm, Lancefaire",
+        mastery: { ability: null, combat_art: "Paraselene" }
+    },
+    {
+        name: "Wyvern Master",
+        type: "Unique",
+        skills: null,
+        student: "Claude",
+        abilities: "Charm, Bowfaire, Canto",
+        mastery: { ability: "Pomp & Circumstance", combat_art: null }
+    },
+    {
+        name: "Barbarossa",
+        type: "Unique",
+        skills: null,
+        student: "Claude",
+        abilities: "Charm, Bowfaire, Canto",
+        mastery: { ability: null, combat_art: "Wind God" }
+    },
+    {
+        name: "Trickster",
+        type: "DLC",
+        skills: [
+            { name: "Sword", level: "B" },
+            { name: "Faith", level: "B" }
+        ],
+        abiliities: "Locktouch, Stealth, Lucky Seven",
+        mastery: { ability: "Duelist's Blow", combat_art: "Foul Play" }
+    },
+    {
+        name: "War Monk",
+        type: "DLC",
+        gender: "male",
+        skills: [
+            { name: "Brawl", level: "B+" },
+            { name: "Faith", level: "C" }
+        ],
+        abiliities: "Fistfaire, Unarmed Combat, Heal",
+        mastery: { ability: "Brawl Avoid +20", combat_art: "Pneuma Gale" }
+    },
+    {
+        name: "War Cleric",
+        type: "DLC",
+        gender: "female",
+        skills: [
+            { name: "Brawl", level: "B+" },
+            { name: "Faith", level: "C" }
+        ],
+        abiliities: "Fistfaire, Unarmed Combat, Heal",
+        mastery: { ability: "Brawl Avoid +20", combat_art: "Pneuma Gale" }
+    },
+    {
+        name: "Dark Flier",
+        type: "DLC",
+        gender: "female",
+        skills: [
+            { name: "Reason", level: "B+" },
+            { name: "Flying", level: "C" }
+        ],
+        abiliities: "Canto, Black Tomefaire, Transmute",
+        mastery: { ability: "Transmute", combat_art: null }
+    },
+    {
+        name: "Valkyrie",
+        type: "DLC",
+        gender: "female",
+        skills: [
+            { name: "Reason", level: "B" },
+            { name: "Riding", level: "B" }
+        ],
+        abiliities: "Canto, Black Magic Range +1, Dark Magic Range +1",
+        mastery: { ability: "Uncanny Blow", combat_art: null }
     }
-
-    // TODO: unique & special classes
 ];
 
 let classSkills = [];
 for (let sclass of classData) {
     const { name, skills } = sclass;
-    for (let skill of skills) {
-        classSkills.push({
-            name,
-            skillName: skill.name,
-            level: skill.level
-        });
+    if (skills) {
+        for (let skill of skills) {
+            classSkills.push({
+                name,
+                skillName: skill.name,
+                level: skill.level
+            });
+        }
     }
 }
 

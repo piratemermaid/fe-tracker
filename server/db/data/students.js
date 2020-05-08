@@ -5,7 +5,7 @@ const studentData = [
         name: "Byleth",
         house: "None",
         skills: {
-            proficient: ["Sword", "Brawling", "Authority"],
+            proficient: ["Sword", "Brawl", "Authority"],
             budding: ["Faith"],
             weakness: []
         }
@@ -52,14 +52,14 @@ const studentData = [
         skills: {
             proficient: ["Lance", "Bow", "Riding"],
             budding: [],
-            weakness: ["Sword", "Axe", "Brawling", "Heavy Armor"]
+            weakness: ["Sword", "Axe", "Brawl", "Heavy Armor"]
         }
     },
     {
         name: "Caspar",
         house: "Black Eagles",
         skills: {
-            proficient: ["Axe", "Brawling"],
+            proficient: ["Axe", "Brawl"],
             budding: [],
             weakness: ["Bow", "Reason", "Authority"]
         }
@@ -70,7 +70,7 @@ const studentData = [
         skills: {
             proficient: ["Reason", "Faith"],
             budding: [],
-            weakness: ["Axe", "Brawling"]
+            weakness: ["Axe", "Brawl"]
         }
     },
     {
@@ -95,7 +95,7 @@ const studentData = [
         name: "Dedue",
         house: "Blue Lions",
         skills: {
-            proficient: ["Lance", "Axe", "Brawling", "Heavy Armor"],
+            proficient: ["Lance", "Axe", "Brawl", "Heavy Armor"],
             budding: [],
             weakness: ["Faith", "Riding", "Flying"]
         }
@@ -104,7 +104,7 @@ const studentData = [
         name: "Felix",
         house: "Blue Lions",
         skills: {
-            proficient: ["Sword", "Bow", "Brawling"],
+            proficient: ["Sword", "Bow", "Brawl"],
             budding: ["Reason"],
             weakness: ["Authority"]
         }
@@ -169,7 +169,7 @@ const studentData = [
         skills: {
             proficient: ["Lance", "Reason", "Riding"],
             budding: [],
-            weakness: ["Brawling"]
+            weakness: ["Brawl"]
         }
     },
     {
@@ -185,7 +185,7 @@ const studentData = [
         name: "Raphael",
         house: "Golden Deer",
         skills: {
-            proficient: ["Axe", "Brawling", "Heavy Armor"],
+            proficient: ["Axe", "Brawl", "Heavy Armor"],
             budding: [],
             weakness: ["Bow", "Reason", "Riding"]
         }
@@ -214,7 +214,7 @@ const studentData = [
         skills: {
             proficient: ["Sword", "Faith", "Riding", "Flying"],
             budding: ["Lance"],
-            weakness: ["Brawling", "Heavy Armor"]
+            weakness: ["Brawl", "Heavy Armor"]
         }
     },
     {
@@ -275,7 +275,7 @@ const studentData = [
         name: "Catherine",
         house: "Faculty",
         skills: {
-            proficient: ["Sword", "Brawling"],
+            proficient: ["Sword", "Brawl"],
             budding: [],
             weakness: ["Reason"]
         }
@@ -284,7 +284,7 @@ const studentData = [
         name: "Alois",
         house: "Faculty",
         skills: {
-            proficient: ["Axe", "Brawling", "Heavy Armor"],
+            proficient: ["Axe", "Brawl", "Heavy Armor"],
             budding: [],
             weakness: ["Reason", "Flying"]
         }
