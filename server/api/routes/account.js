@@ -82,7 +82,7 @@ router.get("/authenticated", async (req, res) => {
         const { username, id } = Session.parse(sessionString);
         const account = await getAccount(username);
         let authenticated = false;
-        if (account.sessionId) {
+        if (account && account.sessionId) {
             authenticated = account.sessionId === id;
         }
 
