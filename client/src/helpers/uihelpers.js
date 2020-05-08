@@ -29,3 +29,14 @@ export function displaySkillsWithoutLevel(skills) {
     }
     return ui;
 }
+
+export function houseRGB(house) {
+    switch (house) {
+        case "Black Eagles":
+            return "rgb(206, 54, 87)";
+        case "Blue Lions":
+            return "rgb(77, 95, 169)";
+        default:
+            return "rgb(223, 192, 74)";
+    }
+}

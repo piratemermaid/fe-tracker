@@ -8,7 +8,7 @@ import {
     studentMeetsSkillReq,
     getHighestSkillLevel
 } from "../helpers/helpers";
-import { displayClassSkills } from "../helpers/uihelpers";
+import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
 
 import StudentImg from "../components/StudentImg";
 import Paper from "@material-ui/core/Paper";
@@ -18,6 +18,7 @@ import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const Student = (props) => {
     if (!props.playthrough) {
@@ -92,6 +93,28 @@ const Student = (props) => {
                 <h2>{type}</h2>
                 {classesToDisplay.length > 0 ? (
                     classesToDisplay.map(({ name, classSkills, certified }) => {
+                        let readyForCertification = false;
+                        if (!certified) {
+                            const skillsMet = classSkills.filter((skill) => {
+                                const studentSkill = _.find(skills, {
+                                    name: skill.name
+                                });
+                                if (studentSkill) {
+                                    if (
+                                        (studentSkill,
+                                        studentMeetsSkillReq(
+                                            studentSkill.level,
+                                            skill.level
+                                        ))
+                                    ) {
+                                        return skill;
+                                    }
+                                }
+                            });
+                            if (skillsMet.length === classSkills.length) {
+                                readyForCertification = true;
+                            }
+                        }
                         return (
                             <Paper
                                 className="goal-row"
@@ -115,6 +138,15 @@ const Student = (props) => {
                                             }
                                             label={name}
                                         />
+                                        {readyForCertification ? (
+                                            <ErrorIcon
+                                                style={{
+                                                    color: houseRGB(
+                                                        props.playthrough.house
+                                                    )
+                                                }}
+                                            />
+                                        ) : null}
                                     </Grid>
                                     <Grid item xs={6}>
                                         <h3>Skills Required</h3>
