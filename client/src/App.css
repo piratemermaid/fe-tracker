@@ -45,20 +45,6 @@ button.button {
     border-radius: 20px;
 }
 
-/* house colors */
-.BlackEagles {
-    background: rgb(206, 54, 87);
-}
-.BlueLions {
-    background: rgb(77, 95, 169);
-}
-.GoldenDeer {
-    background: rgb(223, 192, 74);
-}
-.Faculty {
-    background: rgb(176, 225, 176);
-}
-
 /* auth pages */
 div.auth-input {
     margin: 10px 0;
@@ -135,13 +121,37 @@ p.roster-name {
     font-weight: bold;
 }
 
-/* student */
+/* student overview */
 .goal-row {
     padding: 4px 20px;
 }
 
-/* add student */
+/* set class */
+li.set-class {
+    font-size: 12px;
+    padding: 12px;
+    border-bottom: 1px solid black;
+}
 
+li.set-class.unset {
+    background: rgb(238, 238, 238);
+}
+
+li.set-class.certified {
+    background: rgb(255, 255, 255);
+    font-style: italic;
+    color: rgb(120, 120, 120);
+}
+
+div.MuiExpansionPanelDetails-root {
+    padding: 0;
+}
+
+.set-class span.class-name {
+    font-weight: bold;
+}
+
+/* add student */
 .add-student-selected .roster-img {
     background: rgb(216, 216, 216);
 }
@@ -155,5 +165,32 @@ p.roster-name {
     background: rgb(223, 192, 74);
 }
 .add-student-selected.Faculty {
+    background: rgb(176, 225, 176);
+}
+
+/* house colors */
+.BlackEagles-bg {
+    background: rgb(206, 54, 87);
+}
+.BlueLions-bg {
+    background: rgb(77, 95, 169);
+}
+.GoldenDeer-bg {
+    background: rgb(223, 192, 74);
+}
+.Faculty-bg {
+    background: rgb(176, 225, 176);
+}
+
+.BlackEagles-color {
+    background: rgb(206, 54, 87);
+}
+.BlueLions-color {
+    background: rgb(77, 95, 169);
+}
+.GoldenDeer-color {
+    background: rgb(223, 192, 74);
+}
+.Faculty-color {
     background: rgb(176, 225, 176);
 }

@@ -37,3 +37,7 @@ export function getHighestSkillLevel(studentSkills, name) {
         return highestLevel;
     }
 }
+
+export function stripSpaces(str) {
+    return str.replace(/\s+/g, "");
+}

@@ -1,12 +1,15 @@
+import _ from "lodash";
 import React from "react";
 import { displayClassSkills } from "../helpers/uihelpers";
-
+import { stripSpaces } from "../helpers/helpers";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const ClassSelectorType = (props) => {
+    const { studentClasses } = props;
+
     return (
         <div>
             <ExpansionPanel>
@@ -27,10 +30,35 @@ const ClassSelectorType = (props) => {
                                 mastery_ability,
                                 mastery_combat_art
                             }) => {
+                                let classIsSet = false;
+                                let classIsCertified = false;
+
+                                const studentClassInfo = _.find(
+                                    studentClasses,
+                                    { name }
+                                );
+                                if (studentClassInfo) {
+                                    classIsSet = true;
+                                    if (studentClassInfo.certified) {
+                                        classIsCertified = true;
+                                    }
+                                }
+
+                                let className = "set-class";
+                                if (classIsCertified) {
+                                    className += " certified";
+                                } else if (classIsSet) {
+                                    className += ` ${stripSpaces(
+                                        props.house
+                                    )}-bg`;
+                                } else {
+                                    className += " unset";
+                                }
+
                                 return (
                                     <li
                                         key={name}
-                                        style={{ marginBottom: "16px" }}
+                                        className={className}
                                         onClick={() =>
                                             props.selectClassGoal({
                                                 studentName: props.student,
@@ -38,7 +66,12 @@ const ClassSelectorType = (props) => {
                                             })
                                         }
                                     >
-                                        {name}
+                                        <span className="class-name">
+                                            {name}
+                                            {classIsCertified
+                                                ? " (Certified)"
+                                                : null}
+                                        </span>
                                         <br />
                                         Skills required:{" "}
                                         {displayClassSkills(skills)}
