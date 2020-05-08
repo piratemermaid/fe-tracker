@@ -39,6 +39,11 @@ class Login extends Component {
             });
     }
 
+    useDemoAccount(e) {
+        this.setState({ username: "testuser", password: "userpass12" });
+        this.onSubmit(e);
+    }
+
     onInputChange(e, field) {
         this.setState({ errorMessage: null });
         this.setState({ [field]: e.target.value });
@@ -79,6 +84,15 @@ class Login extends Component {
                             onClick={(e) => this.onSubmit(e)}
                         >
                             Log In
+                        </Button>
+                        <br />
+                        <Button
+                            className="button"
+                            variant="contained"
+                            color="primary"
+                            onClick={(e) => this.useDemoAccount(e)}
+                        >
+                            Demo Account
                         </Button>
                         <div>
                             Don't have an account yet?{" "}
