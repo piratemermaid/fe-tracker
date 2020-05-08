@@ -18,6 +18,7 @@ The purpose of this app is to plan out class paths and needed skills for Fire Em
 [ ] Add character/class gender and prevent wrong gender from using class e.g. Gremory cannot be male
 [ ] Add unique classes and connect to character, only show unique option when choosing classes if they have one
 [ ] Add DLC and special classes
+[ ] Add recruitable boolean to students and don't allow to add non-recruitable characters (e.g. other house leaders)
 
 # Other Feature Ideas
 
