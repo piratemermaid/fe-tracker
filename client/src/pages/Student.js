@@ -129,7 +129,6 @@ const Student = (props) => {
                                                     control={
                                                         <Checkbox
                                                             checked={studentMeetsSkillReq(
-                                                                skill.name,
                                                                 studentSkillLevel,
                                                                 skill.level
                                                             )}
