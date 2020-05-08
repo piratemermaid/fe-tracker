@@ -94,7 +94,7 @@ const Student = (props) => {
                 {classesToDisplay.length > 0 ? (
                     classesToDisplay.map(({ name, classSkills, certified }) => {
                         let readyForCertification = false;
-                        if (!certified) {
+                        if (!certified && classSkills.length > 0) {
                             const skillsMet = classSkills.filter((skill) => {
                                 const studentSkill = _.find(skills, {
                                     name: skill.name
@@ -188,7 +188,6 @@ const Student = (props) => {
         );
     };
 
-    // TODO: get student gender and house for image
     return (
         <div className="padding">
             <Link to="/">
