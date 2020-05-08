@@ -57,10 +57,11 @@ router.get("/students", (req, res) => {
     }).then((result) => {
         const students = result.toJSON();
         res.send(
-            students.map(({ name, gender, house, skills }) => {
+            students.map(({ name, gender, recruitable, house, skills }) => {
                 return {
                     name,
                     gender,
+                    recruitable,
                     house: house.name,
                     skills: skills.map(
                         ({ name, proficient, budding, weakness }) => {

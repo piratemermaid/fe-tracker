@@ -35,7 +35,6 @@ class AddStudent extends Component {
 
         for (let student of availableStudents) {
             const { name, gender, house, skills } = student;
-
             if (!lastHouse || lastHouse !== house) {
                 lastHouse = house;
                 studentList.push(
@@ -88,6 +87,7 @@ class AddStudent extends Component {
                 this.setState({
                     availableStudents: res.data.filter((student) => {
                         if (
+                            student.recruitable &&
                             !_.find(this.props.playthrough.students, {
                                 name: student.name
                             })

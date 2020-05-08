@@ -395,14 +395,16 @@ for (let student of studentData) {
 }
 
 module.exports = {
-    students: studentData.map(({ name, house, gender, unique_class }) => {
-        return {
-            name,
-            house,
-            gender: gender || null,
-            recruitable: true,
-            unique_class: unique_class || null
-        };
-    }),
+    students: studentData.map(
+        ({ name, house, gender, recruitable, unique_class }) => {
+            return {
+                name,
+                house,
+                gender: gender || null,
+                recruitable,
+                unique_class: unique_class || null
+            };
+        }
+    ),
     studentSkills
 };
