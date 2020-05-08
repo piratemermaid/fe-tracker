@@ -9,7 +9,21 @@ import Button from "@material-ui/core/Button";
 // TODO: sort roster by your house -> next 2 houses -> faculty -> other
 const Roster = (props) => {
     if (!props.playthrough) {
-        return "loading...";
+        return (
+            <div className="padding">
+                <h1>No playthrough found.</h1>
+                <Link to="/new_playthrough">
+                    <Button
+                        className="button"
+                        style={{ width: "90%" }}
+                        variant="contained"
+                        color="primary"
+                    >
+                        Start New Playthrough
+                    </Button>
+                </Link>
+            </div>
+        );
     }
 
     const { house, byleth_gender, students } = props.playthrough;

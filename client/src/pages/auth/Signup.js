@@ -35,6 +35,7 @@ class Signup extends Component {
             })
                 .then((res) => {
                     if (res.data.signup === "success") {
+                        // TODO: fix rerouting to login before authenticated
                         this.props.authenticateUser(true);
                         this.props.history.push("/");
                     }
