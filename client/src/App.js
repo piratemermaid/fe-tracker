@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { API_URL } from "./constants";
 import "./App.css";
 
 import RequireAuth from "./components/RequireAuth";
@@ -50,7 +51,7 @@ class App extends Component {
     async getPlaythrough() {
         await axios({
             method: "get",
-            url: "http://localhost:8000/api/user/playthrough"
+            url: `${API_URL}/api/user/playthrough`
         }).then((res) => {
             this.setState({ playthrough: res.data });
         });
