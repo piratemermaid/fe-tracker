@@ -18,7 +18,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { authenticated: false, playthrough: null };
+        this.state = { authenticated: false, playthrough: null, appData: null };
 
         this.authenticateUser = this.authenticateUser.bind(this);
         this.getPlaythrough = this.getPlaythrough.bind(this);
@@ -105,6 +105,26 @@ class App extends Component {
         });
     }
 
+    async getAppData() {
+        let students, classes;
+
+        await axios({
+            method: "get",
+            url: `${API_URL}/api/app/classes`
+        }).then((res) => {
+            classes = res.data;
+        });
+
+        await axios({
+            method: "get",
+            url: `${API_URL}/api/app/students`
+        }).then((res) => {
+            students = res.data;
+        });
+
+        this.setState({ appData: { students, classes } });
+    }
+
     async componentDidMount() {
         await axios({
             method: "get",
@@ -121,10 +141,16 @@ class App extends Component {
             .catch((err) => {
                 console.log(err);
             });
+
+        await this.getAppData();
     }
 
     render() {
-        const { authenticated, playthrough } = this.state;
+        const { authenticated, playthrough, appData } = this.state;
+
+        if (!appData) {
+            return "loading...";
+        }
 
         const AuthNewPlaythrough = RequireAuth(NewPlaythrough);
         const AuthRoster = RequireAuth(Roster);
@@ -153,6 +179,7 @@ class App extends Component {
                                     authenticated={authenticated}
                                     authenticateUser={this.authenticateUser}
                                     playthrough={playthrough}
+                                    appStudents={appData.students}
                                 />
                             )}
                         />

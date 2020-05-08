@@ -47,6 +47,7 @@ const Roster = (props) => {
                             student={student}
                             byleth_gender={byleth_gender}
                             house={house}
+                            appStudents={props.appStudents}
                         />
                     );
                 })}
