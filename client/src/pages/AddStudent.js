@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import Loading from "../components/Loading";
 import StudentImg from "../components/StudentImg";
 import SkillsOverview from "../components/SkillsOverview";
 import Grid from "@material-ui/core/Grid";
@@ -103,7 +104,7 @@ class AddStudent extends Component {
     render() {
         const { selectedStudents } = this.state;
         if (!this.props.playthrough || !this.props.playthrough.students) {
-            return "loading...";
+            return <Loading />;
         }
 
         return (

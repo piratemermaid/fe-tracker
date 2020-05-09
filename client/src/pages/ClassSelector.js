@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { stripSpaces } from "../helpers/helpers";
 
+import Loading from "../components/Loading";
 import ClassSelectorType from "../components/ClassSelectorType";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
@@ -32,7 +33,7 @@ class ClassSelector extends Component {
 
     render() {
         if (!this.props.playthrough) {
-            return "loading...";
+            return <Loading />;
         }
 
         const { name } = this.props.match.params;

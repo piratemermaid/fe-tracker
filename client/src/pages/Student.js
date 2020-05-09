@@ -10,6 +10,7 @@ import {
 } from "../helpers/helpers";
 import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
 
+import Loading from "../components/Loading";
 import StudentImg from "../components/StudentImg";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -22,7 +23,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 
 const Student = (props) => {
     if (!props.playthrough) {
-        return "loading...";
+        return <Loading />;
     }
 
     const { name } = props.match.params;

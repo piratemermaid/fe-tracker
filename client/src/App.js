@@ -5,8 +5,8 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import { API_URL } from "./constants";
 import "./App.css";
 
-import Grid from "@material-ui/core/Grid";
 import RequireAuth from "./components/RequireAuth";
+import Loading from "./components/Loading";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import NewPlaythrough from "./pages/NewPlaythrough";
@@ -187,7 +187,7 @@ class App extends Component {
         } = this.state;
 
         if (!appData) {
-            return "loading...";
+            return <Loading />;
         }
 
         const AuthNewPlaythrough = RequireAuth(NewPlaythrough);
