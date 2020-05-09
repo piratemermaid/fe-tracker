@@ -33,6 +33,8 @@ class App extends Component {
 
     authenticateUser(bool) {
         this.setState({ authenticated: bool });
+        this.getPlaythrough();
+        this.getStudentOrder();
     }
 
     logOut = () => {
@@ -56,6 +58,7 @@ class App extends Component {
             method: "get",
             url: `${API_URL}/api/user/playthrough`
         }).then((res) => {
+            console.log(res);
             this.setState({ playthrough: res.data });
         });
     }
@@ -164,10 +167,7 @@ class App extends Component {
             .then((res) => {
                 const { authenticated } = res.data;
                 this.setState({ authenticated });
-
-                if (authenticated) {
-                    this.getPlaythrough();
-                }
+                this.getPlaythrough();
             })
             .catch((err) => {
                 console.log(err);
