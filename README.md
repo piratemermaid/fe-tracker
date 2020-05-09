@@ -25,6 +25,7 @@ The purpose of this app is to plan out class paths and needed skills for Fire Em
 [ ] On class selection page, filter for skill type - maybe only show filters for character's best skills
 [ ] Select skill goals post master class (or along path)
 [ ] Character gift guide
+[ ] Lost item guide
 [ ] Tea Party guides
 [ ] Track support levels
 
