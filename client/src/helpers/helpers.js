@@ -36,11 +36,16 @@ export function sortClasses(classes) {
 
 // TODO: test this more
 export function studentMeetsSkillReq(studentSkillLevel, reqLevel) {
+    const skillLevels = ["D", "D+", "C", "C+", "B", "B+", "A", "A+", "S"];
+
     if (!studentSkillLevel) {
         return false;
     }
 
-    return studentSkillLevel <= reqLevel;
+    const studentIndex = _.indexOf(skillLevels, studentSkillLevel);
+    const reqIndex = _.indexOf(skillLevels, reqLevel);
+
+    return studentIndex >= reqIndex;
 }
 
 export function getHighestSkillLevel(studentSkills, name) {
