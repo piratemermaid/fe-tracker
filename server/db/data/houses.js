@@ -3,5 +3,6 @@ module.exports = [
     "Blue Lions",
     "Golden Deer",
     "Faculty",
-    "None"
+    "None",
+    "DLC"
 ];
