@@ -31,9 +31,6 @@ const Student = (props) => {
     const { classes, skills } = userStudent;
     const appStudent = _.find(props.appStudents, { name });
 
-    // TODO: if no next class, indicate whether next class not set, or
-    // if character has reached end of class path
-    // TODO: class sorting by beginner -> intermediate -> etc -> unique last
     // TODO: hovering styles
     const nextClass = getNextClass(classes);
     const currentClasses = _.compact([nextClass]);
@@ -197,7 +194,7 @@ const Student = (props) => {
                 <KeyboardBackspaceIcon />
             </Link>
             <Grid container spacing={2}>
-                <Grid item xs={3}>
+                <Grid item xs={5}>
                     <StudentImg
                         name={name}
                         byleth_gender={props.playthrough.byleth_gender}
@@ -208,7 +205,7 @@ const Student = (props) => {
                         }
                     />
                 </Grid>
-                <Grid item xs={9} className="roster-row-student">
+                <Grid item xs={7} className="roster-row-student">
                     <p className="roster-name">
                         {name}{" "}
                         <Link to={`/select_classes/${name}`}>

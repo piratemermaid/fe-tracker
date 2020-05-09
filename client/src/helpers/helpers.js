@@ -1,13 +1,30 @@
 import _ from "lodash";
 
 export function getNextClass(classes) {
-    for (let sClass of classes) {
-        const { certified } = sClass;
-        if (!certified) {
+    if (classes.length < 1) {
+        return null;
+    }
+
+    const uncertified = classes.filter((sClass) => {
+        if (!sClass.certified) {
             return sClass;
         }
+    });
+
+    if (uncertified.length < 1) {
+        return null;
     }
-    return null;
+
+    const sorted = sortClasses(uncertified);
+    return sorted[0];
+}
+
+export function sortClasses(classes) {
+    const order = ["Beginner", "Intermediate", "Advanced", "Master", "Unique"];
+
+    return classes.sort((a, b) => {
+        return _.findIndex(order, a.type) - _.findIndex(order, b.type);
+    });
 }
 
 // TODO: test this more
