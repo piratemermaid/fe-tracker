@@ -7,7 +7,7 @@ import RosterRow from "../components/RosterRow";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Button from "@material-ui/core/Button";
 
-// TODO: sort roster by your house -> next 2 houses -> faculty -> other
+// TODO: show alert icon if ready for certification
 const Roster = (props) => {
     if (!props.playthrough || !props.studentOrder) {
         return (

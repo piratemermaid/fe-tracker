@@ -33,6 +33,8 @@ const Student = (props) => {
 
     // TODO: if no next class, indicate whether next class not set, or
     // if character has reached end of class path
+    // TODO: class sorting by beginner -> intermediate -> etc -> unique last
+    // TODO: hovering styles
     const nextClass = getNextClass(classes);
     const currentClasses = _.compact([nextClass]);
     const completedClasses = _.compact(_.filter(classes, { certified: true }));
