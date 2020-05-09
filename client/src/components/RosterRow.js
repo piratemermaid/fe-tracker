@@ -26,38 +26,42 @@ const RosterRow = (props) => {
 
     return (
         <div key={name} className="roster-row">
-            <Grid container spacing={3}>
-                <Grid item xs={3}>
-                    <StudentImg
-                        name={name}
-                        byleth_gender={byleth_gender}
-                        house={name !== "Byleth" ? studentInfo.house : house}
-                    />
-                </Grid>
-                <Grid item xs={7} className="roster-row-student">
-                    <p className="roster-name">{name}</p>
-                    <p>
-                        {classes.length > 0 ? (
-                            <span>Next class: {renderClass(nextClass)}</span>
-                        ) : (
-                            "No classes set"
-                        )}
-                    </p>
-                    <p>
-                        {nextClass ? (
-                            <span>
-                                Skills needed:{" "}
-                                {displayClassSkills(nextClass.classSkills)}
-                            </span>
-                        ) : null}
-                    </p>
-                </Grid>
-                <Grid item xs={2}>
-                    <Link to={`/student/${name}`}>
+            <Link to={`/student/${name}`} className="no-link-style">
+                <Grid container spacing={3} alignItems="center">
+                    <Grid item xs={3}>
+                        <StudentImg
+                            name={name}
+                            byleth_gender={byleth_gender}
+                            house={
+                                name !== "Byleth" ? studentInfo.house : house
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={8} className="roster-row-student">
+                        <p className="roster-name">{name}</p>
+                        <p>
+                            {classes.length > 0 ? (
+                                <span>
+                                    Next class: {renderClass(nextClass)}
+                                </span>
+                            ) : (
+                                "No classes set"
+                            )}
+                        </p>
+                        <p>
+                            {nextClass ? (
+                                <span>
+                                    Skills needed:{" "}
+                                    {displayClassSkills(nextClass.classSkills)}
+                                </span>
+                            ) : null}
+                        </p>
+                    </Grid>
+                    <Grid item xs={1}>
                         <ArrowRightAltIcon />
-                    </Link>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Link>
         </div>
     );
 };

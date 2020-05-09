@@ -40,6 +40,11 @@ button.button {
     border-radius: 20px;
 }
 
+a.no-link-style {
+    color: black;
+    text-decoration: none;
+}
+
 /* house colors */
 .BlackEagles-bg {
     background: rgb(206, 54, 87) !important;
