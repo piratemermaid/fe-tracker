@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { stripSpaces } from "../helpers/helpers";
 
 import ClassSelectorType from "../components/ClassSelectorType";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
@@ -72,7 +73,7 @@ class ClassSelector extends Component {
                                         ? " filter-selected"
                                         : ""
                                 }`}
-                                src={`/img/skills/${name}.png`}
+                                src={`/img/skills/${stripSpaces(name)}.png`}
                                 alt={name}
                                 title={name}
                             />
