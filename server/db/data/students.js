@@ -373,8 +373,73 @@ const studentData = [
             budding: [],
             weakness: ["Faith"]
         }
+    },
+    {
+        name: "Jeritza",
+        house: "DLC",
+        gender: "male",
+        recruitable: true,
+        skills: {
+            proficient: ["Sword", "Lance", "Brawl", "Riding"],
+            budding: ["Flying"],
+            weakness: ["Faith", "Authority"]
+        }
+    },
+    {
+        name: "Anna",
+        house: "DLC",
+        gender: "female",
+        recruitable: true,
+        skills: {
+            proficient: ["Sword", "Axe", "Bow", "Faith"],
+            budding: ["Riding"],
+            weakness: ["Reason", "Authority"]
+        }
+    },
+    {
+        name: "Yuri",
+        house: "DLC",
+        gender: "male",
+        recruitable: true,
+        skills: {
+            proficient: ["Sword", "Reason", "Faith", "Authority"],
+            budding: ["Bow"],
+            weakness: ["Lance", "Axe", "Riding", "Flying"]
+        }
+    },
+    {
+        name: "Balthus",
+        house: "DLC",
+        gender: "male",
+        recruitable: true,
+        skills: {
+            proficient: ["Sword", "Axe", "Brawl", "Faith", "Heavy Armor"],
+            budding: ["Reason"],
+            weakness: ["Lance", "Bow", "Flying"]
+        }
+    },
+    {
+        name: "Constance",
+        house: "DLC",
+        gender: "female",
+        recruitable: true,
+        skills: {
+            proficient: ["Sword", "Reason", "Authority", "Flying"],
+            budding: ["Brawl"],
+            weakness: ["Axe", "Heavy Armor"]
+        }
+    },
+    {
+        name: "Hapi",
+        house: "DLC",
+        gender: "female",
+        recruitable: true,
+        skills: {
+            proficient: ["Reason", "Riding", "Flying"],
+            budding: ["Axe"],
+            weakness: ["Brawl", "Authority", "Heavy Armor"]
+        }
     }
-    // TODO: add DLC and genders
 ];
 
 let studentSkills = [];
