@@ -20,7 +20,14 @@ export function getNextClass(classes) {
 }
 
 export function sortClasses(classes) {
-    const order = ["Beginner", "Intermediate", "Advanced", "Master", "Unique"];
+    const order = [
+        "Beginner",
+        "Intermediate",
+        "Advanced",
+        "Master",
+        "DLC",
+        "Unique"
+    ];
 
     return classes.sort((a, b) => {
         return _.findIndex(order, a.type) - _.findIndex(order, b.type);
