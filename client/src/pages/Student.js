@@ -134,6 +134,12 @@ const Student = (props) => {
                                                             name
                                                         )
                                                     }
+                                                    style={{
+                                                        color: houseRGB(
+                                                            props.playthrough
+                                                                .house
+                                                        )
+                                                    }}
                                                 />
                                             }
                                             label={name}
@@ -170,6 +176,13 @@ const Student = (props) => {
                                                                     skill
                                                                 )
                                                             }
+                                                            style={{
+                                                                color: houseRGB(
+                                                                    props
+                                                                        .playthrough
+                                                                        .house
+                                                                )
+                                                            }}
                                                         />
                                                     }
                                                     label={`${skill.name} ${skill.level}`}
@@ -209,7 +222,12 @@ const Student = (props) => {
                     <p className="roster-name">
                         {name}{" "}
                         <Link to={`/select_classes/${name}`}>
-                            <EditIcon fontSize="small" />
+                            <EditIcon
+                                fontSize="small"
+                                style={{
+                                    color: houseRGB(props.playthrough.house)
+                                }}
+                            />
                         </Link>
                     </p>
                     <p>
