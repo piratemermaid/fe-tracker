@@ -1,29 +1,32 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import axios from "axios";
-import { API_URL } from "../constants";
 
 import ClassSelectorType from "../components/ClassSelectorType";
-import Grid from "@material-ui/core/Grid";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
-// TODO: fix reloading on selection,
-// maybe store changes in state and
-// have save button to update db
+// TODO: fix reloading on selection
 class ClassSelector extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { classes: {} };
+        this.state = { classes: {}, filters: [] };
+    }
+
+    onFilterChange(name) {
+        let { filters } = this.state;
+        if (filters.includes(name)) {
+            const index = _.findIndex(filters, { name });
+            filters.splice(index, 1);
+        } else {
+            filters.push(name);
+        }
+        this.setState({ filters });
     }
 
     componentDidMount() {
-        axios({
-            method: "get",
-            url: `${API_URL}/api/app/classes`
-        }).then((res) => {
-            this.setState({ classes: res.data });
-        });
+        if (this.props.appData) {
+            this.setState({ classes: this.props.appData.classes });
+        }
     }
 
     render() {
@@ -32,13 +35,20 @@ class ClassSelector extends Component {
         }
 
         const { name } = this.props.match.params;
+        const studentInfo = _.find(this.props.appData.students, { name });
+        const proficientSkills = studentInfo.skills.filter((skill) => {
+            if (skill.proficient || skill.budding) {
+                return skill;
+            }
+        });
 
         const types = [
             "Beginner",
             "Intermediate",
             "Advanced",
             "Master",
-            "Unique"
+            "Unique",
+            "DLC"
         ];
 
         const { students, house } = this.props.playthrough;
@@ -51,6 +61,24 @@ class ClassSelector extends Component {
                     }}
                 />
                 <h1>Select Classes for {name}</h1>
+                <div className="skill-filters">
+                    {proficientSkills.map(({ name }) => {
+                        return (
+                            <img
+                                key={name}
+                                onClick={() => this.onFilterChange(name)}
+                                className={`skill-filter${
+                                    this.state.filters.includes(name)
+                                        ? " filter-selected"
+                                        : ""
+                                }`}
+                                src={`/img/skills/${name}.png`}
+                                alt={name}
+                                title={name}
+                            />
+                        );
+                    })}
+                </div>
                 {types.map((type) => {
                     const studentInfo = _.find(students, { name });
                     return (
@@ -64,6 +92,7 @@ class ClassSelector extends Component {
                             house={house}
                             selectClassGoal={this.props.selectClassGoal}
                             key={type}
+                            filters={this.state.filters}
                         />
                     );
                 })}

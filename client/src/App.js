@@ -268,6 +268,7 @@ class App extends Component {
                                         authenticated={authenticated}
                                         playthrough={playthrough}
                                         selectClassGoal={this.selectClassGoal}
+                                        appData={appData}
                                     />
                                 )}
                             />

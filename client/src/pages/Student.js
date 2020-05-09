@@ -189,7 +189,7 @@ const Student = (props) => {
     };
 
     return (
-        <div className="padding">
+        <div style={{ width: "100%" }}>
             <Link to="/">
                 <KeyboardBackspaceIcon />
             </Link>
