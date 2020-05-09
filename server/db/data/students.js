@@ -1,5 +1,3 @@
-//TODO: remove Rhea and Jeralt, they are not playable
-
 const studentData = [
     {
         name: "Byleth",
@@ -10,7 +8,8 @@ const studentData = [
             proficient: ["Sword", "Brawl", "Authority"],
             budding: ["Faith"],
             weakness: []
-        }
+        },
+        gifts: []
     },
     {
         name: "Edelgard",
@@ -21,7 +20,13 @@ const studentData = [
             proficient: ["Sword", "Axe", "Authority", "Heavy Armor"],
             budding: ["Reason"],
             weakness: ["Bow", "Faith"]
-        }
+        },
+        gifts: [
+            "Armored Bear Stuffy",
+            "Monarch Studies Book",
+            "Board Game",
+            "Carnation"
+        ]
     },
     {
         name: "Hubert",
@@ -32,7 +37,8 @@ const studentData = [
             proficient: ["Reason", "Authority", "Bow"],
             budding: ["Lance"],
             weakness: ["Axe", "Faith", "Flying"]
-        }
+        },
+        gifts: ["Board Game", "Coffee Beans"]
     },
     {
         name: "Dorothea",
@@ -43,7 +49,8 @@ const studentData = [
             proficient: ["Sword", "Reason"],
             budding: ["Faith"],
             weakness: ["Riding", "Flying"]
-        }
+        },
+        gifts: ["Gemstone Beads", "Stylish Hair Clip", "Book of Sheet Music"]
     },
     {
         name: "Ferdinand",
@@ -54,7 +61,8 @@ const studentData = [
             proficient: ["Sword", "Lance", "Axe", "Riding"],
             budding: ["Heavy Armor"],
             weakness: []
-        }
+        },
+        gifts: ["Whetstone", "Riding Boots", "Tea Leaves"]
     },
     {
         name: "Bernadetta",
@@ -65,7 +73,13 @@ const studentData = [
             proficient: ["Lance", "Bow", "Riding"],
             budding: [],
             weakness: ["Sword", "Axe", "Brawl", "Heavy Armor"]
-        }
+        },
+        gifts: [
+            "Watering Can",
+            "Dapper Handkerchief",
+            "Armored Bear Stuffy",
+            "Pitcher Plant"
+        ]
     },
     {
         name: "Caspar",
@@ -76,7 +90,8 @@ const studentData = [
             proficient: ["Axe", "Brawl"],
             budding: [],
             weakness: ["Bow", "Reason", "Authority"]
-        }
+        },
+        gifts: ["Smoked Meat", "Hunting Dagger", "Whetstone", "Training Weight"]
     },
     {
         name: "Linhardt",
@@ -87,7 +102,8 @@ const studentData = [
             proficient: ["Reason", "Faith"],
             budding: [],
             weakness: ["Axe", "Brawl"]
-        }
+        },
+        gifts: ["Fishing Float", "Tasty Baked Treat", "Book of Crest Designs"]
     },
     {
         name: "Petra",
@@ -98,7 +114,8 @@ const studentData = [
             proficient: ["Sword", "Axe", "Bow", "Flying"],
             budding: [],
             weakness: ["Reason", "Faith"]
-        }
+        },
+        gifts: ["Smoked Meat", "Hunting Dagger", "Exotic Spices", "Sunflower"]
     },
     {
         name: "Dimitri",
@@ -109,7 +126,13 @@ const studentData = [
             proficient: ["Sword", "Lance", "Authority"],
             budding: ["Riding"],
             weakness: ["Axe", "Reason"]
-        }
+        },
+        gifts: [
+            "Whetstone",
+            "Training Weight",
+            "Riding Boots",
+            "Ceremonial Sword"
+        ]
     },
     {
         name: "Dedue",
@@ -120,7 +143,8 @@ const studentData = [
             proficient: ["Lance", "Axe", "Brawl", "Heavy Armor"],
             budding: [],
             weakness: ["Faith", "Riding", "Flying"]
-        }
+        },
+        gifts: ["Floral Adornment", "Watering Can", "Exotic Spices"]
     },
     {
         name: "Felix",
@@ -131,7 +155,13 @@ const studentData = [
             proficient: ["Sword", "Bow", "Brawl"],
             budding: ["Reason"],
             weakness: ["Authority"]
-        }
+        },
+        gifts: [
+            "Smoked Meat",
+            "Hunting Dagger",
+            "Training Weight",
+            "Ceremonial Sword"
+        ]
     },
     {
         name: "Mercedes",
@@ -142,7 +172,14 @@ const studentData = [
             proficient: ["Reason", "Faith"],
             budding: ["Bow"],
             weakness: ["Sword", "Lance", "Axe", "Heavy Armor"]
-        }
+        },
+        gifts: [
+            "Tasty Baked Treat",
+            "Gemstone Beads",
+            "Armored Bear Stuffy",
+            "Goddess Statuette",
+            "Lavender"
+        ]
     },
     {
         name: "Ashe",
@@ -153,7 +190,14 @@ const studentData = [
             proficient: ["Axe", "Bow"],
             budding: ["Lance"],
             weakness: ["Reason"]
-        }
+        },
+        gifts: [
+            "Tasty Baked Treat",
+            "Legends of Chivalry",
+            "Ancient Coin",
+            "Exotic Spices",
+            "Violet"
+        ]
     },
     {
         name: "Annette",
@@ -164,7 +208,12 @@ const studentData = [
             proficient: ["Axe", "Reason", "Authority"],
             budding: [],
             weakness: ["Bow", "Heavy Armor"]
-        }
+        },
+        gifts: [
+            "Stylish Hair Clip",
+            "Book of Sheet Music",
+            "Arithmetic Textbook"
+        ]
     },
     {
         name: "Sylvain",
@@ -175,7 +224,8 @@ const studentData = [
             proficient: ["Lance", "Axe", "Riding"],
             budding: ["Reason"],
             weakness: ["Bow"]
-        }
+        },
+        gifts: ["Dapper Handkerchief", "Board Game", "Landscape Painting"]
     },
     {
         name: "Ingrid",
@@ -186,7 +236,8 @@ const studentData = [
             proficient: ["Sword", "Lance", "Riding", "Flying"],
             budding: [],
             weakness: []
-        }
+        },
+        gifts: ["Smoked Meat", "Riding Boots", "Legends of Chivalry"]
     },
     {
         name: "Claude",
@@ -197,7 +248,14 @@ const studentData = [
             proficient: ["Sword", "Bow", "Authority", "Flying"],
             budding: ["Axe"],
             weakness: ["Lance", "Faith"]
-        }
+        },
+        gifts: [
+            "Whetstone",
+            "Riding Boots",
+            "Exotic Spices",
+            "Board Game",
+            "Book of Crest Designs"
+        ]
     },
     {
         name: "Lorenz",
@@ -207,7 +265,8 @@ const studentData = [
             proficient: ["Lance", "Reason", "Riding"],
             budding: [],
             weakness: ["Brawl"]
-        }
+        },
+        gifts: ["Floral Adornment", "Tea Leaves", "Rose"]
     },
     {
         name: "Hilda",
@@ -218,7 +277,14 @@ const studentData = [
             proficient: ["Lance", "Axe"],
             budding: ["Heavy Armor"],
             weakness: ["Faith", "Authority"]
-        }
+        },
+        gifts: [
+            "Gemstone Beads",
+            "Stylish Hair Clip",
+            "Dapper Handkerchief",
+            "Armored Bear Stuffy",
+            "Anemone"
+        ]
     },
     {
         name: "Raphael",
@@ -229,7 +295,8 @@ const studentData = [
             proficient: ["Axe", "Brawl", "Heavy Armor"],
             budding: [],
             weakness: ["Bow", "Reason", "Riding"]
-        }
+        },
+        gifts: ["Tasty Baked Treat", "Smoked Meat", "Training Weight"]
     },
     {
         name: "Lysithea",
@@ -240,7 +307,13 @@ const studentData = [
             proficient: ["Reason", "Faith", "Authority"],
             budding: ["Sword"],
             weakness: ["Lance", "Axe", "Heavy Armor"]
-        }
+        },
+        gifts: [
+            "Tasty Baked Treat",
+            "Armored Bear Stuffy",
+            "Arithmetic Textbook",
+            "Lily"
+        ]
     },
     {
         name: "Ignatz",
@@ -251,7 +324,14 @@ const studentData = [
             proficient: ["Sword", "Bow", "Authority"],
             budding: ["Reason"],
             weakness: ["Flying"]
-        }
+        },
+        gifts: [
+            "Goddess Statuette",
+            "Ancient Coin",
+            "Ceremonial Sword",
+            "Landscape Painting",
+            "Forget-me-nots"
+        ]
     },
     {
         name: "Marianne",
@@ -262,7 +342,13 @@ const studentData = [
             proficient: ["Sword", "Faith", "Riding", "Flying"],
             budding: ["Lance"],
             weakness: ["Brawl", "Heavy Armor"]
-        }
+        },
+        gifts: [
+            "Floral Adornment",
+            "Dapper Handkerchief",
+            "Armored Bear Stuffy",
+            "Lily of the Valley"
+        ]
     },
     {
         name: "Leonie",
@@ -273,7 +359,8 @@ const studentData = [
             proficient: ["Lance", "Bow", "Riding"],
             budding: [],
             weakness: []
-        }
+        },
+        gifts: ["Fishing Float", "Hunting Dagger", "Training Weight"]
     },
     {
         name: "Manuela",
@@ -284,7 +371,13 @@ const studentData = [
             proficient: ["Sword", "Faith", "Flying"],
             budding: [],
             weakness: ["Reason", "Heavy Armor"]
-        }
+        },
+        gifts: [
+            "Gemstone Beads",
+            "Goddess Statuette",
+            "Book of Sheet Music",
+            "Blue Cheese"
+        ]
     },
     {
         name: "Hanneman",
@@ -295,7 +388,13 @@ const studentData = [
             proficient: ["Bow", "Reason", "Riding"],
             budding: [],
             weakness: ["Heavy Armor", "Flying"]
-        }
+        },
+        gifts: [
+            "Dapper Handkerchief",
+            "Tea Leaves",
+            "Arithmetic Textbook",
+            "Book of Crest Designs"
+        ]
     },
     {
         name: "Seteth",
@@ -306,7 +405,8 @@ const studentData = [
             proficient: ["Sword", "Lance", "Axe", "Authority", "Flying"],
             budding: [],
             weakness: ["Riding"]
-        }
+        },
+        gifts: ["Fishing Float", "Dapper Handkerchief", "The History of Fodlan"]
     },
     {
         name: "Flayn",
@@ -317,7 +417,14 @@ const studentData = [
             proficient: ["Lance", "Faith"],
             budding: ["Reason"],
             weakness: ["Heavy Armor", "Riding"]
-        }
+        },
+        gifts: [
+            "Tasty Baked Treat",
+            "Stylish Hair Clip",
+            "Dapper Handkerchief",
+            "Armored Bear Stuffy",
+            "Forget-me-nots"
+        ]
     },
     {
         name: "Cyril",
@@ -328,7 +435,13 @@ const studentData = [
             proficient: ["Lance", "Axe", "Bow", "Riding", "Flying"],
             budding: [],
             weakness: ["Reason", "Faith"]
-        }
+        },
+        gifts: [
+            "Smoked Meat",
+            "Hunting Dagger",
+            "Watering Can",
+            "Baby's Breath"
+        ]
     },
     {
         name: "Catherine",
@@ -339,7 +452,13 @@ const studentData = [
             proficient: ["Sword", "Brawl"],
             budding: [],
             weakness: ["Reason"]
-        }
+        },
+        gifts: [
+            "Whetstone",
+            "Training Weight",
+            "Legends of Chivalry",
+            "Blue Cheese"
+        ]
     },
     {
         name: "Alois",
@@ -350,7 +469,13 @@ const studentData = [
             proficient: ["Axe", "Brawl", "Heavy Armor"],
             budding: [],
             weakness: ["Reason", "Flying"]
-        }
+        },
+        gifts: [
+            "Floral Adornment",
+            "Fishing Float",
+            "Ancient Coin",
+            "Sunflower"
+        ]
     },
     {
         name: "Gilbert",
@@ -361,7 +486,8 @@ const studentData = [
             proficient: ["Lance", "Axe", "Heavy Armor", "Riding"],
             budding: [],
             weakness: []
-        }
+        },
+        gifts: ["Fishing Float", "Goddess Statuette", "Ceremonial Sword"]
     },
     {
         name: "Shamir",
@@ -372,7 +498,8 @@ const studentData = [
             proficient: ["Lance", "Bow"],
             budding: [],
             weakness: ["Faith"]
-        }
+        },
+        gifts: ["Hunting Dagger", "Exotic Spices", "Coffee Beans", "Sunflower"]
     },
     {
         name: "Jeritza",
@@ -383,7 +510,8 @@ const studentData = [
             proficient: ["Sword", "Lance", "Brawl", "Riding"],
             budding: ["Flying"],
             weakness: ["Faith", "Authority"]
-        }
+        },
+        gifts: ["Tasty Baked Treat", "Hunting Dagger"]
     },
     {
         name: "Anna",
@@ -394,7 +522,16 @@ const studentData = [
             proficient: ["Sword", "Axe", "Bow", "Faith"],
             budding: ["Riding"],
             weakness: ["Reason", "Authority"]
-        }
+        },
+        gifts: [
+            "Goddess Statuette",
+            "Ancient Coin",
+            "Exotic Spices",
+            "Coffee Beans",
+            "Blue Cheese",
+            "Landscape Painting",
+            "Forget-me-nots"
+        ]
     },
     {
         name: "Yuri",
@@ -405,7 +542,8 @@ const studentData = [
             proficient: ["Sword", "Reason", "Faith", "Authority"],
             budding: ["Bow"],
             weakness: ["Lance", "Axe", "Riding", "Flying"]
-        }
+        },
+        gifts: []
     },
     {
         name: "Balthus",
@@ -416,7 +554,8 @@ const studentData = [
             proficient: ["Sword", "Axe", "Brawl", "Faith", "Heavy Armor"],
             budding: ["Reason"],
             weakness: ["Lance", "Bow", "Flying"]
-        }
+        },
+        gifts: []
     },
     {
         name: "Constance",
@@ -427,7 +566,8 @@ const studentData = [
             proficient: ["Sword", "Reason", "Authority", "Flying"],
             budding: ["Brawl"],
             weakness: ["Axe", "Heavy Armor"]
-        }
+        },
+        gifts: []
     },
     {
         name: "Hapi",
