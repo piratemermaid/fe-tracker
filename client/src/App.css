@@ -14,6 +14,16 @@
 }
 
 /* general */
+@media (min-width: 500px) {
+    #App {
+        width: 400px;
+    }
+}
+
+#App {
+    margin: 0 auto;
+}
+
 .center {
     text-align: center;
 }

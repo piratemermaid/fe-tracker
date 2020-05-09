@@ -196,7 +196,7 @@ class App extends Component {
         const AuthAddStudent = RequireAuth(AddStudent);
 
         return (
-            <div className="App">
+            <div id="App">
                 <BrowserRouter>
                     <header>
                         {authenticated ? (
@@ -207,83 +207,81 @@ class App extends Component {
                             </nav>
                         ) : null}
                     </header>
-                    <Grid container justify="center">
-                        <Switch>
-                            <Route
-                                exact
-                                path="/"
-                                render={() => (
-                                    <AuthRoster
-                                        authenticated={authenticated}
-                                        authenticateUser={this.authenticateUser}
-                                        playthrough={playthrough}
-                                        appStudents={appData.students}
-                                        studentOrder={studentOrder}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/login"
-                                render={() => (
-                                    <Login
-                                        playthrough={playthrough}
-                                        authenticateUser={this.authenticateUser}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/signup"
-                                render={() => (
-                                    <Signup
-                                        authenticateUser={this.authenticateUser}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/new_playthrough"
-                                render={() => (
-                                    <AuthNewPlaythrough
-                                        authenticated={authenticated}
-                                        getPlaythrough={this.getPlaythrough}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/student/:name"
-                                render={() => (
-                                    <AuthStudent
-                                        authenticated={authenticated}
-                                        playthrough={playthrough}
-                                        selectClass={this.selectClass}
-                                        selectSkill={this.selectSkill}
-                                        removeStudent={this.removeStudent}
-                                        appStudents={appData.students}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/select_classes/:name"
-                                render={() => (
-                                    <AuthClassSelector
-                                        authenticated={authenticated}
-                                        playthrough={playthrough}
-                                        selectClassGoal={this.selectClassGoal}
-                                        appData={appData}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/add_student"
-                                render={() => (
-                                    <AuthAddStudent
-                                        authenticated={authenticated}
-                                        playthrough={playthrough}
-                                        addStudents={this.addStudents}
-                                    />
-                                )}
-                            />
-                        </Switch>
-                    </Grid>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <AuthRoster
+                                    authenticated={authenticated}
+                                    authenticateUser={this.authenticateUser}
+                                    playthrough={playthrough}
+                                    appStudents={appData.students}
+                                    studentOrder={studentOrder}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/login"
+                            render={() => (
+                                <Login
+                                    playthrough={playthrough}
+                                    authenticateUser={this.authenticateUser}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/signup"
+                            render={() => (
+                                <Signup
+                                    authenticateUser={this.authenticateUser}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/new_playthrough"
+                            render={() => (
+                                <AuthNewPlaythrough
+                                    authenticated={authenticated}
+                                    getPlaythrough={this.getPlaythrough}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/student/:name"
+                            render={() => (
+                                <AuthStudent
+                                    authenticated={authenticated}
+                                    playthrough={playthrough}
+                                    selectClass={this.selectClass}
+                                    selectSkill={this.selectSkill}
+                                    removeStudent={this.removeStudent}
+                                    appStudents={appData.students}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/select_classes/:name"
+                            render={() => (
+                                <AuthClassSelector
+                                    authenticated={authenticated}
+                                    playthrough={playthrough}
+                                    selectClassGoal={this.selectClassGoal}
+                                    appData={appData}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/add_student"
+                            render={() => (
+                                <AuthAddStudent
+                                    authenticated={authenticated}
+                                    playthrough={playthrough}
+                                    addStudents={this.addStudents}
+                                />
+                            )}
+                        />
+                    </Switch>
                 </BrowserRouter>
             </div>
         );
