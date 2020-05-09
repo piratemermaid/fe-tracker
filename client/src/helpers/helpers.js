@@ -30,7 +30,7 @@ export function sortClasses(classes) {
     ];
 
     return classes.sort((a, b) => {
-        return _.findIndex(order, a.type) - _.findIndex(order, b.type);
+        return _.indexOf(order, a.type) - _.indexOf(order, b.type);
     });
 }
 
