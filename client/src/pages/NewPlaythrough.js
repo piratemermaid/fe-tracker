@@ -31,7 +31,6 @@ class NewPlaythrough extends Component {
             params: { house, byleth }
         })
             .then((res) => {
-                // TODO: fix order not updating on new playthrough
                 if (res.data === "success") {
                     this.props.history.push("/");
                     this.props.getStudentOrder();

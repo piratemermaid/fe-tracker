@@ -104,6 +104,7 @@ class App extends Component {
         }).then((res) => {
             if (res.data === "success") {
                 this.getPlaythrough();
+                this.getStudentOrder();
             }
         });
     }
@@ -244,6 +245,7 @@ class App extends Component {
                                 <AuthNewPlaythrough
                                     authenticated={authenticated}
                                     getPlaythrough={this.getPlaythrough}
+                                    getStudentOrder={this.getStudentOrder}
                                 />
                             )}
                         />
