@@ -23,7 +23,7 @@ const ClassSelectorType = (props) => {
     }
 
     return (
-        <div>
+        <div style={{ marginBottom: "4px" }}>
             <ExpansionPanel>
                 <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
