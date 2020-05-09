@@ -102,6 +102,10 @@ router.get("/playthrough", async (req, res) => {
             const data = userData.toJSON();
 
             const playthrough = data.playthroughs[data.playthroughs.length - 1];
+            if (!playthrough) {
+                res.send(null);
+                return;
+            }
 
             const { byleth_gender, house, userStudents } = playthrough;
 
