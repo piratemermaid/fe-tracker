@@ -110,7 +110,6 @@ router.get("/playthrough", async (req, res) => {
             const { byleth_gender, house, userStudents } = playthrough;
 
             res.send({
-                playthrough,
                 byleth_gender,
                 house: house.name,
                 students: userStudents.map(

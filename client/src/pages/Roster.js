@@ -6,10 +6,14 @@ import RosterRow from "../components/RosterRow";
 
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Button from "@material-ui/core/Button";
+import Loading from "../components/Loading";
 
 // TODO: show alert icon if ready for certification
 const Roster = (props) => {
-    if (!props.playthrough || !props.studentOrder) {
+    if (!props.studentOrder) {
+        return <Loading />;
+    }
+    if (!props.playthrough) {
         return (
             <div className="padding">
                 <h1>No playthrough found.</h1>

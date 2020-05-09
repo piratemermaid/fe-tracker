@@ -54,11 +54,10 @@ class App extends Component {
     };
 
     async getPlaythrough() {
-        await axios({
+        axios({
             method: "get",
             url: `${API_URL}/api/user/playthrough`
         }).then((res) => {
-            console.log(res);
             this.setState({ playthrough: res.data });
         });
     }
