@@ -14,6 +14,7 @@ import Roster from "./pages/Roster";
 import Student from "./pages/Student";
 import ClassSelector from "./pages/ClassSelector";
 import AddStudent from "./pages/AddStudent";
+import Gifts from "./pages/Gifts";
 
 class App extends Component {
     constructor(props) {
@@ -194,6 +195,7 @@ class App extends Component {
         const AuthStudent = RequireAuth(Student);
         const AuthClassSelector = RequireAuth(ClassSelector);
         const AuthAddStudent = RequireAuth(AddStudent);
+        const AuthGifts = RequireAuth(Gifts);
 
         return (
             <div id="App">
@@ -271,6 +273,17 @@ class App extends Component {
                                     authenticated={authenticated}
                                     playthrough={playthrough}
                                     addStudents={this.addStudents}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/gifts"
+                            render={() => (
+                                <AuthGifts
+                                    authenticated={authenticated}
+                                    playthrough={playthrough}
+                                    appStudents={appData.students}
+                                    studentOrder={studentOrder}
                                 />
                             )}
                         />
