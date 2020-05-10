@@ -20,7 +20,13 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { authenticated: false, playthrough: null, appData: null };
+        this.state = {
+            isLoadingAppData: true,
+            isLoadingUserData: true,
+            authenticated: false,
+            playthrough: null,
+            appData: null
+        };
 
         this.authenticateUser = this.authenticateUser.bind(this);
         this.getPlaythrough = this.getPlaythrough.bind(this);
@@ -59,7 +65,7 @@ class App extends Component {
             method: "get",
             url: `${API_URL}/api/user/playthrough`
         }).then((res) => {
-            this.setState({ playthrough: res.data });
+            this.setState({ playthrough: res.data, isLoadingUserData: false });
         });
     }
 
@@ -133,7 +139,10 @@ class App extends Component {
             students = res.data;
         });
 
-        this.setState({ appData: { students, classes } });
+        this.setState({
+            appData: { students, classes },
+            isLoadingAppData: false
+        });
     }
 
     getStudentOrder() {
@@ -180,13 +189,15 @@ class App extends Component {
 
     render() {
         const {
+            isLoadingAppData,
+            isLoadingUserData,
             authenticated,
             playthrough,
             appData,
             studentOrder
         } = this.state;
 
-        if (!appData) {
+        if (isLoadingAppData || isLoadingUserData) {
             return <Loading />;
         }
 
