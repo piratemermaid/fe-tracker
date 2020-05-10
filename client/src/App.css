@@ -149,13 +149,32 @@ button.Faculty {
 
 p.roster-name {
     margin-bottom: 4px;
-}
-
-.roster-name {
+    font-size: 14px;
     font-weight: bold;
 }
 
+.roster-desc {
+    font-size: 14px;
+}
+
 /* student overview */
+#student-overview h2 {
+    font-size: 20px;
+}
+
+#student-overview h3 {
+    font-size: 16px;
+    margin: 6px 0 10px 0;
+}
+
+#student-overview span {
+    font-size: 14px;
+}
+
+#student-overview .MuiSvgIcon-root {
+    font-size: 20px;
+}
+
 .goal-row {
     padding: 4px 20px;
 }

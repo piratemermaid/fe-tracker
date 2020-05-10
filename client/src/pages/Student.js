@@ -78,14 +78,18 @@ const Student = (props) => {
             return (
                 <div>
                     <h2>{type}</h2>
-                    None
-                    {type === "current" ? (
-                        <span>
-                            {" "}
-                            -{" "}
-                            <Link to={`/select_classes/${name}`}>Set now</Link>
-                        </span>
-                    ) : null}
+                    <Paper className="goal-row" elevation={1} key={name}>
+                        None
+                        {type === "current" ? (
+                            <span>
+                                {" "}
+                                -{" "}
+                                <Link to={`/select_classes/${name}`}>
+                                    Set now
+                                </Link>
+                            </span>
+                        ) : null}
+                    </Paper>
                 </div>
             );
         }
@@ -192,12 +196,16 @@ const Student = (props) => {
     };
 
     return (
-        <div style={{ width: "100%" }} className="padding">
+        <div
+            id="student-overview"
+            style={{ width: "100%" }}
+            className="padding"
+        >
             <Link to="/">
                 <KeyboardBackspaceIcon />
             </Link>
             <Grid container spacing={2}>
-                <Grid item xs={5}>
+                <Grid item xs={3}>
                     <StudentImg
                         name={name}
                         byleth_gender={props.playthrough.byleth_gender}
@@ -208,7 +216,7 @@ const Student = (props) => {
                         }
                     />
                 </Grid>
-                <Grid item xs={7} className="roster-row-student">
+                <Grid item xs={9} className="roster-row-student">
                     <p className="roster-name">
                         {name}{" "}
                         <Link to={`/select_classes/${name}`}>
@@ -220,13 +228,13 @@ const Student = (props) => {
                             />
                         </Link>
                     </p>
-                    <p>
+                    <p className="roster-desc">
                         Next class:{" "}
                         {nextClass
                             ? `${nextClass.name} (${nextClass.type}}`
                             : "none"}
                     </p>
-                    <p>
+                    <p className="roster-desc">
                         Skills needed:{" "}
                         {nextClass
                             ? displayClassSkills(nextClass.classSkills)
