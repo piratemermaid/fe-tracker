@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import {
     getNextClass,
     studentIsReadyForCert,
-    studentMeetsSkillReq
+    studentMeetsSkillReq,
+    getNextSkillGoals
 } from "../helpers/helpers";
 import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
 
@@ -12,12 +13,12 @@ import StudentImg from "../components/StudentImg";
 import Grid from "@material-ui/core/Grid";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import ErrorIcon from "@material-ui/icons/Error";
-import { unstable_StrictModeFade } from "@material-ui/core";
 
 const RosterRow = (props) => {
     const { name, classes, skills } = props.student;
     const { appStudents, byleth_gender, house } = props;
     const nextClass = getNextClass(classes);
+    const nextSkillGoals = getNextSkillGoals({ classes, skills });
 
     // only show lowest level uncertified class
     const renderClass = (nextClass) => {
@@ -78,14 +79,13 @@ const RosterRow = (props) => {
                             )}
                         </p>
                         <p>
-                            {nextClass ? (
+                            {nextSkillGoals && nextSkillGoals.length > 0 ? (
                                 <span>
-                                    {/* TODO: make function to determine next skills & display next class skills if ready for cert */}
-                                    Next skills needed:{" "}
-                                    {nextClass && nextClass.classSkills
+                                    Next goals:{" "}
+                                    {nextSkillGoals
                                         ? displayClassSkills(
                                               _.compact(
-                                                  nextClass.classSkills.map(
+                                                  nextSkillGoals.map(
                                                       (classSkill) => {
                                                           const studentSkill = _.find(
                                                               skills,

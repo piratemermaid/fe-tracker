@@ -19,17 +19,15 @@ export function getNextClass(classes) {
     return sorted[0];
 }
 
-// TODO: wip
-export function getNextSkillGoals({ classes, certified }) {
+export function getNextSkillGoals({ classes, skills }) {
     if (classes && classes.length > 0) {
         const classesSorted = sortClasses(classes);
-        if (!certified) {
-            return getNextClass(classesSorted).classSkills;
-        } else {
-            if (classesSorted.length > 1) {
-                return getNextClass(classesSorted.splice(0, 1).classSkills);
-            } else {
-                return [];
+        for (let sClass of classesSorted) {
+            const { certified, classSkills } = sClass;
+            if (!certified) {
+                if (!studentIsReadyForCert({ skills, classSkills })) {
+                    return classSkills;
+                }
             }
         }
     } else {
