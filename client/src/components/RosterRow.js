@@ -1,13 +1,18 @@
 import _ from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
-import { getNextClass, studentIsReadyForCert } from "../helpers/helpers";
+import {
+    getNextClass,
+    studentIsReadyForCert,
+    studentMeetsSkillReq
+} from "../helpers/helpers";
 import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
 
 import StudentImg from "../components/StudentImg";
 import Grid from "@material-ui/core/Grid";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import ErrorIcon from "@material-ui/icons/Error";
+import { unstable_StrictModeFade } from "@material-ui/core";
 
 const RosterRow = (props) => {
     const { name, classes, skills } = props.student;
@@ -75,8 +80,38 @@ const RosterRow = (props) => {
                         <p>
                             {nextClass ? (
                                 <span>
+                                    {/* TODO: make function to determine next skills & display next class skills if ready for cert */}
                                     Next skills needed:{" "}
-                                    {displayClassSkills(nextClass.classSkills)}
+                                    {nextClass && nextClass.classSkills
+                                        ? displayClassSkills(
+                                              _.compact(
+                                                  nextClass.classSkills.map(
+                                                      (classSkill) => {
+                                                          const studentSkill = _.find(
+                                                              skills,
+                                                              {
+                                                                  name:
+                                                                      classSkill.name
+                                                              }
+                                                          );
+                                                          if (
+                                                              !studentSkill ||
+                                                              !studentMeetsSkillReq(
+                                                                  {
+                                                                      studentSkillLevel:
+                                                                          studentSkill.level,
+                                                                      reqLevel:
+                                                                          classSkill.level
+                                                                  }
+                                                              )
+                                                          ) {
+                                                              return classSkill;
+                                                          }
+                                                      }
+                                                  )
+                                              )
+                                          )
+                                        : "none"}
                                 </span>
                             ) : null}
                         </p>
