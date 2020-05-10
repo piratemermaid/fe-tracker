@@ -2,12 +2,18 @@ import _ from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Loading from "../components/Loading";
 import StudentImg from "../components/StudentImg";
 import Grid from "@material-ui/core/Grid";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 const Gifts = (props) => {
     const { playthrough, appStudents, studentOrder } = props;
+
+    if (!playthrough || !appStudents || !studentOrder) {
+        return <Loading />;
+    }
+
     const userStudents = playthrough.students.sort((a, b) => {
         return (
             _.findIndex(studentOrder, { name: a.name }) -
