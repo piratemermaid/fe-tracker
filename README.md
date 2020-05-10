@@ -21,6 +21,7 @@ The purpose of this app is to plan out class paths and needed skills for Fire Em
 [ ] Add unique classes and connect to character, only show unique option when choosing classes if they have one
 [ ] Display skills needed for next class if skills met for current goal but uncertified
 [ ] Don't display skills already acquired on roster page
+[ ] Ability to sort roster page by class level (e.g. show those who haven't certified for Beginner, then Intermediate, then Advanced)
 
 # Other Feature Ideas
 
@@ -31,6 +32,8 @@ The purpose of this app is to plan out class paths and needed skills for Fire Em
 [ ] Tea Party guides
 [ ] Track support levels
 [ ] Show whether to critique/console for failure
+[ ] Show group task options
+[ ] Keep track of classes mastered
 
 # Resources
 
