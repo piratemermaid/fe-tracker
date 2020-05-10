@@ -578,7 +578,8 @@ const studentData = [
             proficient: ["Reason", "Riding", "Flying"],
             budding: ["Axe"],
             weakness: ["Brawl", "Authority", "Heavy Armor"]
-        }
+        },
+        gifts: []
     }
 ];
 
@@ -601,13 +602,14 @@ for (let student of studentData) {
 
 module.exports = {
     students: studentData.map(
-        ({ name, house, gender, recruitable, unique_class }) => {
+        ({ name, house, gender, recruitable, unique_class, gifts }) => {
             return {
                 name,
                 house,
                 gender: gender || null,
                 recruitable,
-                unique_class: unique_class || null
+                unique_class: unique_class || null,
+                gifts
             };
         }
     ),
