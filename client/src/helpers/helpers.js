@@ -23,7 +23,6 @@ export function getNextClass(classes) {
 export function getNextSkillGoals({ classes, certified }) {
     if (classes && classes.length > 0) {
         const classesSorted = sortClasses(classes);
-        console.log(classesSorted);
         if (!certified) {
             return getNextClass(classesSorted).classSkills;
         } else {
@@ -90,7 +89,6 @@ export function studentIsReadyForCert({ skills, classSkills }) {
             }
         }
     });
-    console.log(skillsMet);
     if (skillsMet.length === classSkills.length) {
         return true;
     } else {
