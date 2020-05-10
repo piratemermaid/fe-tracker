@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
-import { getNextClass } from "../helpers/helpers";
+import { getNextClass, studentIsReadyForCert } from "../helpers/helpers";
 import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
 
 import StudentImg from "../components/StudentImg";
@@ -13,7 +13,6 @@ const RosterRow = (props) => {
     const { name, classes, skills } = props.student;
     const { appStudents, byleth_gender, house } = props;
     const nextClass = getNextClass(classes);
-    let nextSkillGoals = getNextSkillGoals({ classes, certified: false });
 
     // only show lowest level uncertified class
     const renderClass = (nextClass) => {
@@ -25,6 +24,14 @@ const RosterRow = (props) => {
         );
     };
     const studentInfo = _.find(appStudents, { name });
+
+    let readyForCert = false;
+    if (nextClass) {
+        readyForCert = studentIsReadyForCert({
+            skills,
+            classSkills: nextClass.classSkills
+        });
+    }
 
     return (
         <div key={name} className="roster-row">
