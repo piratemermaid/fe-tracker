@@ -55,6 +55,9 @@ const Student = bookshelf.model("Student", {
     },
     skills() {
         return this.belongsToMany("Skill", "students_skills");
+    },
+    gifts() {
+        return this.belongsToMany("Gift", "students_gifts");
     }
 });
 
@@ -70,6 +73,10 @@ const Skill = bookshelf.model("Skill", {
     classes() {
         return this.belongsToMany("Class");
     }
+});
+
+const Gift = bookshelf.model("Gift", {
+    tableName: "gifts"
 });
 
 module.exports = { User, Playthrough, Class, Student };

@@ -43,7 +43,6 @@ router.get("/classes", (req, res) => {
     });
 });
 
-// TODO: add skills info
 router.get("/students", (req, res) => {
     models.Student.fetchAll({
         withRelated: [
@@ -52,24 +51,30 @@ router.get("/students", (req, res) => {
                 skills(qb) {
                     qb.column("name", "proficient", "budding", "weakness");
                 }
-            }
+            },
+            "gifts"
         ]
     }).then((result) => {
         const students = result.toJSON();
         res.send(
-            students.map(({ name, gender, recruitable, house, skills }) => {
-                return {
-                    name,
-                    gender,
-                    recruitable,
-                    house: house.name,
-                    skills: skills.map(
-                        ({ name, proficient, budding, weakness }) => {
-                            return { name, proficient, budding, weakness };
-                        }
-                    )
-                };
-            })
+            students.map(
+                ({ name, gender, recruitable, house, skills, gifts }) => {
+                    return {
+                        name,
+                        gender,
+                        recruitable,
+                        house: house.name,
+                        skills: skills.map(
+                            ({ name, proficient, budding, weakness }) => {
+                                return { name, proficient, budding, weakness };
+                            }
+                        ),
+                        gifts: gifts.map(({ name, grade }) => {
+                            return { name, grade };
+                        })
+                    };
+                }
+            )
         );
     });
 });
