@@ -176,7 +176,11 @@ class App extends Component {
             .then((res) => {
                 const { authenticated } = res.data;
                 this.setState({ authenticated });
-                this.getPlaythrough();
+                if (authenticated) {
+                    this.getPlaythrough();
+                } else {
+                    this.setState({ isLoadingUserData: false });
+                }
             })
             .catch((err) => {
                 console.log(err);
