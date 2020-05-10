@@ -19,6 +19,8 @@ The purpose of this app is to plan out class paths and needed skills for Fire Em
 [ ] Add unique classes and connect to character, only show unique option when choosing classes if they have one
 [ ] Add DLC and special classes
 [ ] Add recruitable boolean to students and don't allow to add non-recruitable characters (e.g. other house leaders)
+[ ] Display skills needed for next class if skills met for current goal but uncertified
+[ ] Don't display skills already acquired on roster page
 
 # Other Feature Ideas
 
@@ -28,6 +30,7 @@ The purpose of this app is to plan out class paths and needed skills for Fire Em
 [ ] Lost item guide
 [ ] Tea Party guides
 [ ] Track support levels
+[ ] Show whether to critique/console for failure
 
 # Resources
 
