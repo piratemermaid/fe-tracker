@@ -198,15 +198,6 @@ class App extends Component {
         return (
             <div id="App">
                 <BrowserRouter>
-                    <header>
-                        {authenticated ? (
-                            <nav className="right">
-                                <Link to="/login" onClick={this.logOut}>
-                                    Log Out
-                                </Link>
-                            </nav>
-                        ) : null}
-                    </header>
                     <Switch>
                         <Route
                             exact
@@ -218,6 +209,7 @@ class App extends Component {
                                     playthrough={playthrough}
                                     appStudents={appData.students}
                                     studentOrder={studentOrder}
+                                    logOut={this.logOut}
                                 />
                             )}
                         />

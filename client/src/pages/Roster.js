@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import RosterRow from "../components/RosterRow";
+import RosterFooter from "../components/RosterFooter";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Button from "@material-ui/core/Button";
 import Loading from "../components/Loading";
@@ -65,18 +66,7 @@ const Roster = (props) => {
                     );
                 })}
             </ul>
-            <div className="center footer">
-                <Link to="/new_playthrough">
-                    <Button
-                        className="button"
-                        style={{ width: "90%" }}
-                        variant="contained"
-                        color="primary"
-                    >
-                        Start New Playthrough
-                    </Button>
-                </Link>
-            </div>
+            <RosterFooter logOut={props.logOut} />
         </div>
     );
 };
