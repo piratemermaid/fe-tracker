@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import {
     getNextClass,
     studentMeetsSkillReq,
+    studentIsReadyForCert,
     getHighestSkillLevel
 } from "../helpers/helpers";
 import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
@@ -94,27 +95,12 @@ const Student = (props) => {
                 <h2>{type}</h2>
                 {classesToDisplay.length > 0 ? (
                     classesToDisplay.map(({ name, classSkills, certified }) => {
-                        let readyForCertification = false;
+                        let readyForCert = false;
                         if (!certified && classSkills.length > 0) {
-                            const skillsMet = classSkills.filter((skill) => {
-                                const studentSkill = _.find(skills, {
-                                    name: skill.name
-                                });
-                                if (studentSkill) {
-                                    if (
-                                        (studentSkill,
-                                        studentMeetsSkillReq(
-                                            studentSkill.level,
-                                            skill.level
-                                        ))
-                                    ) {
-                                        return skill;
-                                    }
-                                }
+                            readyForCert = studentIsReadyForCert({
+                                skills,
+                                classSkills
                             });
-                            if (skillsMet.length === classSkills.length) {
-                                readyForCertification = true;
-                            }
                         }
                         return (
                             <Paper
@@ -145,14 +131,14 @@ const Student = (props) => {
                                             }
                                             label={name}
                                         />
-                                        {readyForCertification ? (
+                                        {readyForCert ? (
                                             <ErrorIcon
                                                 style={{
                                                     color: houseRGB(
                                                         props.playthrough.house
                                                     )
                                                 }}
-                                            />
+                                            ></ErrorIcon>
                                         ) : null}
                                     </Grid>
                                     <Grid item xs={6}>
@@ -168,8 +154,11 @@ const Student = (props) => {
                                                     control={
                                                         <Checkbox
                                                             checked={studentMeetsSkillReq(
-                                                                studentSkillLevel,
-                                                                skill.level
+                                                                {
+                                                                    studentSkillLevel,
+                                                                    reqLevel:
+                                                                        skill.level
+                                                                }
                                                             )}
                                                             onChange={(e) =>
                                                                 handleSkillCheck(

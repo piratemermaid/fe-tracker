@@ -114,6 +114,7 @@ button.Faculty {
 .roster-row {
     padding: 20px;
     border-top: 1px solid black;
+    font-size: 14px;
 }
 
 .roster-img {
@@ -121,6 +122,12 @@ button.Faculty {
     width: 80px;
     border-radius: 15%;
     background: rgb(216, 216, 216);
+}
+
+.roster-row svg.MuiSvgIcon-root {
+    font-size: 19px;
+    top: 4px;
+    position: relative;
 }
 
 .roster-img.BlackEagles {

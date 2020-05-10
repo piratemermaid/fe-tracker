@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 export function getNextClass(classes) {
-    if (classes.length < 1) {
+    if (!classes || (classes && classes.length < 1)) {
         return null;
     }
 
@@ -19,6 +19,25 @@ export function getNextClass(classes) {
     return sorted[0];
 }
 
+// TODO: wip
+export function getNextSkillGoals({ classes, certified }) {
+    if (classes && classes.length > 0) {
+        const classesSorted = sortClasses(classes);
+        console.log(classesSorted);
+        if (!certified) {
+            return getNextClass(classesSorted).classSkills;
+        } else {
+            if (classesSorted.length > 1) {
+                return getNextClass(classesSorted.splice(0, 1).classSkills);
+            } else {
+                return [];
+            }
+        }
+    } else {
+        return [];
+    }
+}
+
 export function sortClasses(classes) {
     const order = [
         "Beginner",
@@ -34,8 +53,7 @@ export function sortClasses(classes) {
     });
 }
 
-// TODO: test this more
-export function studentMeetsSkillReq(studentSkillLevel, reqLevel) {
+export function studentMeetsSkillReq({ studentSkillLevel, reqLevel }) {
     const skillLevels = ["D", "D+", "C", "C+", "B", "B+", "A", "A+", "S"];
 
     if (!studentSkillLevel) {
@@ -46,6 +64,38 @@ export function studentMeetsSkillReq(studentSkillLevel, reqLevel) {
     const reqIndex = _.indexOf(skillLevels, reqLevel);
 
     return studentIndex >= reqIndex;
+}
+
+/**
+ * Compares student's obtained skills with skills required for class,
+ * and returns whether they are ready for certification aka
+ * meet skill requirements
+ * @param {array of objects} skills: student's skills
+ * @param {array of objects} classSkills: skills required for class
+ */
+export function studentIsReadyForCert({ skills, classSkills }) {
+    const skillsMet = classSkills.filter((skill) => {
+        const studentSkill = _.find(skills, {
+            name: skill.name
+        });
+        if (studentSkill) {
+            if (
+                (studentSkill,
+                studentMeetsSkillReq({
+                    studentSkillLevel: studentSkill.level,
+                    reqLevel: skill.level
+                }))
+            ) {
+                return skill;
+            }
+        }
+    });
+    console.log(skillsMet);
+    if (skillsMet.length === classSkills.length) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 export function getHighestSkillLevel(studentSkills, name) {

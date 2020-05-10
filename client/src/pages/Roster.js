@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import RosterRow from "../components/RosterRow";
-
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Button from "@material-ui/core/Button";
 import Loading from "../components/Loading";

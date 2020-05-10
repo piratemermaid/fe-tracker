@@ -2,16 +2,18 @@ import _ from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
 import { getNextClass } from "../helpers/helpers";
-import { displayClassSkills } from "../helpers/uihelpers";
+import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
 
 import StudentImg from "../components/StudentImg";
 import Grid from "@material-ui/core/Grid";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const RosterRow = (props) => {
     const { name, classes, skills } = props.student;
     const { appStudents, byleth_gender, house } = props;
     const nextClass = getNextClass(classes);
+    let nextSkillGoals = getNextSkillGoals({ classes, certified: false });
 
     // only show lowest level uncertified class
     const renderClass = (nextClass) => {
@@ -38,11 +40,26 @@ const RosterRow = (props) => {
                         />
                     </Grid>
                     <Grid item xs={8} className="roster-row-student">
-                        <p className="roster-name">{name}</p>
+                        <p className="roster-name">
+                            {name}{" "}
+                            {readyForCert ? (
+                                <span>
+                                    {" "}
+                                    <ErrorIcon
+                                        style={{
+                                            color: houseRGB(house)
+                                        }}
+                                    ></ErrorIcon>
+                                </span>
+                            ) : null}
+                        </p>
                         <p>
                             {classes.length > 0 ? (
                                 <span>
-                                    Next class: {renderClass(nextClass)}
+                                    {!readyForCert
+                                        ? "Next class"
+                                        : "Ready for cert"}
+                                    : {renderClass(nextClass)}
                                 </span>
                             ) : (
                                 "No classes set"
@@ -51,7 +68,7 @@ const RosterRow = (props) => {
                         <p>
                             {nextClass ? (
                                 <span>
-                                    Skills needed:{" "}
+                                    Next skills needed:{" "}
                                     {displayClassSkills(nextClass.classSkills)}
                                 </span>
                             ) : null}
