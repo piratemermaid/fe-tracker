@@ -45,6 +45,19 @@ a.no-link-style {
     text-decoration: none;
 }
 
+span.skill-icon {
+    font-weight: bold;
+    color: rgb(110, 110, 110);
+    margin-right: 8px;
+}
+
+span.skill-icon img {
+    width: 18px;
+    margin-right: 2px;
+    position: relative;
+    top: 3px;
+}
+
 /* house colors */
 .BlackEagles-bg {
     background: rgb(206, 54, 87) !important;

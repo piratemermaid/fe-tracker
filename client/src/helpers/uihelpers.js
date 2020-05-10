@@ -1,21 +1,19 @@
 import React from "react";
+import { stripSpaces } from "./helpers";
 
-// TODO: don't display skills already acquired
-// (make that an option?)
 export function displayClassSkills(skills) {
-    let ui = [];
-    for (let i in skills) {
-        const { name, level } = skills[i];
-        ui.push(
-            <span key={name}>
-                {name} {level}
+    return skills.map(({ name, level }) => {
+        return (
+            <span className="skill-icon" key={name}>
+                <img
+                    src={`/img/skills/${stripSpaces(name)}.png`}
+                    alt={name}
+                    title={name}
+                />
+                {level}
             </span>
         );
-        if (i < skills.length - 1) {
-            ui.push(", ");
-        }
-    }
-    return ui;
+    });
 }
 
 export function displaySkillsWithoutLevel(skills) {
