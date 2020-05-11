@@ -58,7 +58,15 @@ router.get("/students", (req, res) => {
         const students = result.toJSON();
         res.send(
             students.map(
-                ({ name, gender, recruitable, house, skills, gifts }) => {
+                ({
+                    name,
+                    gender,
+                    recruitable,
+                    house,
+                    skills,
+                    gifts,
+                    order
+                }) => {
                     return {
                         name,
                         gender,
@@ -71,7 +79,8 @@ router.get("/students", (req, res) => {
                         ),
                         gifts: gifts.map(({ name, grade }) => {
                             return { name, grade };
-                        })
+                        }),
+                        order
                     };
                 }
             )

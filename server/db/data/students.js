@@ -600,16 +600,19 @@ for (let student of studentData) {
     }
 }
 
+let i = 0;
 module.exports = {
     students: studentData.map(
         ({ name, house, gender, recruitable, unique_class, gifts }) => {
+            i++;
             return {
                 name,
                 house,
                 gender: gender || null,
                 recruitable,
                 unique_class: unique_class || null,
-                gifts
+                gifts,
+                order: i
             };
         }
     ),
