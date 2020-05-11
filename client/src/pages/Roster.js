@@ -10,9 +10,10 @@ import Loading from "../components/Loading";
 
 // TODO: show alert icon if ready for certification
 const Roster = (props) => {
-    if (!props.studentOrder) {
+    if (props.isLoadingUserData) {
         return <Loading />;
     }
+
     if (!props.playthrough) {
         return (
             <div className="padding">

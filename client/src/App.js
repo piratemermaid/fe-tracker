@@ -227,6 +227,7 @@ class App extends Component {
                                     appStudents={appData.students}
                                     studentOrder={studentOrder}
                                     logOut={this.logOut}
+                                    isLoadingUserData={isLoadingAppData}
                                 />
                             )}
                         />
