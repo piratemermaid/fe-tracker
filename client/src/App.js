@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import axios from "axios";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { API_URL } from "./constants";
 import "./App.css";
 

@@ -1,4 +1,4 @@
-import React, { PropTypes } from "react";
+import React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
