@@ -148,23 +148,25 @@ class App extends Component {
     getStudentOrder() {
         const { playthrough, appData } = this.state;
 
-        let order = [];
-        if (playthrough && appData) {
-            const { house } = playthrough;
+        if (appData) {
             const { students } = appData;
-            order = students.filter((student) => {
-                if (student.house === house) {
-                    return student;
+            if (!playthrough) {
+                this.setState({ studentOrder: _.sortBy(students, "order") });
+            } else {
+                const { house } = playthrough;
+                let studentOrder = students.filter((student) => {
+                    if (student.house === house) {
+                        return student;
+                    }
+                });
+                studentOrder.unshift({ name: "Byleth" });
+                for (let student of students) {
+                    if (!_.find(studentOrder, { name: student.name })) {
+                        studentOrder.push(student);
+                    }
                 }
-            });
-            order.unshift({ name: "Byleth" });
-            for (let student of students) {
-                if (!_.find(order, { name: student.name })) {
-                    order.push(student);
-                }
+                this.setState({ studentOrder });
             }
-
-            this.setState({ studentOrder: order });
         }
     }
 
