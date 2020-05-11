@@ -25,7 +25,8 @@ class App extends Component {
             isLoadingUserData: true,
             authenticated: false,
             playthrough: null,
-            appData: null
+            appData: null,
+            classSelectorFilters: []
         };
 
         this.authenticateUser = this.authenticateUser.bind(this);
@@ -36,6 +37,9 @@ class App extends Component {
         this.addStudents = this.addStudents.bind(this);
         this.removeStudent = this.removeStudent.bind(this);
         this.getStudentOrder = this.getStudentOrder.bind(this);
+        this.classSelectorFilterChange = this.classSelectorFilterChange.bind(
+            this
+        );
     }
 
     authenticateUser(bool) {
@@ -170,6 +174,17 @@ class App extends Component {
         }
     }
 
+    classSelectorFilterChange(name) {
+        let filters = this.state.classSelectorFilters;
+        if (filters.includes(name)) {
+            const index = _.indexOf(filters, name);
+            filters.splice(index, 1);
+        } else {
+            filters.push(name);
+        }
+        this.setState({ classSelectorFilters: filters });
+    }
+
     async componentDidMount() {
         await axios({
             method: "get",
@@ -200,7 +215,8 @@ class App extends Component {
             authenticated,
             playthrough,
             appData,
-            studentOrder
+            studentOrder,
+            classSelectorFilters
         } = this.state;
 
         if (isLoadingAppData || isLoadingUserData) {
@@ -281,6 +297,10 @@ class App extends Component {
                                     playthrough={playthrough}
                                     selectClassGoal={this.selectClassGoal}
                                     appData={appData}
+                                    classSelectorFilters={classSelectorFilters}
+                                    classSelectorFilterChange={
+                                        this.classSelectorFilterChange
+                                    }
                                 />
                             )}
                         />
