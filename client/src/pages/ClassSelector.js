@@ -11,7 +11,18 @@ class ClassSelector extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { classes: {} };
+        this.state = { classes: {}, filters: [] };
+    }
+
+    onFilterChange(name) {
+        let { filters } = this.state;
+        if (filters.includes(name)) {
+            const index = _.indexOf(filters, name);
+            filters.splice(index, 1);
+        } else {
+            filters.push(name);
+        }
+        this.setState({ filters });
     }
 
     componentDidMount() {
@@ -57,13 +68,9 @@ class ClassSelector extends Component {
                         return (
                             <img
                                 key={name}
-                                onClick={() =>
-                                    this.props.classSelectorFilterChange(name)
-                                }
+                                onClick={() => this.onFilterChange(name)}
                                 className={`skill-filter${
-                                    this.props.classSelectorFilters.includes(
-                                        name
-                                    )
+                                    this.state.filters.includes(name)
                                         ? " filter-selected"
                                         : ""
                                 }`}
@@ -87,7 +94,7 @@ class ClassSelector extends Component {
                             house={house}
                             selectClassGoal={this.props.selectClassGoal}
                             key={type}
-                            filters={this.props.classSelectorFilters}
+                            filters={this.state.filters}
                         />
                     );
                 })}

@@ -25,8 +25,7 @@ class App extends Component {
             isLoadingUserData: true,
             authenticated: false,
             playthrough: null,
-            appData: null,
-            classSelectorFilters: []
+            appData: null
         };
 
         this.authenticateUser = this.authenticateUser.bind(this);
@@ -37,9 +36,6 @@ class App extends Component {
         this.addStudents = this.addStudents.bind(this);
         this.removeStudent = this.removeStudent.bind(this);
         this.getStudentOrder = this.getStudentOrder.bind(this);
-        this.classSelectorFilterChange = this.classSelectorFilterChange.bind(
-            this
-        );
     }
 
     authenticateUser(bool) {
@@ -152,37 +148,24 @@ class App extends Component {
     getStudentOrder() {
         const { playthrough, appData } = this.state;
 
-        if (appData) {
+        let order = [];
+        if (playthrough && appData) {
+            const { house } = playthrough;
             const { students } = appData;
-            if (!playthrough) {
-                this.setState({ studentOrder: _.sortBy(students, "order") });
-            } else {
-                const { house } = playthrough;
-                let studentOrder = students.filter((student) => {
-                    if (student.house === house) {
-                        return student;
-                    }
-                });
-                studentOrder.unshift({ name: "Byleth" });
-                for (let student of students) {
-                    if (!_.find(studentOrder, { name: student.name })) {
-                        studentOrder.push(student);
-                    }
+            order = students.filter((student) => {
+                if (student.house === house) {
+                    return student;
                 }
-                this.setState({ studentOrder });
+            });
+            order.unshift({ name: "Byleth" });
+            for (let student of students) {
+                if (!_.find(order, { name: student.name })) {
+                    order.push(student);
+                }
             }
-        }
-    }
 
-    classSelectorFilterChange(name) {
-        let filters = this.state.classSelectorFilters;
-        if (filters.includes(name)) {
-            const index = _.indexOf(filters, name);
-            filters.splice(index, 1);
-        } else {
-            filters.push(name);
+            this.setState({ studentOrder: order });
         }
-        this.setState({ classSelectorFilters: filters });
     }
 
     async componentDidMount() {
@@ -215,8 +198,7 @@ class App extends Component {
             authenticated,
             playthrough,
             appData,
-            studentOrder,
-            classSelectorFilters
+            studentOrder
         } = this.state;
 
         if (isLoadingAppData || isLoadingUserData) {
@@ -297,10 +279,6 @@ class App extends Component {
                                     playthrough={playthrough}
                                     selectClassGoal={this.selectClassGoal}
                                     appData={appData}
-                                    classSelectorFilters={classSelectorFilters}
-                                    classSelectorFilterChange={
-                                        this.classSelectorFilterChange
-                                    }
                                 />
                             )}
                         />
