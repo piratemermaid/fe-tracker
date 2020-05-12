@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -8,6 +8,14 @@ import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const RosterFooter = (props) => {
+    const promptLogout = () => {
+        const logout = window.confirm("Do you want to log out?");
+
+        if (logout) {
+            props.logOut();
+        }
+    };
+
     return (
         <BottomNavigation>
             <Link to="/new_playthrough">
@@ -24,7 +32,7 @@ const RosterFooter = (props) => {
                     icon={<CardGiftcardIcon />}
                 />
             </Link>
-            <Link to="/login" onClick={() => props.logOut()}>
+            <Link to="/" onClick={promptLogout}>
                 <BottomNavigationAction
                     label="Folder"
                     value="folder"
@@ -35,4 +43,4 @@ const RosterFooter = (props) => {
     );
 };
 
-export default RosterFooter;
+export default withRouter(RosterFooter);
