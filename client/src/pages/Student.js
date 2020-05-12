@@ -147,42 +147,46 @@ const Student = (props) => {
                                     </Grid>
                                     <Grid item xs={6}>
                                         <h3>Skills Required</h3>
-                                        {classSkills.map((skill) => {
-                                            const studentSkillLevel = getHighestSkillLevel(
-                                                skills,
-                                                skill.name
-                                            );
+                                        {classSkills.length > 0
+                                            ? classSkills.map((skill) => {
+                                                  const studentSkillLevel = getHighestSkillLevel(
+                                                      skills,
+                                                      skill.name
+                                                  );
 
-                                            return (
-                                                <FormControlLabel
-                                                    control={
-                                                        <Checkbox
-                                                            checked={studentMeetsSkillReq(
-                                                                {
-                                                                    studentSkillLevel,
-                                                                    reqLevel:
-                                                                        skill.level
-                                                                }
-                                                            )}
-                                                            onChange={(e) =>
-                                                                handleSkillCheck(
-                                                                    e,
-                                                                    skill
-                                                                )
-                                                            }
-                                                            style={{
-                                                                color: houseRGB(
-                                                                    props
-                                                                        .playthrough
-                                                                        .house
-                                                                )
-                                                            }}
-                                                        />
-                                                    }
-                                                    label={`${skill.name} ${skill.level}`}
-                                                />
-                                            );
-                                        })}
+                                                  return (
+                                                      <FormControlLabel
+                                                          control={
+                                                              <Checkbox
+                                                                  checked={studentMeetsSkillReq(
+                                                                      {
+                                                                          studentSkillLevel,
+                                                                          reqLevel:
+                                                                              skill.level
+                                                                      }
+                                                                  )}
+                                                                  onChange={(
+                                                                      e
+                                                                  ) =>
+                                                                      handleSkillCheck(
+                                                                          e,
+                                                                          skill
+                                                                      )
+                                                                  }
+                                                                  style={{
+                                                                      color: houseRGB(
+                                                                          props
+                                                                              .playthrough
+                                                                              .house
+                                                                      )
+                                                                  }}
+                                                              />
+                                                          }
+                                                          label={`${skill.name} ${skill.level}`}
+                                                      />
+                                                  );
+                                              })
+                                            : "None"}
                                     </Grid>
                                 </Grid>
                             </Paper>
