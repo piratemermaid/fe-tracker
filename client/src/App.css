@@ -67,6 +67,11 @@ span.skill-icon img {
     height: 28px;
 }
 
+.styled-list {
+    list-style-type: disc;
+    margin-left: 18px;
+}
+
 /* house colors */
 .BlackEagles-bg {
     background: rgb(206, 54, 87) !important;

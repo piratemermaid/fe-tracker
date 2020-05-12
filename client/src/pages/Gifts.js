@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React from "react";
-import { Link } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import StudentImg from "../components/StudentImg";
@@ -25,13 +24,11 @@ const Gifts = (props) => {
             {userStudents.map(({ name }) => {
                 if (name !== "Byleth") {
                     const appStudent = _.find(appStudents, { name });
-                    const gifts = appStudent.gifts.map(({ name }) => {
-                        return name;
-                    });
+                    const { gifts } = appStudent;
 
                     return (
                         <div key={name} className="roster-row">
-                            <Grid container spacing={3} alignItems="center">
+                            <Grid container spacing={3} alignItems="top">
                                 <Grid item xs={3}>
                                     <StudentImg
                                         name={name}
@@ -46,7 +43,24 @@ const Gifts = (props) => {
                                     />
                                 </Grid>
                                 <Grid item xs={9}>
-                                    {gifts.join(", ")}
+                                    <p
+                                        className="roster-name"
+                                        style={{ marginTop: 0 }}
+                                    >
+                                        {name}
+                                    </p>
+                                    <ul>
+                                        {gifts.map(({ name }) => {
+                                            return (
+                                                <li
+                                                    className="styled-list"
+                                                    key={name}
+                                                >
+                                                    {name}
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
                                 </Grid>
                             </Grid>
                         </div>
