@@ -33,7 +33,6 @@ class NewPlaythrough extends Component {
             .then((res) => {
                 if (res.data === "success") {
                     this.props.history.push("/");
-                    this.props.getStudentOrder();
                     this.props.getPlaythrough();
                 }
             })

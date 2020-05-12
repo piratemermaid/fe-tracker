@@ -35,13 +35,11 @@ class App extends Component {
         this.selectSkill = this.selectSkill.bind(this);
         this.addStudents = this.addStudents.bind(this);
         this.removeStudent = this.removeStudent.bind(this);
-        this.getStudentOrder = this.getStudentOrder.bind(this);
     }
 
     authenticateUser(bool) {
         this.setState({ authenticated: bool });
         this.getPlaythrough();
-        this.getStudentOrder();
     }
 
     logOut = () => {
@@ -113,7 +111,6 @@ class App extends Component {
         }).then((res) => {
             if (res.data === "success") {
                 this.getPlaythrough();
-                this.getStudentOrder();
             }
         });
     }
@@ -145,31 +142,6 @@ class App extends Component {
         });
     }
 
-    getStudentOrder() {
-        const { playthrough, appData } = this.state;
-
-        if (appData) {
-            const { students } = appData;
-            if (!playthrough) {
-                this.setState({ studentOrder: _.sortBy(students, "order") });
-            } else {
-                const { house } = playthrough;
-                let studentOrder = students.filter((student) => {
-                    if (student.house === house) {
-                        return student;
-                    }
-                });
-                studentOrder.unshift({ name: "Byleth" });
-                for (let student of students) {
-                    if (!_.find(studentOrder, { name: student.name })) {
-                        studentOrder.push(student);
-                    }
-                }
-                this.setState({ studentOrder });
-            }
-        }
-    }
-
     async componentDidMount() {
         await axios({
             method: "get",
@@ -189,8 +161,6 @@ class App extends Component {
             });
 
         await this.getAppData();
-
-        this.getStudentOrder();
     }
 
     render() {
@@ -199,8 +169,7 @@ class App extends Component {
             isLoadingUserData,
             authenticated,
             playthrough,
-            appData,
-            studentOrder
+            appData
         } = this.state;
 
         if (isLoadingAppData || isLoadingUserData) {
@@ -227,7 +196,6 @@ class App extends Component {
                                     authenticateUser={this.authenticateUser}
                                     playthrough={playthrough}
                                     appStudents={appData.students}
-                                    studentOrder={studentOrder}
                                     logOut={this.logOut}
                                     isLoadingUserData={isLoadingAppData}
                                 />
@@ -256,7 +224,6 @@ class App extends Component {
                                 <AuthNewPlaythrough
                                     authenticated={authenticated}
                                     getPlaythrough={this.getPlaythrough}
-                                    getStudentOrder={this.getStudentOrder}
                                 />
                             )}
                         />
@@ -301,7 +268,6 @@ class App extends Component {
                                     authenticated={authenticated}
                                     playthrough={playthrough}
                                     appStudents={appData.students}
-                                    studentOrder={studentOrder}
                                 />
                             )}
                         />

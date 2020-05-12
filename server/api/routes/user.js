@@ -87,7 +87,7 @@ router.get("/playthrough", async (req, res) => {
         .fetch({
             withRelated: [
                 "playthroughs.house",
-                "playthroughs.userStudents.student",
+                "playthroughs.userStudents.student.house",
                 {
                     "playthroughs.userStudents.userStudentClasses.class.skills"(
                         qb
@@ -108,11 +108,12 @@ router.get("/playthrough", async (req, res) => {
             }
 
             const { byleth_gender, house, userStudents } = playthrough;
+            const students = helpers.sortStudents(userStudents, house.name);
 
             res.send({
                 byleth_gender,
                 house: house.name,
-                students: userStudents.map(
+                students: students.map(
                     ({ student, userStudentClasses, userStudentSkills }) => {
                         return {
                             name: student.name,

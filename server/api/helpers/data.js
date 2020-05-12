@@ -27,4 +27,41 @@ function sortClassesByType(classes) {
     });
 }
 
-module.exports = { lookupPlaythroughId, lookupId, sortClassesByType };
+function sortStudents(students, house) {
+    const sortedByOrderCol = _.orderBy(students, ["student.order"], ["asc"]);
+
+    let first = ["Byleth"];
+    const houseStudents = _.compact(
+        sortedByOrderCol.map((student) => {
+            const studentHouse = student.student.house.name;
+            if (house && studentHouse === house) {
+                return student.student.name;
+            }
+        })
+    );
+    const nonHouseStudents = _.compact(
+        sortedByOrderCol.map((student) => {
+            if (!houseStudents.includes(student.student.name)) {
+                return student.student.name;
+            }
+        })
+    );
+
+    const order = first.concat(houseStudents, nonHouseStudents);
+
+    return sortedByOrderCol.sort((a, b) => {
+        const indexA = _.indexOf(order, a.student.name);
+        const indexB = _.indexOf(order, b.student.name);
+        return indexA - indexB;
+    });
+}
+
+function getHighestSkillLevels(skills) {}
+
+module.exports = {
+    lookupPlaythroughId,
+    lookupId,
+    sortClassesByType,
+    sortStudents,
+    getHighestSkillLevels
+};

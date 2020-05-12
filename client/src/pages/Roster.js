@@ -32,15 +32,7 @@ const Roster = (props) => {
         );
     }
 
-    const { studentOrder } = props;
     const { house, byleth_gender, students } = props.playthrough;
-
-    const studentsInOrder = students.sort((a, b) => {
-        return (
-            _.findIndex(studentOrder, { name: a.name }) -
-            _.findIndex(studentOrder, { name: b.name })
-        );
-    });
 
     return (
         <div>
@@ -55,7 +47,7 @@ const Roster = (props) => {
                 </h1>
             </div>
             <ul>
-                {studentsInOrder.map((student) => {
+                {students.map((student) => {
                     return (
                         <RosterRow
                             key={student.name}

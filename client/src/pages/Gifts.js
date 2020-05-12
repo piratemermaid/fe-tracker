@@ -8,18 +8,13 @@ import Grid from "@material-ui/core/Grid";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 const Gifts = (props) => {
-    const { playthrough, appStudents, studentOrder } = props;
+    const { playthrough, appStudents } = props;
 
-    if (!playthrough || !appStudents || !studentOrder) {
+    if (!playthrough || !appStudents) {
         return <Loading />;
     }
 
-    const userStudents = playthrough.students.sort((a, b) => {
-        return (
-            _.findIndex(studentOrder, { name: a.name }) -
-            _.findIndex(studentOrder, { name: b.name })
-        );
-    });
+    const userStudents = playthrough.students;
 
     return (
         <div>
