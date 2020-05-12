@@ -470,14 +470,17 @@ for (let sclass of classData) {
 }
 
 module.exports = {
-    classes: classData.map(({ name, type, gender, abilities, mastery }) => {
-        return {
-            name,
-            type,
-            gender: gender || null,
-            abilities,
-            mastery
-        };
-    }),
+    classes: classData.map(
+        ({ name, type, gender, student, abilities, mastery }) => {
+            return {
+                name,
+                type,
+                gender: gender || null,
+                student,
+                abilities,
+                mastery
+            };
+        }
+    ),
     classSkills
 };
