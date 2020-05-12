@@ -56,7 +56,42 @@ function sortStudents(students, house) {
     });
 }
 
-function getHighestSkillLevels(skills) {}
+function getHighestSkillLevels(skills) {
+    const skillLevels = ["D", "D+", "C", "C+", "B", "B+", "A", "A+", "S"];
+
+    if (skills.length > 0) {
+        let highestSkills = [];
+        for (let skill of skills) {
+            const highestCurrent = _.find(highestSkills, {
+                name: skill.skill.name
+            });
+            if (!highestCurrent) {
+                highestSkills.push({
+                    name: skill.skill.name,
+                    level: skill.level
+                });
+            } else {
+                if (
+                    _.indexOf(skillLevels, highestCurrent.level) <
+                    _.indexOf(skillLevels, skill.level)
+                ) {
+                    const index = _.findIndex(highestSkills, {
+                        name: skill.skill.name
+                    });
+                    highestSkills.splice(index, 1);
+                    highestSkills.push({
+                        name: skill.skill.name,
+                        level: skill.level
+                    });
+                }
+            }
+        }
+
+        return highestSkills;
+    } else {
+        return [];
+    }
+}
 
 module.exports = {
     lookupPlaythroughId,

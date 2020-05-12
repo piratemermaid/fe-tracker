@@ -130,10 +130,8 @@ router.get("/playthrough", async (req, res) => {
                                     )
                                 };
                             }),
-                            skills: userStudentSkills.map(
-                                ({ level, skill }) => {
-                                    return { name: skill.name, level };
-                                }
+                            skills: helpers.getHighestSkillLevels(
+                                userStudentSkills
                             )
                         };
                     }
