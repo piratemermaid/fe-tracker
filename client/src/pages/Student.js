@@ -13,10 +13,10 @@ import { displayClassSkills, houseRGB } from "../helpers/uihelpers";
 
 import Loading from "../components/Loading";
 import StudentImg from "../components/StudentImg";
+import BackButton from "../components/BackButton";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -205,9 +205,7 @@ const Student = (props) => {
             style={{ width: "100%" }}
             className="padding"
         >
-            <Link to="/">
-                <KeyboardBackspaceIcon />
-            </Link>
+            <BackButton />
             <Grid container spacing={2}>
                 <Grid item xs={3}>
                     <StudentImg

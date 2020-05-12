@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import StudentImg from "../components/StudentImg";
+import BackButton from "../components/BackButton";
 import SkillsOverview from "../components/SkillsOverview";
 import Grid from "@material-ui/core/Grid";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import Button from "@material-ui/core/Button";
 
 class AddStudent extends Component {
@@ -109,9 +109,7 @@ class AddStudent extends Component {
 
         return (
             <div>
-                <Link to="/">
-                    <KeyboardBackspaceIcon />
-                </Link>
+                <BackButton />
                 <h1 className="padding">Add Students</h1>
                 <ul>{this.renderAvailableStudents()}</ul>
                 <div className="center footer">

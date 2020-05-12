@@ -15,6 +15,7 @@ import Student from "./pages/Student";
 import ClassSelector from "./pages/ClassSelector";
 import AddStudent from "./pages/AddStudent";
 import Gifts from "./pages/Gifts";
+import { stripSpaces } from "./helpers/helpers";
 
 class App extends Component {
     constructor(props) {
@@ -184,7 +185,10 @@ class App extends Component {
         const AuthGifts = RequireAuth(Gifts);
 
         return (
-            <div id="App">
+            <div
+                id="App"
+                className={playthrough ? stripSpaces(playthrough.house) : ""}
+            >
                 <BrowserRouter>
                     <Switch>
                         <Route

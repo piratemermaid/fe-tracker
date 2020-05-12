@@ -4,7 +4,7 @@ import { stripSpaces } from "../helpers/helpers";
 
 import Loading from "../components/Loading";
 import ClassSelectorType from "../components/ClassSelectorType";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import BackButton from "../components/BackButton";
 
 // TODO: fix reloading on selection
 class ClassSelector extends Component {
@@ -57,11 +57,7 @@ class ClassSelector extends Component {
 
         return (
             <div className="padding">
-                <KeyboardBackspaceIcon
-                    onClick={() => {
-                        this.props.history.push(`/student/${name}`);
-                    }}
-                />
+                <BackButton url={`/student/${name}`} />
                 <h1>Select Classes for {name}</h1>
                 <div className="skill-filters">
                     {proficientSkills.map(({ name }) => {

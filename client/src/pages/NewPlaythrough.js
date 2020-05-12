@@ -3,9 +3,9 @@ import axios from "axios";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import BackButton from "../components/BackButton";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 class NewPlaythrough extends Component {
     constructor(props) {
@@ -108,9 +108,7 @@ class NewPlaythrough extends Component {
     render() {
         return (
             <div>
-                <Link to="/">
-                    <KeyboardBackspaceIcon />
-                </Link>
+                <BackButton />
                 <div className="padding center">
                     <h1>New Playthrough</h1>
                     <h2>Select House</h2>

@@ -58,6 +58,15 @@ span.skill-icon img {
     top: 3px;
 }
 
+#back-button {
+    margin: 10px 0;
+}
+#back-button svg.MuiSvgIcon-root {
+    color: rgb(62, 62, 62);
+    width: 28px;
+    height: 28px;
+}
+
 /* house colors */
 .BlackEagles-bg {
     background: rgb(206, 54, 87) !important;
