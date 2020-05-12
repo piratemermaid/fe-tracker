@@ -10,7 +10,8 @@ router.get("/classes", (req, res) => {
                 skills(qb) {
                     qb.column("name", "level");
                 }
-            }
+            },
+            "student"
         ]
     }).then((result) => {
         const classes = result.toJSON();
@@ -22,15 +23,21 @@ router.get("/classes", (req, res) => {
                     type,
                     gender,
                     abilities,
+                    student,
                     mastery_ability,
                     mastery_combat_art,
                     skills
                 }) => {
+                    let uniqueStudent = null;
+                    if (student.length > 0) {
+                        uniqueStudent = student[0].name;
+                    }
                     return {
                         name,
                         type,
                         gender,
                         abilities,
+                        student: uniqueStudent,
                         mastery_ability,
                         mastery_combat_art,
                         skills: skills.map(({ name, level }) => {

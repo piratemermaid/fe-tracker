@@ -54,10 +54,16 @@ const ClassSelectorType = (props) => {
                                 name,
                                 skills,
                                 abilities,
+                                student,
                                 mastery_ability,
                                 mastery_combat_art
                             }) => {
-                                const shouldDisplay = checkFilters(skills);
+                                let shouldDisplay = checkFilters(skills);
+                                if (student) {
+                                    if (student !== props.student) {
+                                        shouldDisplay = false;
+                                    }
+                                }
 
                                 if (!shouldDisplay) {
                                     return null;

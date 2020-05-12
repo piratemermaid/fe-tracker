@@ -65,6 +65,9 @@ const Class = bookshelf.model("Class", {
     tableName: "classes",
     skills() {
         return this.belongsToMany("Skill");
+    },
+    student() {
+        return this.belongsToMany("Student", "unique_classes_students");
     }
 });
 
