@@ -17,15 +17,18 @@ export function displayClassSkills(skills) {
 }
 
 export function displaySkillsWithoutLevel(skills) {
-    let ui = [];
-    for (let i in skills) {
-        const { name } = skills[i];
-        ui.push(<span key={name}>{name}</span>);
-        if (i < skills.length - 1) {
-            ui.push(", ");
-        }
+    if (skills.length > 0) {
+        return skills.map(({ name }) => {
+            return (
+                <img
+                    src={`/img/skills/${stripSpaces(name)}.png`}
+                    className="skill-icon"
+                    alt={name}
+                    title={name}
+                />
+            );
+        });
     }
-    return ui;
 }
 
 export function houseRGB(house) {

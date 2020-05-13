@@ -7,20 +7,52 @@ const SkillsOverview = (props) => {
 
     const types = ["proficient", "budding", "weakness"];
 
-    const getText = (type, matches) => {
+    const renderSkillType = (type, matches) => {
         if (type === "proficient") {
-            if (matches) {
-                return "Proficient in: ";
+            if (matches.length > 0) {
+                return (
+                    <div>
+                        <span>
+                            <img
+                                src="/img/skills/proficient.png"
+                                className="skill-icon"
+                                alt="Proficient"
+                                title="Proficient"
+                            />
+                            {displaySkillsWithoutLevel(matches)}
+                        </span>
+                    </div>
+                );
             } else {
                 return "No proficient skills";
             }
         } else if (type === "budding") {
-            if (matches) {
-                return "Budding talent: ";
+            if (matches.length > 0) {
+                return (
+                    <div>
+                        <img
+                            src="/img/skills/budding.png"
+                            className="skill-icon"
+                            alt="Budding"
+                            title="Budding"
+                        />
+                        {displaySkillsWithoutLevel(matches)}
+                    </div>
+                );
             }
         } else {
-            if (matches) {
-                return "Weaknesses: ";
+            if (matches.length > 0) {
+                return (
+                    <div>
+                        <img
+                            src="/img/skills/weakness.png"
+                            className="skill-icon"
+                            alt="Weakness"
+                            title="Weakness"
+                        />
+                        {displaySkillsWithoutLevel(matches)}
+                    </div>
+                );
             }
         }
     };
@@ -30,12 +62,7 @@ const SkillsOverview = (props) => {
             {types.map((type) => {
                 const matches = _.filter(skills, { [type]: true });
                 if (matches.length > 0) {
-                    return (
-                        <div>
-                            {getText(type, true)}
-                            {displaySkillsWithoutLevel(matches)}
-                        </div>
-                    );
+                    return <div>{renderSkillType(type, matches)}</div>;
                 }
             })}
         </div>

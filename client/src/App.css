@@ -58,6 +58,13 @@ span.skill-icon img {
     top: 3px;
 }
 
+img.skill-icon {
+    width: 18px;
+    margin-right: 2px;
+    position: relative;
+    top: 3px;
+}
+
 #back-button {
     margin: 10px 0;
 }
