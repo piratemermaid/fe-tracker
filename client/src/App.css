@@ -72,6 +72,10 @@ span.skill-icon img {
     margin-left: 18px;
 }
 
+.hover {
+    cursor: pointer;
+}
+
 /* house colors */
 .BlackEagles-bg {
     background: rgb(206, 54, 87) !important;
@@ -264,4 +268,11 @@ div.MuiExpansionPanelDetails-root {
 }
 .add-student-selected.Faculty {
     background: rgb(176, 225, 176);
+}
+
+.remove-filters-btn {
+    color: rgb(74, 74, 74);
+    position: relative;
+    left: 16px;
+    top: -2px;
 }
