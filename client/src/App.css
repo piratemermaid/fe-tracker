@@ -74,7 +74,7 @@ img.skill-icon {
     height: 28px;
 }
 
-.styled-list {
+.styled-list li {
     list-style-type: disc;
     margin-left: 18px;
 }

@@ -49,16 +49,9 @@ const Gifts = (props) => {
                                     >
                                         {name}
                                     </p>
-                                    <ul>
+                                    <ul className="styled-list">
                                         {gifts.map(({ name }) => {
-                                            return (
-                                                <li
-                                                    className="styled-list"
-                                                    key={name}
-                                                >
-                                                    {name}
-                                                </li>
-                                            );
+                                            return <li key={name}>{name}</li>;
                                         })}
                                     </ul>
                                 </Grid>

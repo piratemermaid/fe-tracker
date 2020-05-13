@@ -15,6 +15,7 @@ import Student from "./pages/Student";
 import ClassSelector from "./pages/ClassSelector";
 import AddStudent from "./pages/AddStudent";
 import Gifts from "./pages/Gifts";
+import DevNotes from "./pages/DevNotes";
 import { stripSpaces } from "./helpers/helpers";
 
 class App extends Component {
@@ -275,6 +276,7 @@ class App extends Component {
                                 />
                             )}
                         />
+                        <Route path="/dev_notes" component={DevNotes} />
                     </Switch>
                 </BrowserRouter>
             </div>
