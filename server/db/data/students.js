@@ -592,7 +592,7 @@ for (let student of studentData) {
             studentSkills.push({
                 name,
                 proficient: type === "proficient",
-                budding: type === "buddying",
+                budding: type === "budding",
                 weakness: type === "weakness",
                 skillName
             });
