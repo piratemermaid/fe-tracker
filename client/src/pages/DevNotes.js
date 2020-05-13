@@ -4,7 +4,7 @@ import BackButton from "../components/BackButton";
 
 const DevNotes = () => {
     return (
-        <div>
+        <div className="padding">
             <BackButton />
             <h1>Dev Notes</h1>
             <h2>Todos</h2>
