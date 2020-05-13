@@ -16,6 +16,7 @@ const SkillsOverview = (props) => {
                             <img
                                 src="/img/skills/proficient.png"
                                 className="skill-icon"
+                                style={{ marginRight: "12px" }}
                                 alt="Proficient"
                                 title="Proficient"
                             />
@@ -33,6 +34,7 @@ const SkillsOverview = (props) => {
                         <img
                             src="/img/skills/budding.png"
                             className="skill-icon"
+                            style={{ marginRight: "12px" }}
                             alt="Budding"
                             title="Budding"
                         />
@@ -47,6 +49,7 @@ const SkillsOverview = (props) => {
                         <img
                             src="/img/skills/weakness.png"
                             className="skill-icon"
+                            style={{ marginRight: "12px" }}
                             alt="Weakness"
                             title="Weakness"
                         />
