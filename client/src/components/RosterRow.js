@@ -42,7 +42,7 @@ const RosterRow = (props) => {
     return (
         <div key={name} className="roster-row">
             <Link to={`/student/${name}`} className="no-link-style">
-                <Grid container spacing={3} alignItems="center">
+                <Grid container spacing={3}>
                     <Grid item xs={3}>
                         <StudentImg
                             name={name}
@@ -57,8 +57,8 @@ const RosterRow = (props) => {
                             {name}{" "}
                             {readyForCert ? (
                                 <span>
-                                    {" "}
                                     <ErrorIcon
+                                        className="ready-for-cert"
                                         style={{
                                             color: houseRGB(house)
                                         }}
@@ -117,7 +117,7 @@ const RosterRow = (props) => {
                         </p>
                     </Grid>
                     <Grid item xs={1}>
-                        <ArrowRightAltIcon />
+                        <ArrowRightAltIcon className="right-arrow" />
                     </Grid>
                 </Grid>
             </Link>

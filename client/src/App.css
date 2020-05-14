@@ -168,21 +168,28 @@ button.Faculty {
 
 /* roster */
 .roster-row {
-    padding: 20px;
+    padding: 10px;
     border-top: 1px solid black;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .roster-img {
-    height: 80px;
-    width: 80px;
+    height: 64px;
+    width: 64px;
     border-radius: 15%;
     background: rgb(216, 216, 216);
 }
 
-.roster-row svg.MuiSvgIcon-root {
+.roster-row .ready-for-cert {
     font-size: 19px;
     top: 4px;
+    position: relative;
+}
+
+.roster-row .right-arrow {
+    font-size: 22px;
+    right: 12px;
+    top: 20px;
     position: relative;
 }
 
@@ -200,12 +207,12 @@ button.Faculty {
 }
 
 .roster-row-student p {
-    margin: 0;
+    margin: 0 0 0 -10px;
 }
 
 p.roster-name {
     margin-bottom: 4px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
 }
 
