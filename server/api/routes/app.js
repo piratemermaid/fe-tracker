@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const { Router } = require("express");
 const models = require("../models/bookshelf_models");
 
@@ -62,7 +63,7 @@ router.get("/students", (req, res) => {
             "gifts"
         ]
     }).then((result) => {
-        const students = result.toJSON();
+        const students = _.sortBy(result.toJSON(), "order");
         res.send(
             students.map(
                 ({
