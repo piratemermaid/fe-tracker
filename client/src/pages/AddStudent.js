@@ -84,9 +84,9 @@ class AddStudent extends Component {
             if (!lastHouse || lastHouse !== house) {
                 lastHouse = house;
                 studentList.push(
-                    <h2 className="padding" key={house}>
+                    <h3 className="padding" key={house}>
                         {house}
-                    </h2>
+                    </h3>
                 );
             }
 
@@ -157,7 +157,7 @@ class AddStudent extends Component {
         return (
             <div>
                 <BackButton />
-                <h1 className="padding">Add Students</h1>
+                <h2 className="padding">Add Students</h2>
                 <div className="padding skill-filters">
                     {skills.map((name) => {
                         return (

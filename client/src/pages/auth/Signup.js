@@ -91,7 +91,7 @@ class Signup extends Component {
         } = this.state;
         return (
             <div className="center">
-                <h1>Sign Up</h1>
+                <h2>Sign Up</h2>
                 <Grid container justify="center">
                     <form onSubmit={(e) => this.onSubmit(e)}>
                         <Grid item className="auth-input">

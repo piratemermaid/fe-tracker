@@ -6,20 +6,20 @@ const DevNotes = () => {
     return (
         <div className="padding">
             <BackButton />
-            <h1>Dev Notes</h1>
-            <h2>Todos</h2>
+            <h2>Dev Notes</h2>
+            <h3>Todos</h3>
             <ul className="styled-list">
                 {todos.map(({ desc }) => {
                     return <li>{desc}</li>;
                 })}
             </ul>
-            <h2>Known bugs</h2>
+            <h3>Known bugs</h3>
             <ul className="styled-list">
                 {bugs.map(({ desc }) => {
                     return <li>{desc}</li>;
                 })}
             </ul>
-            <h2>Feature ideas</h2>
+            <h3>Feature ideas</h3>
             <ul className="styled-list">
                 {featureIdeas.map(({ desc }) => {
                     return <li>{desc}</li>;

@@ -11,10 +11,20 @@
     font-weight: 400;
 }
 
-h1,
-h2,
-h3 {
+h2 {
+    font-size: 28px;
     font-weight: 800;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .center {
@@ -60,7 +70,7 @@ span.skill-icon {
 }
 
 span.skill-icon img {
-    width: 18px;
+    width: 16px;
     margin-right: 2px;
     position: relative;
     top: 3px;
@@ -204,12 +214,7 @@ p.roster-name {
 }
 
 /* student overview */
-#student-overview h2 {
-    font-size: 20px;
-}
-
-#student-overview h3 {
-    font-size: 16px;
+#student-overview h4 {
     margin: 6px 0 10px 0;
 }
 

@@ -17,7 +17,7 @@ const Roster = (props) => {
     if (!props.playthrough) {
         return (
             <div className="padding">
-                <h1>No playthrough found.</h1>
+                <h2>No playthrough found.</h2>
                 <Link to="/new_playthrough">
                     <Button
                         className="button"
@@ -37,14 +37,14 @@ const Roster = (props) => {
     return (
         <div>
             <div className="padding">
-                <h1>
+                <h2>
                     {house} Roster
                     <span style={{ float: "right" }}>
                         <Link to="/add_student">
                             <AddCircleOutlineIcon />
                         </Link>
                     </span>
-                </h1>
+                </h2>
             </div>
             <ul>
                 {students.map((student) => {

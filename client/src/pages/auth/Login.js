@@ -53,7 +53,7 @@ class Login extends Component {
         const { username, password, errorMessage } = this.state;
         return (
             <div className="center">
-                <h1>Log In</h1>
+                <h2>Log In</h2>
                 <Grid container justify="center">
                     <form onSubmit={(e) => this.onSubmit(e)}>
                         <Grid item className="auth-input">

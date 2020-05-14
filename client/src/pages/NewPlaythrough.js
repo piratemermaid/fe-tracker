@@ -110,14 +110,14 @@ class NewPlaythrough extends Component {
             <div>
                 <BackButton />
                 <div className="padding center">
-                    <h1>New Playthrough</h1>
-                    <h2>Select House</h2>
+                    <h2>New Playthrough</h2>
+                    <h3>Select House</h3>
                     <Grid container spacing={2}>
                         {this.houseButtonUI("Black Eagles")}
                         {this.houseButtonUI("Blue Lions")}
                         {this.houseButtonUI("Golden Deer")}
                     </Grid>
-                    <h2>Select Byleth</h2>
+                    <h3>Select Byleth</h3>
                     <Grid container justify="center" spacing={2}>
                         {this.bylethButtonUI("M")}
                         {this.bylethButtonUI("F")}

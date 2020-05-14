@@ -22,7 +22,7 @@ const Home = (props) => {
 
     return (
         <div>
-            <h1>Home</h1>
+            <h2>Home</h2>
             {!props.authenticated ? (
                 <div>
                     <Link to="/login">Log In</Link> |{" "}

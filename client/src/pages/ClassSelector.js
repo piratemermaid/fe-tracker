@@ -58,7 +58,7 @@ class ClassSelector extends Component {
         return (
             <div className="padding">
                 <BackButton url={`/student/${name}`} />
-                <h1>Select Classes for {name}</h1>
+                <h2>Select Classes for {name}</h2>
                 <div className="skill-filters">
                     {proficientSkills.map(({ name }) => {
                         return (

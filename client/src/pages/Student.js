@@ -77,7 +77,7 @@ const Student = (props) => {
         if (classesToDisplay.length < 1) {
             return (
                 <div>
-                    <h2>{type}</h2>
+                    <h3>{type}</h3>
                     <Paper className="goal-row" elevation={1} key={name}>
                         None
                         {type === "current" ? (
@@ -96,7 +96,7 @@ const Student = (props) => {
 
         return (
             <div>
-                <h2>{type}</h2>
+                <h3>{type}</h3>
                 {classesToDisplay.length > 0 ? (
                     classesToDisplay.map(({ name, classSkills, certified }) => {
                         let readyForCert = false;
@@ -114,7 +114,7 @@ const Student = (props) => {
                             >
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>
-                                        <h3>Class</h3>
+                                        <h4>Class</h4>
                                         <FormControlLabel
                                             control={
                                                 <Checkbox
@@ -146,7 +146,7 @@ const Student = (props) => {
                                         ) : null}
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <h3>Skills Required</h3>
+                                        <h4>Skills Required</h4>
                                         {classSkills.length > 0
                                             ? classSkills.map((skill) => {
                                                   const studentSkillLevel = getHighestSkillLevel(
