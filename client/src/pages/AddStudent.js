@@ -105,14 +105,14 @@ class AddStudent extends Component {
                         key={name}
                         onClick={() => this.addStudent(name)}
                     >
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                             <StudentImg
                                 name={name}
                                 byleth_gender={gender || "F"}
                                 house={house}
                             />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={9}>
                             <p className="roster-name" style={{ marginTop: 0 }}>
                                 {name}
                             </p>
