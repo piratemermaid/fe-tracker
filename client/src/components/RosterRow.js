@@ -22,12 +22,14 @@ const RosterRow = (props) => {
 
     // only show lowest level uncertified class
     const renderClass = (nextClass) => {
-        const { name, type } = nextClass;
-        return (
-            <span>
-                {name} ({type})
-            </span>
-        );
+        if (nextClass) {
+            const { name, type } = nextClass;
+            return (
+                <span>
+                    {name} ({type})
+                </span>
+            );
+        }
     };
     const studentInfo = _.find(appStudents, { name });
 
