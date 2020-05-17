@@ -37,8 +37,8 @@ class ClassSelector extends Component {
         }
 
         const { name } = this.props.match.params;
-        const studentInfo = _.find(this.props.appData.students, { name });
-        const proficientSkills = studentInfo.skills.filter((skill) => {
+        const appStudentInfo = _.find(this.props.appData.students, { name });
+        const proficientSkills = appStudentInfo.skills.filter((skill) => {
             if (skill.proficient || skill.budding) {
                 return skill;
             }
@@ -78,7 +78,7 @@ class ClassSelector extends Component {
                     })}
                 </div>
                 {types.map((type) => {
-                    const studentInfo = _.find(students, { name });
+                    const userStudentInfo = _.find(students, { name });
                     return (
                         <ClassSelectorType
                             type={type}
@@ -86,11 +86,12 @@ class ClassSelector extends Component {
                             classes={_.filter(this.state.classes, {
                                 type
                             })}
-                            studentClasses={studentInfo.classes}
+                            studentClasses={userStudentInfo.classes}
                             house={house}
                             selectClassGoal={this.props.selectClassGoal}
                             key={type}
                             filters={this.state.filters}
+                            appStudentInfo={appStudentInfo}
                         />
                     );
                 })}

@@ -8,7 +8,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const ClassSelectorType = (props) => {
-    const { studentClasses, type, filters } = props;
+    const { appStudentInfo, studentClasses, type, filters } = props;
 
     let typeIsSet = false;
     const classesSetOfType = _.compact(
@@ -54,6 +54,7 @@ const ClassSelectorType = (props) => {
                                 name,
                                 skills,
                                 abilities,
+                                gender,
                                 student,
                                 mastery_ability,
                                 mastery_combat_art
@@ -61,6 +62,11 @@ const ClassSelectorType = (props) => {
                                 let shouldDisplay = checkFilters(skills);
                                 if (student) {
                                     if (student !== props.student) {
+                                        shouldDisplay = false;
+                                    }
+                                }
+                                if (gender) {
+                                    if (gender !== appStudentInfo.gender) {
                                         shouldDisplay = false;
                                     }
                                 }
