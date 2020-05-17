@@ -105,6 +105,22 @@ img.skill-icon {
     cursor: pointer;
 }
 
+#sticky-footer {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+}
+
+#sticky-footer .add-student-btn {
+    margin-right: 20px;
+    color: rgb(99, 94, 94);
+    background: white;
+}
+
+#sticky-footer .add-student-btn.deselected {
+    color: rgb(187, 187, 187);
+}
+
 /* house colors */
 .BlackEagles-bg {
     background: rgb(206, 54, 87) !important;
@@ -306,4 +322,7 @@ div.MuiExpansionPanelDetails-root {
     position: relative;
     left: 16px;
     top: -2px;
+}
+
+.add-student-btn {
 }

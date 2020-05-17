@@ -11,6 +11,7 @@ import SkillsOverview from "../components/SkillsOverview";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 const skills = [
     "Sword",
@@ -46,6 +47,13 @@ class AddStudent extends Component {
             selectedStudents.splice(index, 1);
         }
         this.setState({ selectedStudents });
+    }
+
+    addStudents() {
+        const { selectedStudents } = this.state;
+        if (selectedStudents.length > 0) {
+            this.props.addStudents(selectedStudents);
+        }
     }
 
     onFilterChange(name) {
@@ -185,20 +193,17 @@ class AddStudent extends Component {
                     ) : null}
                 </div>
                 <ul>{this.renderAvailableStudents()}</ul>
-                <div className="center footer">
+                <div id="sticky-footer" align="right">
                     <Link to="/">
-                        <Button
-                            className="button"
-                            style={{ width: "90%" }}
-                            variant="contained"
-                            color="primary"
-                            onClick={() =>
-                                this.props.addStudents(selectedStudents)
-                            }
-                            disabled={selectedStudents.length < 1}
-                        >
-                            Add
-                        </Button>
+                        <AddCircleIcon
+                            className={`add-student-btn${
+                                this.state.selectedStudents.length < 1
+                                    ? " deselected"
+                                    : ""
+                            }`}
+                            fontSize="large"
+                            onClick={() => this.addStudents(selectedStudents)}
+                        />
                     </Link>
                 </div>
             </div>
