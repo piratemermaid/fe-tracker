@@ -267,7 +267,7 @@ p.roster-name {
 }
 
 img.skill-filter {
-    width: 26px;
+    width: 28px;
     opacity: 0.6;
 }
 
@@ -337,7 +337,4 @@ div.MuiExpansionPanelDetails-root {
     position: relative;
     left: 16px;
     top: -2px;
-}
-
-.add-student-btn {
 }
