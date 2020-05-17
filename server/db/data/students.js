@@ -269,24 +269,6 @@ const studentData = [
         gifts: ["Floral Adornment", "Tea Leaves", "Rose"]
     },
     {
-        name: "Hilda",
-        house: "Golden Deer",
-        gender: "female",
-        recruitable: true,
-        skills: {
-            proficient: ["Lance", "Axe"],
-            budding: ["Heavy Armor"],
-            weakness: ["Faith", "Authority"]
-        },
-        gifts: [
-            "Gemstone Beads",
-            "Stylish Hair Clip",
-            "Dapper Handkerchief",
-            "Armored Bear Stuffy",
-            "Anemone"
-        ]
-    },
-    {
         name: "Raphael",
         house: "Golden Deer",
         gender: "male",
@@ -297,23 +279,6 @@ const studentData = [
             weakness: ["Bow", "Reason", "Riding"]
         },
         gifts: ["Tasty Baked Treat", "Smoked Meat", "Training Weight"]
-    },
-    {
-        name: "Lysithea",
-        house: "Golden Deer",
-        gender: "female",
-        recruitable: true,
-        skills: {
-            proficient: ["Reason", "Faith", "Authority"],
-            budding: ["Sword"],
-            weakness: ["Lance", "Axe", "Heavy Armor"]
-        },
-        gifts: [
-            "Tasty Baked Treat",
-            "Armored Bear Stuffy",
-            "Arithmetic Textbook",
-            "Lily"
-        ]
     },
     {
         name: "Ignatz",
@@ -334,6 +299,23 @@ const studentData = [
         ]
     },
     {
+        name: "Lysithea",
+        house: "Golden Deer",
+        gender: "female",
+        recruitable: true,
+        skills: {
+            proficient: ["Reason", "Faith", "Authority"],
+            budding: ["Sword"],
+            weakness: ["Lance", "Axe", "Heavy Armor"]
+        },
+        gifts: [
+            "Tasty Baked Treat",
+            "Armored Bear Stuffy",
+            "Arithmetic Textbook",
+            "Lily"
+        ]
+    },
+    {
         name: "Marianne",
         house: "Golden Deer",
         gender: "female",
@@ -348,6 +330,24 @@ const studentData = [
             "Dapper Handkerchief",
             "Armored Bear Stuffy",
             "Lily of the Valley"
+        ]
+    },
+    {
+        name: "Hilda",
+        house: "Golden Deer",
+        gender: "female",
+        recruitable: true,
+        skills: {
+            proficient: ["Lance", "Axe"],
+            budding: ["Heavy Armor"],
+            weakness: ["Faith", "Authority"]
+        },
+        gifts: [
+            "Gemstone Beads",
+            "Stylish Hair Clip",
+            "Dapper Handkerchief",
+            "Armored Bear Stuffy",
+            "Anemone"
         ]
     },
     {
