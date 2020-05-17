@@ -287,6 +287,11 @@ li.set-class {
     border-bottom: 1px solid black;
 }
 
+.set-class:hover {
+    cursor: pointer;
+    background: rgb(226, 226, 226) !important;
+}
+
 li.set-class.unset {
     background: rgb(238, 238, 238);
 }
@@ -295,6 +300,11 @@ li.set-class.certified {
     background: rgb(255, 255, 255);
     font-style: italic;
     color: rgb(120, 120, 120);
+}
+
+li.set-class.certified:hover {
+    background: rgb(255, 255, 255) !important;
+    cursor: auto;
 }
 
 div.MuiExpansionPanelDetails-root {
