@@ -193,6 +193,11 @@ button.Faculty {
     font-size: 13px;
 }
 
+.roster-row:hover {
+    cursor: pointer;
+    background: rgb(241, 241, 241);
+}
+
 .roster-img {
     height: 64px;
     width: 64px;
