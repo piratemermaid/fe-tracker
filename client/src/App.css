@@ -35,6 +35,10 @@ h4 {
     text-align: right;
 }
 
+.italic {
+    font-style: italic;
+}
+
 .btn {
     height: 20px;
 }

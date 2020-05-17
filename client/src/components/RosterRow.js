@@ -21,14 +21,24 @@ const RosterRow = (props) => {
     const nextSkillGoals = getNextSkillGoals({ classes, skills });
 
     // only show lowest level uncertified class
-    const renderClass = (nextClass) => {
+    const renderClass = (nextClass, readyForCert) => {
         if (nextClass) {
             const { name, type } = nextClass;
-            return (
-                <span>
-                    {name} ({type})
-                </span>
-            );
+            if (readyForCert) {
+                return (
+                    <span>
+                        Ready for cert: {name} ({type})
+                    </span>
+                );
+            } else {
+                return (
+                    <span>
+                        Next class: {name} ({type})
+                    </span>
+                );
+            }
+        } else {
+            return <span className="italic">Completed all set classes</span>;
         }
     };
     const studentInfo = _.find(appStudents, { name });
@@ -71,13 +81,10 @@ const RosterRow = (props) => {
                         <p>
                             {classes.length > 0 ? (
                                 <span>
-                                    {!readyForCert
-                                        ? "Next class"
-                                        : "Ready for cert"}
-                                    : {renderClass(nextClass)}
+                                    {renderClass(nextClass, readyForCert)}
                                 </span>
                             ) : (
-                                "No classes set"
+                                <span className="italic">No classes set</span>
                             )}
                         </p>
                         <p>
