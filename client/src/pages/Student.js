@@ -250,7 +250,7 @@ const Student = (props) => {
                 : null}
             {renderSection("completed", completedClasses)}
             <div
-                className="footer center"
+                className="footer center hover"
                 style={{ marginTop: "20px" }}
                 onClick={() => removeStudent(name)}
             >
