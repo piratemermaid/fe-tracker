@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
 
+import Loading from "../../components/Loading";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -13,12 +14,14 @@ class Login extends Component {
         this.state = {
             username: "",
             password: "",
-            errorMessage: null
+            errorMessage: null,
+            isLoading: false
         };
     }
 
     onSubmit(e) {
         e.preventDefault();
+        this.setState({ isLoading: true });
 
         const { username, password } = this.state;
         axios({
@@ -29,8 +32,6 @@ class Login extends Component {
             .then((res) => {
                 if (res.data.login === "success") {
                     this.props.authenticateUser(true);
-                    // TODO: reroute to roster and then prompt to start
-                    // new playthrough if none
                     this.props.history.push("/");
                 }
             })
@@ -50,7 +51,12 @@ class Login extends Component {
     }
 
     render() {
-        const { username, password, errorMessage } = this.state;
+        const { username, password, errorMessage, isLoading } = this.state;
+
+        if (isLoading) {
+            return <Loading />;
+        }
+
         return (
             <div className="center">
                 <h2>Log In</h2>
