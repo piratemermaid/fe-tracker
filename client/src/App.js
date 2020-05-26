@@ -52,7 +52,6 @@ class App extends Component {
             .then((res) => {
                 if (res.data.logout === "success") {
                     this.authenticateUser(false);
-                    this.props.history.push("/");
                 }
             })
             .catch((err) => {
