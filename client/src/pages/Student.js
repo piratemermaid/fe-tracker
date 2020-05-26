@@ -108,8 +108,8 @@ const Student = (props) => {
                         }
                         return (
                             <Paper
-                                className={`goal-row${
-                                    type === "completed" ? " italic" : null
+                                className={`goal-row ${
+                                    type === "completed" ? "italic" : null
                                 }`}
                                 elevation={1}
                                 key={name}
