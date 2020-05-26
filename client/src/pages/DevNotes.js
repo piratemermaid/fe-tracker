@@ -30,24 +30,18 @@ const DevNotes = () => {
 };
 
 const todos = [
-    {
-        desc:
-            "Add character/class gender and prevent wrong gender from using class e.g. Gremory cannot be male"
-    },
     { desc: "On class path selection page, show what % other users chose" },
     {
         desc:
             "Ability to sort roster page by class level (e.g. show those who haven't certified for Beginner, then Intermediate, then Advanced)"
     },
-    { desc: "Reorder students by order in game when instructing" }
-];
-
-const bugs = [
     {
         desc:
-            "Stuck on loading sometimes when starting new session while unauthenticated"
+            "Reorder students by order in game when instructing (GD done, need BE and BL order)"
     }
 ];
+
+const bugs = [{ desc: "Some glitchy loading" }];
 
 const featureIdeas = [
     { desc: "Show whether to critique/console for failure" },
