@@ -41,8 +41,22 @@ class Login extends Component {
     }
 
     useDemoAccount(e) {
-        this.setState({ username: "testuser", password: "userpass12" });
-        this.onSubmit(e);
+        e.preventDefault();
+        this.setState({ isLoading: true });
+        axios({
+            method: "post",
+            url: "/api/account/login",
+            params: { username: "testuser", password: "userpass12" }
+        })
+            .then((res) => {
+                if (res.data.login === "success") {
+                    this.props.authenticateUser(true);
+                    this.props.history.push("/");
+                }
+            })
+            .catch((err) => {
+                this.setState({ errorMessage: err.response.data });
+            });
     }
 
     onInputChange(e, field) {
