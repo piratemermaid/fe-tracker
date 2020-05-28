@@ -330,12 +330,14 @@ router.post("/remove_student", async (req, res) => {
     const playthrough_id = await helpers.lookupPlaythroughId(user);
     const student_id = await helpers.lookupId("students", { name });
 
-    await knex("users_students")
-        .where({
-            playthrough_id,
-            student_id
-        })
-        .del();
+    const user_student_id = await helpers.lookupId("users_students", {
+        playthrough_id,
+        student_id
+    });
+
+    await knex("users_students_classes").where({ user_student_id }).del();
+    await knex("users_students_skills").where({ user_student_id }).del();
+    await knex("users_students").where({ id: user_student_id }).del();
 
     res.send("success");
 });
