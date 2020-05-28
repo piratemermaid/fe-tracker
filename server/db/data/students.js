@@ -41,18 +41,6 @@ const studentData = [
         gifts: ["Board Game", "Coffee Beans"]
     },
     {
-        name: "Dorothea",
-        house: "Black Eagles",
-        gender: "female",
-        recruitable: true,
-        skills: {
-            proficient: ["Sword", "Reason"],
-            budding: ["Faith"],
-            weakness: ["Riding", "Flying"]
-        },
-        gifts: ["Gemstone Beads", "Stylish Hair Clip", "Book of Sheet Music"]
-    },
-    {
         name: "Ferdinand",
         house: "Black Eagles",
         gender: "male",
@@ -63,6 +51,30 @@ const studentData = [
             weakness: []
         },
         gifts: ["Whetstone", "Riding Boots", "Tea Leaves"]
+    },
+    {
+        name: "Linhardt",
+        house: "Black Eagles",
+        gender: "male",
+        recruitable: true,
+        skills: {
+            proficient: ["Reason", "Faith"],
+            budding: [],
+            weakness: ["Axe", "Brawl"]
+        },
+        gifts: ["Fishing Float", "Tasty Baked Treat", "Book of Crest Designs"]
+    },
+    {
+        name: "Caspar",
+        house: "Black Eagles",
+        gender: "male",
+        recruitable: true,
+        skills: {
+            proficient: ["Axe", "Brawl"],
+            budding: [],
+            weakness: ["Bow", "Reason", "Authority"]
+        },
+        gifts: ["Smoked Meat", "Hunting Dagger", "Whetstone", "Training Weight"]
     },
     {
         name: "Bernadetta",
@@ -82,28 +94,16 @@ const studentData = [
         ]
     },
     {
-        name: "Caspar",
+        name: "Dorothea",
         house: "Black Eagles",
-        gender: "male",
+        gender: "female",
         recruitable: true,
         skills: {
-            proficient: ["Axe", "Brawl"],
-            budding: [],
-            weakness: ["Bow", "Reason", "Authority"]
+            proficient: ["Sword", "Reason"],
+            budding: ["Faith"],
+            weakness: ["Riding", "Flying"]
         },
-        gifts: ["Smoked Meat", "Hunting Dagger", "Whetstone", "Training Weight"]
-    },
-    {
-        name: "Linhardt",
-        house: "Black Eagles",
-        gender: "male",
-        recruitable: true,
-        skills: {
-            proficient: ["Reason", "Faith"],
-            budding: [],
-            weakness: ["Axe", "Brawl"]
-        },
-        gifts: ["Fishing Float", "Tasty Baked Treat", "Book of Crest Designs"]
+        gifts: ["Gemstone Beads", "Stylish Hair Clip", "Book of Sheet Music"]
     },
     {
         name: "Petra",
