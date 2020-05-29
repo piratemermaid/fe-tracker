@@ -35,9 +35,10 @@ const todos = [
         desc:
             "Ability to sort roster page by class level (e.g. show those who haven't certified for Beginner, then Intermediate, then Advanced)"
     },
+    { desc: "Show tooltips description for class abilities" },
     {
         desc:
-            "Reorder students by order in game when instructing (GD done, need BE and BL order)"
+            "Reorder students by order in game when instructing (GD and BE done, need BL order)"
     }
 ];
 
