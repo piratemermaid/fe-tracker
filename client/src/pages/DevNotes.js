@@ -44,9 +44,10 @@ const todos = [
 const bugs = [{ desc: "Some glitchy loading" }];
 
 const featureIdeas = [
+    { desc: "Lost item guide" },
+    { desc: "Faculty training guide" },
     { desc: "Show whether to critique/console for failure" },
     { desc: "Select non-class skill goals post master class (or along path)" },
-    { desc: "Lost item guide" },
     { desc: "Track support levels" },
     { desc: "Show group task options" },
     { desc: "Keep track of class mastery" },
