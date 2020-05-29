@@ -35,6 +35,7 @@ const todos = [
         desc:
             "Ability to sort roster page by class level (e.g. show those who haven't certified for Beginner, then Intermediate, then Advanced)"
     },
+    { desc: "Add gifts for students not in house" },
     { desc: "Show tooltips description for class abilities" },
     {
         desc:

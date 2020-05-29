@@ -18,7 +18,7 @@ const Gifts = (props) => {
     return (
         <div>
             <div className="padding">
-                <BackButton />
+                <BackButton url="/info" />
                 <h2>Best Gifts</h2>
             </div>
             {userStudents.map(({ name }) => {

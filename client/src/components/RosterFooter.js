@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
+import InfoIcon from "@material-ui/icons/Info";
 import NotesIcon from "@material-ui/icons/Notes";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
@@ -26,13 +26,13 @@ const RosterFooter = (props) => {
                     icon={<AddCircleIcon />}
                 />
             </Link>
-            <Link to="/gifts">
+            <Link to="/info">
                 <BottomNavigationAction
                     label="Nearby"
                     value="nearby"
-                    icon={<CardGiftcardIcon />}
+                    icon={<InfoIcon />}
                 />
-            </Link>{" "}
+            </Link>
             <Link to="/dev_notes">
                 <BottomNavigationAction
                     label="Folder"

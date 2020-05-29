@@ -338,3 +338,20 @@ div.MuiExpansionPanelDetails-root {
     left: 16px;
     top: -2px;
 }
+
+/* info page */
+.info-link {
+    border: 1px solid rgb(123, 123, 123);
+    height: 100px;
+    text-align: center;
+}
+
+.info-link:hover {
+    cursor: pointer;
+    background: rgb(240, 240, 240);
+}
+
+.info-link h4 {
+    position: relative;
+    top: 16px;
+}

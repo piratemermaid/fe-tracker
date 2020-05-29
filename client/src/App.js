@@ -14,7 +14,11 @@ import Roster from "./pages/Roster";
 import Student from "./pages/Student";
 import ClassSelector from "./pages/ClassSelector";
 import AddStudent from "./pages/AddStudent";
+import Info from "./pages/Info";
 import Gifts from "./pages/Gifts";
+import LostItems from "./pages/LostItems";
+import FacultyTraining from "./pages/FacultyTraining";
+import TeaParty from "./pages/TeaParty";
 import DevNotes from "./pages/DevNotes";
 import { stripSpaces } from "./helpers/helpers";
 
@@ -182,7 +186,11 @@ class App extends Component {
         const AuthStudent = RequireAuth(Student);
         const AuthClassSelector = RequireAuth(ClassSelector);
         const AuthAddStudent = RequireAuth(AddStudent);
+        const AuthInfo = RequireAuth(Info);
         const AuthGifts = RequireAuth(Gifts);
+        const AuthLostItems = RequireAuth(LostItems);
+        const AuthFacultyTraining = RequireAuth(FacultyTraining);
+        const AuthTeaParty = RequireAuth(TeaParty);
 
         return (
             <div
@@ -266,12 +274,46 @@ class App extends Component {
                             )}
                         />
                         <Route
+                            path="/info"
+                            render={() => (
+                                <AuthInfo authenticated={authenticated} />
+                            )}
+                        />
+                        <Route
                             path="/gifts"
                             render={() => (
                                 <AuthGifts
                                     authenticated={authenticated}
                                     playthrough={playthrough}
                                     appStudents={appData.students}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/lost_items"
+                            render={() => (
+                                <AuthLostItems
+                                    authenticated={authenticated}
+                                    playthrough={playthrough}
+                                    appStudents={appData.students}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/faculty_training"
+                            render={() => (
+                                <AuthFacultyTraining
+                                    authenticated={authenticated}
+                                    appData={appData}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/tea_party"
+                            render={() => (
+                                <AuthTeaParty
+                                    authenticated={authenticated}
+                                    appData={appData}
                                 />
                             )}
                         />
