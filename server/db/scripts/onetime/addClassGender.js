@@ -1,6 +1,6 @@
 const _ = require("lodash");
-const { knex } = require("../../api/models/config");
-const { classes } = require("../data/classes");
+const { knex } = require("../../../api/models/config");
+const { classes } = require("../../data/classes");
 
 async function addClassGender() {
     for (let sClass of classes) {

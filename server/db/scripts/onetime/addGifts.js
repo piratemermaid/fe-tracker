@@ -1,7 +1,7 @@
 const _ = require("lodash");
-const { knex } = require("../../api/models/config");
-const gifts = require("../data/gifts");
-const { students } = require("../data/students");
+const { knex } = require("../../../api/models/config");
+const gifts = require("../../data/gifts");
+const { students } = require("../../data/students");
 
 async function addGifts() {
     await knex("gifts").del();

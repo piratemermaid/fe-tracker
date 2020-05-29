@@ -1,6 +1,6 @@
-const { classes } = require("../data/classes");
-const { lookupId } = require("../../api/helpers/data");
-const { knex } = require("../../api/models/config");
+const { classes } = require("../../data/classes");
+const { lookupId } = require("../../../api/helpers/data");
+const { knex } = require("../../../api/models/config");
 
 async function connectUniqueClassesToStudents() {
     const uniqueClasses = classes.filter((sClass) => {

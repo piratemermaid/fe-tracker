@@ -1,6 +1,6 @@
 const _ = require("lodash");
-const { knex } = require("../../api/models/config");
-const { studentSkills } = require("../data/students");
+const { knex } = require("../../../api/models/config");
+const { studentSkills } = require("../../data/students");
 
 async function fixBuddingSkills() {
     for (let student of studentSkills) {
