@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import axios from "axios";
 import { stripSpaces } from "../helpers/helpers";
 
 import Loading from "../components/Loading";
@@ -11,7 +12,7 @@ class ClassSelector extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { classes: {}, filters: [] };
+        this.state = { classes: {}, filters: [], percentages: {} };
     }
 
     onFilterChange(name) {
@@ -29,6 +30,14 @@ class ClassSelector extends Component {
         if (this.props.appData) {
             this.setState({ classes: this.props.appData.classes });
         }
+
+        axios({
+            method: "get",
+            url: "/api/app/class_percentage",
+            params: { studentName: this.props.match.params.name }
+        }).then((res) => {
+            this.setState({ percentages: res.data });
+        });
     }
 
     render() {
@@ -92,6 +101,7 @@ class ClassSelector extends Component {
                             key={type}
                             filters={this.state.filters}
                             appStudentInfo={appStudentInfo}
+                            percentages={this.state.percentages}
                         />
                     );
                 })}

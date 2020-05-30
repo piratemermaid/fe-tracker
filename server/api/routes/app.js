@@ -96,4 +96,92 @@ router.get("/students", (req, res) => {
     });
 });
 
+router.get("/class_percentage", async (req, res) => {
+    const { studentName } = req.query;
+
+    const classesResult = await models.Class.fetchAll({
+        withRelated: [
+            {
+                skills(qb) {
+                    qb.column("name", "level");
+                }
+            },
+            "student"
+        ]
+    });
+
+    const classes = classesResult.toJSON().map(({ name, type }) => {
+        return { name, type };
+    });
+
+    let userClasses = {};
+    for (let sClass of classesResult.toJSON()) {
+        const { name } = sClass;
+        userClasses[name] = 0;
+    }
+
+    const userClassesResult = await models.User.fetchAll({
+        withRelated: [
+            "playthroughs.userStudents.student",
+            "playthroughs.userStudents.userStudentClasses.class"
+        ]
+    });
+
+    for (let userResult of userClassesResult.toJSON()) {
+        const { playthroughs } = userResult;
+        for (let playthrough of playthroughs) {
+            const { userStudents } = playthrough;
+            for (let userStudent of userStudents) {
+                const { student, userStudentClasses } = userStudent;
+                if (
+                    student.name === studentName &&
+                    userStudentClasses.length > 0
+                ) {
+                    for (let sClass of userStudentClasses) {
+                        const className = sClass.class.name;
+                        userClasses[className] = userClasses[className] + 1;
+                    }
+                }
+            }
+        }
+    }
+
+    const begPercentages = getPercentage(classes, "Beginner", userClasses);
+    const interPercentages = getPercentage(
+        classes,
+        "Intermediate",
+        userClasses
+    );
+    const advPercentages = getPercentage(classes, "Advanced", userClasses);
+    const masterPercentages = getPercentage(classes, "Master", userClasses);
+
+    res.send(
+        _.union(
+            begPercentages,
+            interPercentages,
+            advPercentages,
+            masterPercentages
+        )
+    );
+});
+
+function getPercentage(classes, type, userClasses) {
+    const typeClasses = _.filter(classes, { type });
+
+    let total = 0;
+
+    for (let sClass of typeClasses) {
+        const { name } = sClass;
+        total += userClasses[name];
+    }
+
+    return typeClasses.map(({ name }) => {
+        if (total === 0 || userClasses[name] === 0) {
+            return { name, percentage: 0 };
+        } else {
+            return { name, percentage: (100 * userClasses[name]) / total };
+        }
+    });
+}
+
 module.exports = router;

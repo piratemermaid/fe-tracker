@@ -280,7 +280,7 @@ img.skill-filter.filter-selected {
     opacity: 1;
 }
 
-/* set class */
+/* set class / select class */
 li.set-class {
     font-size: 12px;
     padding: 12px;
@@ -313,6 +313,12 @@ div.MuiExpansionPanelDetails-root {
 
 .set-class span.class-name {
     font-weight: bold;
+}
+
+span.class-percentage {
+    float: right;
+    font-style: italic;
+    font-size: 10px;
 }
 
 /* add student */

@@ -30,7 +30,6 @@ const DevNotes = () => {
 };
 
 const todos = [
-    { desc: "On class path selection page, show what % other users chose" },
     {
         desc:
             "Ability to sort roster page by class level (e.g. show those who haven't certified for Beginner, then Intermediate, then Advanced)"

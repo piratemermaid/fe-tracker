@@ -8,7 +8,13 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const ClassSelectorType = (props) => {
-    const { appStudentInfo, studentClasses, type, filters } = props;
+    const {
+        appStudentInfo,
+        studentClasses,
+        type,
+        filters,
+        percentages
+    } = props;
 
     let typeIsSet = false;
     const classesSetOfType = _.compact(
@@ -116,6 +122,15 @@ const ClassSelectorType = (props) => {
                                             {classIsCertified
                                                 ? " (Certified)"
                                                 : null}
+                                        </span>
+                                        <span className="class-percentage">
+                                            {_.find(props.percentages, { name })
+                                                ? _.find(props.percentages, {
+                                                      name
+                                                  }).percentage
+                                                : "--"}
+                                            % of users chose this class for{" "}
+                                            {props.student}
                                         </span>
                                         <br />
                                         Skills required:{" "}
