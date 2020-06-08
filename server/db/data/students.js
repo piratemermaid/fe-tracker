@@ -580,6 +580,20 @@ const studentData = [
             weakness: ["Brawl", "Authority", "Heavy Armor"]
         },
         gifts: []
+    },
+    {
+        name: "Rhea",
+        house: "Faculty",
+        gender: "female",
+        recruitable: false,
+        gifts: []
+    },
+    {
+        name: "Jeralt",
+        house: "Faculty",
+        gender: "male",
+        recruitable: false,
+        gifts: []
     }
 ];
 

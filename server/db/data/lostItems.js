@@ -82,17 +82,17 @@ const lostItems = [
     {
         name: "Artificial Flower",
         location: "Pathway North of Knight's Hall",
-        student: "	Lorenz",
+        student: "Lorenz",
         month: "Blue Sea"
     },
     {
         name: "Bag of Tea Leaves",
-        location: "	Black Eagles Classroom",
+        location: "Black Eagles Classroom",
         student: "Ferdinand",
         month: "Blue Sea"
     },
     {
-        name: "Thunderbrand Replica	",
+        name: "Thunderbrand Replica",
         location: "Training Grounds",
         student: "Caspar",
         month: "Blue Sea"
@@ -113,7 +113,7 @@ const lostItems = [
     {
         name: "Mysterious Notebook",
         location: "Cathedral - Holy Mausoleum Entrance",
-        student: "	Alois",
+        student: "Alois",
         month: "Blue Sea"
     },
     {
@@ -168,7 +168,7 @@ const lostItems = [
     {
         name: "Exotic Flower",
         location: "Reception Hall",
-        student: "	Petra",
+        student: "Petra",
         month: "Verdant Rain"
     },
     {
@@ -200,13 +200,13 @@ const lostItems = [
     {
         name: "Antique Clasp",
         location: "Fishing Pond",
-        student: "	Flayn",
+        student: "Flayn",
         month: "Horsebow"
     },
     {
         name: "Agricultural Survey",
         location: "Stables",
-        student: "	Ferdinand",
+        student: "Ferdinand",
         month: "Horsebow"
     },
     {
@@ -537,7 +537,7 @@ const lostItems = [
     {
         name: "Toothed Dagger",
         location: "Training Grounds",
-        student: "	Felix",
+        student: "Felix",
         month: "Guardian"
     },
     {
