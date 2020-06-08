@@ -184,4 +184,28 @@ function getPercentage(classes, type, userClasses) {
     });
 }
 
+router.get("/lost_items_by_month", async (req, res) => {
+    const result = await models.Month.fetchAll({
+        withRelated: ["lostItems.student"]
+    });
+
+    res.send(
+        result.toJSON().map(({ name, lostItems }) => {
+            return {
+                name,
+                lostItems: lostItems.map(
+                    ({ name, condition, location, student }) => {
+                        return {
+                            name,
+                            location,
+                            student: student.name,
+                            condition
+                        };
+                    }
+                )
+            };
+        })
+    );
+});
+
 module.exports = router;

@@ -82,4 +82,18 @@ const Gift = bookshelf.model("Gift", {
     tableName: "gifts"
 });
 
-module.exports = { User, Playthrough, Class, Student };
+const Month = bookshelf.model("Month", {
+    tableName: "months",
+    lostItems() {
+        return this.hasMany("LostItem");
+    }
+});
+
+const LostItem = bookshelf.model("LostItem", {
+    tableName: "lost_items",
+    student() {
+        return this.belongsTo("Student");
+    }
+});
+
+module.exports = { User, Playthrough, Class, Student, Month };
