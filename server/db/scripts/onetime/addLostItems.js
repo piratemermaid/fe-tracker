@@ -3,9 +3,6 @@ const { lookupId } = require("../../../api/helpers/data");
 const { knex } = require("../../../api/models/config");
 
 async function addLostItems() {
-    await knex("lost_items").del();
-    await knex.raw(`ALTER SEQUENCE lost_items_id_seq RESTART WITH 1`);
-
     // add Rhea and Jeralt first bc they are not in students table
     const house_id = await lookupId("houses", { name: "Faculty" });
     await knex("students").insert({
@@ -35,7 +32,6 @@ async function addLostItems() {
         const itemExists = await knex("lost_items").where({ name }).first();
 
         if (!itemExists) {
-            console.log(student);
             const student_id = await lookupId("students", { name: student });
             const month_id = await lookupId("months", {
                 name: `${month} Moon`
