@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 import BackButton from "../components/BackButton";
 import Grid from "@material-ui/core/Grid";
+import { stripSpaces } from "../helpers/helpers";
 
 const Info = (props) => {
     const CustomLink = (text, url) => {
@@ -11,6 +12,7 @@ const Info = (props) => {
                 xs={6}
                 className="info-link"
                 onClick={() => props.history.push(url)}
+                id={stripSpaces(text)}
             >
                 <h4>{text}</h4>
             </Grid>
@@ -18,7 +20,7 @@ const Info = (props) => {
     };
 
     return (
-        <div>
+        <div id="info-links">
             <div className="padding">
                 <BackButton />
                 <h2>Info</h2>

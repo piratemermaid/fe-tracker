@@ -347,7 +347,7 @@ span.class-percentage {
 
 /* info page */
 .info-link {
-    border: 1px solid rgb(123, 123, 123);
+    border: 1px solid white;
     height: 100px;
     text-align: center;
 }
@@ -360,6 +360,27 @@ span.class-percentage {
 .info-link h4 {
     position: relative;
     top: 16px;
+    font-size: 20px;
+}
+
+#Gifts {
+    background-image: url("/img/screenshots/giving_gifts.png");
+    background-size: 200px;
+}
+
+#LostItems {
+    background-image: url("/img/screenshots/lost_item.png");
+    background-size: 200px;
+}
+
+#FacultyTraining {
+    background-image: url("/img/screenshots/faculty_training.png");
+    background-size: 200px;
+}
+
+#TeaPartyGuide {
+    background-image: url("/img/screenshots/tea_party.png");
+    background-size: 200px;
 }
 
 /* lost items */
