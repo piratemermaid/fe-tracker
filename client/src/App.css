@@ -361,3 +361,18 @@ span.class-percentage {
     position: relative;
     top: 16px;
 }
+
+/* lost items */
+ul.lost-item-list {
+    margin-left: 28px;
+    list-style-image: url("/img/lost_item.png");
+}
+
+.lost-item-list {
+    font-size: 15px;
+}
+
+.lost-item-list span {
+    font-size: 14px;
+    font-family: "Gothic A1", sans-serif;
+}
