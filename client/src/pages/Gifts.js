@@ -19,7 +19,7 @@ const Gifts = (props) => {
         <div>
             <div className="padding">
                 <BackButton url="/info" />
-                <h2>Best Gifts</h2>
+                <h2>Gifts</h2>
             </div>
             {userStudents.map(({ name }) => {
                 if (name !== "Byleth") {
