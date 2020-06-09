@@ -19,7 +19,7 @@ const Gifts = (props) => {
         return (
             <div>
                 {students.map(({ name }) => {
-                    if (name !== "Byleth") {
+                    if (name !== "Byleth" && name !== "Jeralt") {
                         const appStudent = _.find(appStudents, { name });
                         const { gifts } = appStudent;
 
