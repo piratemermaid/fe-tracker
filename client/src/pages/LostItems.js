@@ -68,7 +68,7 @@ class LostItems extends Component {
         return (
             <div id="lost-items" className="padding">
                 <BackButton url="/info" />
-                <h2>Lost Items (IN PROGRESS)</h2>
+                <h2>Lost Items</h2>
                 {this.state.lostItems.map(({ name, lostItems }) => {
                     return (
                         <div>
