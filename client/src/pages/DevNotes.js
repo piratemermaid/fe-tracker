@@ -34,7 +34,6 @@ const todos = [
         desc:
             "Ability to sort roster page by class level (e.g. show those who haven't certified for Beginner, then Intermediate, then Advanced)"
     },
-    { desc: "Add gifts for students not in house" },
     {
         desc:
             "Add motivation guide that combines info from gifts and lost items"
@@ -46,10 +45,9 @@ const todos = [
     }
 ];
 
-const bugs = [{ desc: "Some glitchy loading" }];
+const bugs = [];
 
 const featureIdeas = [
-    { desc: "Lost item guide" },
     { desc: "Faculty training guide" },
     { desc: "Show whether to critique/console for failure" },
     { desc: "Select non-class skill goals post master class (or along path)" },
