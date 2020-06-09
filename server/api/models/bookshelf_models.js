@@ -14,6 +14,9 @@ const Playthrough = bookshelf.model("Playthrough", {
     },
     userStudents() {
         return this.hasMany("UserStudent", "playthrough_id");
+    },
+    userLostItems() {
+        return this.hasMany("UserLostItem", "playthrough_id");
     }
 });
 
@@ -86,6 +89,13 @@ const Month = bookshelf.model("Month", {
     tableName: "months",
     lostItems() {
         return this.hasMany("LostItem");
+    }
+});
+
+const UserLostItem = bookshelf.model("UserLostItem", {
+    tableName: "users_lost_items",
+    lostItem() {
+        return this.belongsTo("LostItem");
     }
 });
 

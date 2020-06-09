@@ -342,6 +342,103 @@ router.post("/remove_student", async (req, res) => {
     res.send("success");
 });
 
+router.get("/lost_items", async (req, res) => {
+    const { sessionString } = req.cookies;
+    if (!validSession(sessionString)) {
+        res.status(401).send("Invalid session");
+        return;
+    }
+
+    const { username } = Session.parse(sessionString);
+    models.User.forge({ username })
+        .fetch({
+            withRelated: ["playthroughs.userLostItems.lostItem"]
+        })
+        .then((userData) => {
+            const data = userData.toJSON();
+
+            const playthrough = data.playthroughs[data.playthroughs.length - 1];
+            if (!playthrough) {
+                res.send(null);
+                return;
+            }
+
+            res.send(
+                playthrough.userLostItems.map(
+                    ({ found, returned, lostItem }) => {
+                        return { name: lostItem.name, found, returned };
+                    }
+                )
+            );
+        });
+});
+
+router.post("/toggle_lost_item", async (req, res) => {
+    const { sessionString } = req.cookies;
+    if (!validSession(sessionString)) {
+        res.status(401).send("Invalid session");
+        return;
+    }
+
+    const { name, type } = req.query;
+
+    const { username } = Session.parse(sessionString);
+    const user = await getAccount(username);
+    const playthrough_id = await helpers.lookupPlaythroughId(user);
+
+    const lost_item_id = await helpers.lookupId("lost_items", { name });
+
+    const existingEntry = await knex("users_lost_items")
+        .where({
+            playthrough_id,
+            lost_item_id
+        })
+        .first();
+
+    if (!existingEntry) {
+        let found, returned;
+        if (type === "found") {
+            found = true;
+            returned = false;
+        } else {
+            found = true;
+            returned = true;
+        }
+
+        await knex("users_lost_items").insert({
+            playthrough_id,
+            lost_item_id,
+            found,
+            returned
+        });
+    } else {
+        let found = existingEntry.found;
+        let returned = existingEntry.returned;
+
+        if (type === "found") {
+            if (found) {
+                found = false;
+                returned = false;
+            } else {
+                found = true;
+            }
+        } else {
+            if (returned) {
+                returned = false;
+            } else {
+                found = true;
+                returned = true;
+            }
+        }
+
+        await knex("users_lost_items")
+            .where({ playthrough_id, lost_item_id })
+            .update({ found, returned });
+    }
+
+    res.send("success");
+});
+
 const validSession = (sessionString) => {
     if (!sessionString || !Session.verify(sessionString)) {
         return false;

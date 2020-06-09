@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import axios from "axios";
 import BackButton from "../components/BackButton";
@@ -10,11 +11,42 @@ class LostItems extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { months: {} };
+        this.state = { months: {}, userLostItems: [] };
     }
 
     handleCheck(e, name, type) {
-        console.log(name, type);
+        axios({
+            method: "post",
+            url: "/api/user/toggle_lost_item",
+            params: { name, type }
+        }).then((res) => {
+            if (res.data === "success") {
+                this.fetchUserLostItems();
+            }
+        });
+    }
+
+    fetchUserLostItems() {
+        axios({
+            method: "get",
+            url: "/api/user/lost_items"
+        }).then((res) => {
+            this.setState({ userLostItems: res.data });
+        });
+    }
+
+    isChecked(name, type) {
+        const { userLostItems } = this.state;
+        const exists = _.find(userLostItems, { name });
+        if (!exists) {
+            return false;
+        }
+
+        if (exists[type]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     componentDidMount() {
@@ -24,6 +56,8 @@ class LostItems extends Component {
         }).then((res) => {
             this.setState({ lostItems: res.data });
         });
+
+        this.fetchUserLostItems();
     }
 
     render() {
@@ -55,7 +89,10 @@ class LostItems extends Component {
                                                 <FormControlLabel
                                                     control={
                                                         <Checkbox
-                                                            checked={false}
+                                                            checked={this.isChecked(
+                                                                name,
+                                                                "found"
+                                                            )}
                                                             onChange={(e) =>
                                                                 this.handleCheck(
                                                                     e,
@@ -77,12 +114,15 @@ class LostItems extends Component {
                                                 <FormControlLabel
                                                     control={
                                                         <Checkbox
-                                                            checked={false}
+                                                            checked={this.isChecked(
+                                                                name,
+                                                                "returned"
+                                                            )}
                                                             onChange={(e) =>
                                                                 this.handleCheck(
                                                                     e,
                                                                     name,
-                                                                    "delivered"
+                                                                    "returned"
                                                                 )
                                                             }
                                                             style={{
@@ -94,7 +134,7 @@ class LostItems extends Component {
                                                             }}
                                                         />
                                                     }
-                                                    label="delivered"
+                                                    label="returned"
                                                 />
                                             </li>
                                         );
