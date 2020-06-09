@@ -65,10 +65,53 @@ class LostItems extends Component {
             return <Loading />;
         }
 
+        const foundItems = _.filter(this.state.userLostItems, {
+            found: true,
+            returned: false
+        });
+
         return (
             <div id="lost-items" className="padding">
                 <BackButton url="/info" />
                 <h2>Lost Items</h2>
+                <h3>Lost Items Acquired</h3>
+                <ul className="lost-item-list">
+                    {foundItems.length > 0
+                        ? foundItems.map(({ name, student }) => {
+                              return (
+                                  <li>
+                                      {name} ({student})
+                                      <br />
+                                      <FormControlLabel
+                                          control={
+                                              <Checkbox
+                                                  checked={this.isChecked(
+                                                      name,
+                                                      "returned"
+                                                  )}
+                                                  onChange={(e) =>
+                                                      this.handleCheck(
+                                                          e,
+                                                          name,
+                                                          "returned"
+                                                      )
+                                                  }
+                                                  style={{
+                                                      color: houseRGB(
+                                                          this.props.playthrough
+                                                              .house
+                                                      )
+                                                  }}
+                                              />
+                                          }
+                                          label="returned"
+                                      />
+                                  </li>
+                              );
+                          })
+                        : "none"}
+                </ul>
+                <h3>Lost Items List</h3>
                 {this.state.lostItems.map(({ name, lostItems }) => {
                     return (
                         <div>

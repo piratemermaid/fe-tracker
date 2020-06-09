@@ -352,7 +352,7 @@ router.get("/lost_items", async (req, res) => {
     const { username } = Session.parse(sessionString);
     models.User.forge({ username })
         .fetch({
-            withRelated: ["playthroughs.userLostItems.lostItem"]
+            withRelated: ["playthroughs.userLostItems.lostItem.student"]
         })
         .then((userData) => {
             const data = userData.toJSON();
@@ -366,7 +366,12 @@ router.get("/lost_items", async (req, res) => {
             res.send(
                 playthrough.userLostItems.map(
                     ({ found, returned, lostItem }) => {
-                        return { name: lostItem.name, found, returned };
+                        return {
+                            name: lostItem.name,
+                            found,
+                            returned,
+                            student: lostItem.student.name
+                        };
                     }
                 )
             );
