@@ -179,7 +179,8 @@ function getPercentage(classes, type, userClasses) {
         if (total === 0 || userClasses[name] === 0) {
             return { name, percentage: 0 };
         } else {
-            return { name, percentage: (100 * userClasses[name]) / total };
+            const perc = (100 * userClasses[name]) / total;
+            return { name, percentage: Math.round(perc * 100) / 100 };
         }
     });
 }
